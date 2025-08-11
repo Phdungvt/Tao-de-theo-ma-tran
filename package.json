@@ -1,18 +1,18 @@
 {
   "name": "ag-ai-exam-generator",
   "version": "1.0.0",
-  "description": "AI-powered exam generator",
   "private": true,
+  "description": "AI-powered exam generator",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
+  "dependencies": {
+    "@google/genai": "^1.13.0"
+  },
   "devDependencies": {
     "typescript": "^5.0.0",
     "vite": "^5.0.0"
-  },
-  "dependencies": {
-    "@google/genai": "^1.13.0"
   }
 }
