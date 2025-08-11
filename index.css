@@ -1,0 +1,64 @@
+/* Custom styles for objective action buttons, mimicking the image */
+.objective-item .btn-group {
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    flex-shrink: 0; /* Prevents buttons from shrinking */
+}
+
+.objective-item .btn-group .btn {
+    border: none !important; /* Override bootstrap borders */
+    box-shadow: none !important;
+    border-radius: 0;
+    background-color: white;
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+}
+
+.objective-item .btn-group .btn-edit {
+    padding-left: 0.75rem;
+    padding-right: 0.6rem;
+    border: 1px solid #ced4da;
+    border-right-width: 0.5px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    color: #495057;
+}
+
+.objective-item .btn-group .btn-delete {
+    padding-left: 0.6rem;
+    padding-right: 0.75rem;
+    border: 1px solid #dc3545;
+    border-left-width: 0.5px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    color: #dc3545;
+}
+
+.objective-item .btn-group .btn-save-edit {
+    padding: 0.35rem 0.75rem;
+    border: 1px solid #198754; /* Green border for save */
+    border-radius: 50px !important; /* Fully rounded save button */
+    color: #198754;
+}
+
+
+.objective-item .btn-group .btn-edit:hover {
+    background-color: #e9ecef;
+}
+
+.objective-item .btn-group .btn-delete:hover {
+    background-color: #f8d7da;
+}
+
+.objective-item .btn-group .btn-save-edit:hover {
+    background-color: #d1e7dd;
+}
+
+.objective-item .btn-group .bi {
+    vertical-align: -0.1em; /* Align icons better */
+}
+
+.editing-input {
+    flex-grow: 1;
+}

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trợ lý tạo đề kiểm tra - AG AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="mathjax-script" async></script>
+    <style>
+        :root {
+            --primary-color: #4285f4;
+            --secondary-color: #34a853;
+            --accent-color: #ea4335;
+            --warning-color: #fbbc05;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 3rem 0;
+        }
+        .header h1 {
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            border: none;
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 12px 25px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        .btn-success {
+            background-color: var(--secondary-color);
+            border: none;
+            padding: 12px 25px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        .btn-outline-secondary, .btn-outline-danger, .btn-outline-primary {
+            border-radius: 8px;
+        }
+        .exam-result {
+            background-color: white;
+            border-left: 4px solid var(--primary-color);
+            padding: 30px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Spinner styles */
+        .spinner-border, .loading-spinner {
+            display: none; /* Hide all spinners by default */
+        }
+
+        /* When a button is loading, show Bootstrap's spinner */
+        .btn.is-loading .spinner-border {
+            display: inline-block; /* Bootstrap's CSS handles the animation */
+        }
+        
+        /* When the main generate button is loading, show and spin our custom icon */
+        .btn.is-loading .loading-spinner {
+            display: inline-block;
+            animation: spin 1s linear infinite;
+        }
+        .form-label {
+            font-weight: 500;
+        }
+        .form-control, .form-select {
+            border-radius: 8px;
+            padding: 10px 15px;
+        }
+        .alert {
+            border-radius: 8px;
+        }
+        .tab-content pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            background-color: #fefefe;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+        #objectivesCheckboxContainer {
+            max-height: 250px;
+            overflow-y: auto;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 0.5rem;
+        }
+        .structure-item {
+            border-left: 3px solid var(--primary-color);
+            padding-left: 15px;
+            margin-bottom: 15px;
+        }
+        .structure-item p { margin-bottom: 0.25rem; }
+        .nav-tabs .nav-link.active {
+            font-weight: bold;
+            color: var(--primary-color);
+            border-color: #dee2e6 #dee2e6 var(--primary-color);
+            border-bottom-width: 3px;
+        }
+        .rendered-table table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        .rendered-table th, .rendered-table td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .rendered-table th {
+            background-color: #f2f2f2;
+        }
+        .rendered-table .text-left {
+            text-align: left;
+        }
+        #apiKeyMessage {
+            min-height: 50px;
+        }
+        .question-item {
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+        .question-item:last-child {
+            border-bottom: none;
+        }
+        .explanation-section {
+             background-color: #f0f4f8;
+             border-left: 4px solid var(--secondary-color);
+             padding: 15px;
+             margin-top: 20px;
+             border-radius: 8px;
+        }
+        .objective-item {
+             padding: 0.5rem;
+             border-bottom: 1px solid #eee;
+        }
+         .objective-item:last-child {
+             border-bottom: none;
+        }
+        .objective-item .form-check-label {
+            cursor: pointer;
+        }
+    </style>
+<link rel="stylesheet" href="index.css">
+<script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.13.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div class="header py-4 mb-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1><i class="bi bi-journal-bookmark-fill"></i> Trợ lý tạo đề thi AI</h1>
+                    <p class="lead">Tạo đề kiểm tra, đáp án, ma trận và bảng đặc tả theo lựa chọn của giáo viên.</p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <img src="https://placehold.co/100x100/ffffff/4285f4?text=AG-AI" alt="AG AI Logo" class="img-fluid rounded-circle" style="max-height: 80px;">
+                    <div class="mt-2">
+                        <button class="btn btn-sm btn-outline-light" data-bs-toggle="modal" data-bs-target="#apiKeyModal">
+                            <i class="bi bi-key"></i> Nhập API Key
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div id="messageBox" class="mb-3"></div>
+
+                <!-- Card for adding exam parts -->
+                <div class="card p-4 mb-4">
+                    <h3 class="mb-4"><i class="bi bi-plus-circle-dotted"></i> Thêm phần vào đề thi</h3>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="subjectSelect" class="form-label">Chọn Môn học</label>
+                            <select class="form-select" id="subjectSelect">
+                                <option value="toan" selected>Toán học</option>
+                                <option value="ly">Vật lí</option>
+                                <option value="su">Lịch sử</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="gradeSelect" class="form-label">Chọn Lớp học</label>
+                            <select class="form-select" id="gradeSelect" disabled>
+                                <option selected disabled>-- Chọn môn học --</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="lessonSelect" class="form-label">Chọn Bài học</label>
+                            <select class="form-select" id="lessonSelect" disabled>
+                                <option selected disabled>-- Chọn lớp trước --</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12" id="objectivesContainer" style="display: none;">
+                            <label for="objectivesCheckboxContainer" class="form-label">Chọn Yêu cầu cần đạt</label>
+                            <div id="objectivesCheckboxContainer">
+                                <!-- Objectives will be dynamically inserted here -->
+                            </div>
+                            
+                            <div class="mt-3 p-3 bg-light border rounded-2">
+                                <label for="customObjectivesTextarea" class="form-label">Thêm yêu cầu cần đạt mới (hoặc để AI gợi ý)</label>
+                                <textarea class="form-control" id="customObjectivesTextarea" rows="4" placeholder="Nhập mỗi yêu cầu trên một dòng..."></textarea>
+                                <div class="mt-2">
+                                    <button class="btn btn-sm btn-outline-primary" id="saveCustomObjectivesBtn">
+                                        <i class="bi bi-save"></i> Thêm yêu cầu
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-success" id="suggestObjectivesBtn">
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="suggestObjectivesSpinner"></span>
+                                        ✨ Gợi ý Yêu cầu
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="questionNum" class="form-label">Số câu hỏi</label>
+                            <input type="number" class="form-control" id="questionNum" min="1" max="50" value="4">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="difficultySelect" class="form-label">Mức độ</label>
+                            <select class="form-select" id="difficultySelect">
+                                <option value="nhận biết">Nhận biết</option>
+                                <option value="thông hiểu" selected>Thông hiểu</option>
+                                <option value="vận dụng">Vận dụng</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="typeSelect" class="form-label">Loại câu hỏi</label>
+                            <select class="form-select" id="typeSelect">
+                                <option value="trắc nghiệm">Trắc nghiệm</option>
+                                <option value="đúng/sai">Đúng/Sai (dựa trên tư liệu)</option>
+                                <option value="trả lời ngắn">Trả lời ngắn</option>
+                                <option value="tự luận">Tự luận</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2 mt-4">
+                        <button id="addBtn" class="btn btn-primary">
+                            <i class="bi bi-plus-lg"></i> Thêm vào đề thi
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card for knowledge sources -->
+                <div class="card p-4 mb-4">
+                    <h3 class="mb-4"><i class="bi bi-book"></i> Nguồn kiến thức</h3>
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="useTextbook" checked>
+                        <label class="form-check-label" for="useTextbook">Sử dụng dữ liệu Sách giáo khoa (mặc định là môn đã chọn)</label>
+                    </div>
+                    <div>
+                        <label for="webLinks" class="form-label">Nguồn kiến thức bổ sung (URL)</label>
+                        <textarea class="form-control" id="webLinks" rows="3" placeholder="Dán các link web vào đây, mỗi link một dòng..."></textarea>
+                        <small class="form-text text-muted">AI sẽ tham khảo các link này để làm phong phú thêm câu hỏi.</small>
+                    </div>
+                </div>
+                
+                <!-- Output Format Card -->
+                <div class="card p-4 mb-4">
+                    <h3 class="mb-4"><i class="bi bi-sliders"></i> Định dạng đầu ra</h3>
+                    <div class="mb-3">
+                        <label for="formatSelect" class="form-label">Định dạng công thức toán học</label>
+                        <select class="form-select" id="formatSelect">
+                            <option value="normal" selected>Văn bản thường (Normal)</option>
+                            <option value="mathtype">Tương thích MathType (MathType compatible)</option>
+                            <option value="latex">LaTeX</option>
+                        </select>
+                        <small class="form-text text-muted">Chọn định dạng cho các công thức toán học trong đề thi.</small>
+                    </div>
+                </div>
+
+                 <!-- NEW: Exam Info Card -->
+                <div class="card p-4 mb-4">
+                    <h3 class="mb-4"><i class="bi bi-info-circle"></i> Thông tin đề thi</h3>
+                    <div class="mb-3">
+                        <label for="examTitleInput" class="form-label">Tên đề thi</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="examTitleInput" placeholder="Ví dụ: Đề kiểm tra 15 phút - Chương I">
+                            <button class="btn btn-outline-success" type="button" id="suggestTitleBtn">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="suggestTitleSpinner"></span>
+                                ✨ Gợi ý
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools Card -->
+                <div class="card p-4 mb-4">
+                    <h3 class="mb-4"><i class="bi bi-tools"></i> Quản lý dữ liệu</h3>
+                     <p class="text-muted">Các thay đổi của bạn với "Yêu cầu cần đạt" sẽ được lưu tự động trên trình duyệt này. Sử dụng các nút dưới đây để quản lý dữ liệu môn học.</p>
+                    <div class="d-grid gap-2 d-md-flex">
+                        <button id="exportDataFileBtn" class="btn btn-outline-secondary">
+                            <i class="bi bi-download"></i> Sao lưu dữ liệu ra tệp
+                        </button>
+                         <button id="resetDataBtn" class="btn btn-outline-danger">
+                            <i class="bi bi-arrow-counterclockwise"></i> Reset về dữ liệu gốc
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- Card for exam structure -->
+                <div class="card p-4" id="structureContainer" style="display: none;">
+                    <h3 class="mb-4"><i class="bi bi-diagram-3"></i> Cấu trúc đề thi (Ma trận)</h3>
+                    <div id="structureList"></div>
+                    <div class="d-grid gap-2 mt-4">
+                        <button id="generateFinalExamBtn" class="btn btn-success">
+                            <span id="generateText">Tạo đề thi, Ma trận & Đặc tả</span>
+                            <span id="generateSpinner" class="loading-spinner ms-2">
+                                <i class="bi bi-arrow-repeat text-white"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result section -->
+    <div class="container mb-5" id="resultSection" style="display: none;">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card p-4 exam-result">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3><i class="bi bi-file-earmark-text"></i> Kết quả</h3>
+                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group me-2" role="group" aria-label="Copy actions">
+                                <button id="copyBtn" class="btn btn-sm btn-outline-secondary"><i class="bi bi-clipboard"></i> Sao chép</button>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="Download actions">
+                                <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" id="downloadDropdownBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-download"></i> Tải về máy
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="downloadDropdownBtn">
+                                    <li><a class="dropdown-item" href="#" id="exportDocxBtn"><i class="bi bi-file-earmark-word me-2"></i>Tải về .docx (Word)</a></li>
+                                    <li><a class="dropdown-item" href="#" id="exportTexBtn"><i class="bi bi-filetype-tex me-2"></i>Tải về .tex (LaTeX)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tabs Navigation -->
+                    <ul class="nav nav-tabs" id="resultTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="exam-tab" data-bs-toggle="tab" data-bs-target="#exam-tab-pane" type="button" role="tab" aria-controls="exam-tab-pane" aria-selected="true">Đề thi & Đáp án</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="matrix-tab" data-bs-toggle="tab" data-bs-target="#matrix-tab-pane" type="button" role="tab" aria-controls="matrix-tab-pane" aria-selected="false">Ma trận đề thi</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="spec-tab" data-bs-toggle="tab" data-bs-target="#spec-tab-pane" type="button" role="tab" aria-controls="spec-tab-pane" aria-selected="false">Bản đặc tả</button>
+                        </li>
+                    </ul>
+
+                    <!-- Tabs Content -->
+                    <div class="tab-content pt-3" id="resultTabsContent">
+                        <div class="tab-pane fade show active" id="exam-tab-pane" role="tabpanel" aria-labelledby="exam-tab" tabindex="0">
+                            <div id="examAndAnswerContent"></div>
+                             <div class="mt-4">
+                                <button class="btn btn-outline-success" id="generateExplanationsBtn">
+                                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="generateExplanationsSpinner"></span>
+                                     ✨ Tạo giải thích chi tiết cho đáp án
+                                </button>
+                            </div>
+                            <div id="explanationsContainer" class="mt-3" style="display:none;"></div>
+                        </div>
+                        <div class="tab-pane fade" id="matrix-tab-pane" role="tabpanel" aria-labelledby="matrix-tab" tabindex="0">
+                            <div id="examMatrixContent" class="rendered-table"></div>
+                        </div>
+                        <div class="tab-pane fade" id="spec-tab-pane" role="tabpanel" aria-labelledby="spec-tab" tabindex="0">
+                            <div id="examSpecContent" class="rendered-table"></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 d-flex justify-content-end">
+                        <button id="newExamBtn" class="btn btn-outline-secondary"><i class="bi bi-plus-circle"></i> Tạo đề mới</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- API Key Modal -->
+    <div class="modal fade" id="apiKeyModal" tabindex="-1" aria-labelledby="apiKeyModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="apiKeyModalLabel"><i class="bi bi-key"></i> Cài đặt API Key</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="apiKeyInput" class="form-label">Google Gemini API Key</label>
+                        <input type="password" class="form-control" id="apiKeyInput" placeholder="Nhập API Key của bạn">
+                        <div class="form-text">
+                            API Key này sẽ được lưu cục bộ trong trình duyệt của bạn.
+                            <a href="https://ai.google.dev/" target="_blank" class="text-decoration-none">Lấy API Key từ Google AI Studio</a>
+                        </div>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="rememberApiKey" checked>
+                        <label class="form-check-label" for="rememberApiKey">Ghi nhớ API Key</label>
+                    </div>
+                    <div id="apiKeyMessage" class="mt-2"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="saveApiKeyBtn">
+                        <span id="saveApiKeyText">Lưu API Key</span>
+                        <span id="apiKeySpinner" class="spinner-border spinner-border-sm" role="status"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="text-muted mb-0">Ứng dụng tạo đề kiểm tra AG-AI © 2025</p>
+        </div>
+    </footer>
+    
+    <!-- External scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>

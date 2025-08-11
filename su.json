@@ -1,0 +1,67 @@
+{
+  "10": {
+    "Chủ đề: Các cuộc cách mạng công nghiệp": {
+      "chapter": "LỊCH SỬ THẾ GIỚI HIỆN ĐẠI",
+      "content": "Nghiên cứu về các cuộc Cách mạng công nghiệp, từ lần thứ nhất đến lần thứ tư. Tập trung vào bối cảnh, thành tựu chính và tác động của chúng đối với kinh tế, xã hội và văn hóa toàn cầu.",
+      "objectives": [
+        "Trình bày được bối cảnh lịch sử của các cuộc cách mạng công nghiệp.",
+        "Nêu được những thành tựu tiêu biểu của từng cuộc cách mạng công nghiệp.",
+        "Phân tích được tác động của cách mạng công nghiệp đối với sự phát triển của thế giới.",
+        "Liên hệ với cuộc Cách mạng công nghiệp lần thứ tư và vai trò của Việt Nam."
+      ],
+      "common_exercises": [
+        "So sánh các cuộc cách mạng công nghiệp.",
+        "Phân tích vai trò của một phát minh cụ thể (máy hơi nước, internet,...).",
+        "Đánh giá cơ hội và thách thức của Cách mạng công nghiệp 4.0 đối với Việt Nam."
+      ]
+    },
+    "Chủ đề: Văn minh Đông Nam Á": {
+      "chapter": "LỊCH SỬ KHU VỰC",
+      "content": "Khám phá quá trình hình thành và phát triển của các nền văn minh ở Đông Nam Á. Bao gồm các quốc gia cổ đại, sự ảnh hưởng của văn minh Trung Hoa, Ấn Độ, và các thành tựu văn hóa đặc sắc.",
+      "objectives": [
+        "Trình bày được quá trình hình thành các quốc gia sơ khai ở Đông Nam Á.",
+        "Phân tích được sự ảnh hưởng của các nền văn minh lớn đến khu vực.",
+        "Nêu được những thành tựu tiêu biểu về chính trị, kinh tế, văn hoá của các vương quốc cổ như Champa, Funan, Angkor."
+      ],
+      "common_exercises": [
+        "Lập bảng thống kê các vương quốc cổ ở Đông Nam Á.",
+        "Phân tích các yếu tố tạo nên bản sắc văn hóa Đông Nam Á.",
+        "So sánh điểm giống và khác nhau giữa văn minh Đại Việt và Champa."
+      ]
+    }
+  },
+  "11": {
+    "Chủ đề: Chiến tranh thế giới thứ nhất (1914-1918)": {
+      "chapter": "LỊCH SỬ THẾ GIỚI CẬN ĐẠI",
+      "content": "Nghiên cứu về nguyên nhân, diễn biến chính, tính chất và kết cục của Chiến tranh thế giới thứ nhất. Tác động của cuộc chiến đến tình hình thế giới sau chiến tranh, bao gồm sự hình thành của trật tự Versailles-Washington.",
+      "objectives": [
+        "Phân tích được nguyên nhân sâu xa và nguyên nhân trực tiếp dẫn đến chiến tranh.",
+        "Trình bày được diễn biến chính qua các giai đoạn trên các mặt trận.",
+        "Đánh giá được tính chất và hậu quả của cuộc chiến tranh.",
+        "Hiểu được trật tự thế giới mới được thiết lập sau chiến tranh."
+      ],
+      "common_exercises": [
+        "Lập niên biểu các sự kiện chính của Chiến tranh thế giới thứ nhất.",
+        "Phân tích vai trò của các khối quân sự (Liên minh và Hiệp ước).",
+        "Đánh giá tác động của chiến tranh đối với Việt Nam."
+      ]
+    }
+  },
+  "12": {
+    "Chủ đề: Việt Nam từ năm 1954 đến năm 1975": {
+      "chapter": "LỊCH SỬ VIỆT NAM HIỆN ĐẠI",
+      "content": "Nghiên cứu giai đoạn lịch sử Việt Nam bị chia cắt làm hai miền với hai chế độ chính trị khác nhau. Miền Bắc xây dựng chủ nghĩa xã hội và làm hậu phương. Miền Nam đấu tranh chống lại các chiến lược chiến tranh của Mỹ và chính quyền Sài Gòn, tiến tới thống nhất đất nước.",
+      "objectives": [
+        "Trình bày được nhiệm vụ của cách mạng mỗi miền sau Hiệp định Genève 1954.",
+        "Phân tích được các chiến lược chiến tranh của Mỹ ở miền Nam (Chiến tranh đơn phương, Chiến tranh đặc biệt, Chiến tranh cục bộ, Việt Nam hóa chiến tranh).",
+        "Nêu được những thắng lợi tiêu biểu của quân dân hai miền trong cuộc kháng chiến chống Mỹ.",
+        "Hiểu được ý nghĩa lịch sử của cuộc kháng chiến chống Mỹ, cứu nước."
+      ],
+      "common_exercises": [
+        "So sánh các chiến lược chiến tranh của Mỹ ở miền Nam.",
+        "Lập niên biểu các thắng lợi quân sự và chính trị quan trọng.",
+        "Phân tích ý nghĩa của cuộc Tổng tiến công và nổi dậy Mậu Thân 1968 hoặc Chiến dịch Hồ Chí Minh 1975."
+      ]
+    }
+  }
+}
