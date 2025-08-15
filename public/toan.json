@@ -1,694 +1,2436 @@
+
 {
+  "6": {
+    "Bài 1. Tập hợp": {
+      "chapter": "TẬP HỢP CÁC SỐ TỰ NHIÊN",
+      "content": "Nghiên cứu về tập hợp, cách ghi số tự nhiên, các phép toán (cộng, trừ, nhân, chia, luỹ thừa) và thứ tự thực hiện phép tính.",
+      "objectives": [
+        "Nhận biết một đối tượng cụ thể thuộc hay không thuộc một tập hợp cho trước.",
+        "Viết một tập hợp cho trước bằng cách liệt kê các phần tử của nó.",
+        "Viết một tập hợp cho trước bằng cách chỉ ra tính chất đặc trưng cho các phần tử của nó.",
+        "Sử dụng đúng các kí hiệu ∈, ∉."
+      ],
+      "common_exercises": []
+    },
+    "Bài 2. Cách ghi số tự nhiên": {
+      "chapter": "TẬP HỢP CÁC SỐ TỰ NHIÊN",
+      "content": "Nghiên cứu về tập hợp, cách ghi số tự nhiên, các phép toán (cộng, trừ, nhân, chia, luỹ thừa) và thứ tự thực hiện phép tính.",
+      "objectives": [
+        "Đọc và viết các số tự nhiên.",
+        "Biểu diễn một số tự nhiên thành tổng giá trị các chữ số của nó.",
+        "Xác định giá trị của một chữ số trong một số tự nhiên cụ thể.",
+        "Đọc và viết các số La Mã từ 1 đến 30."
+      ],
+      "common_exercises": []
+    },
+    "Bài 3. Thứ tự trong tập hợp các số tự nhiên": {
+      "chapter": "TẬP HỢP CÁC SỐ TỰ NHIÊN",
+      "content": "Nghiên cứu về tập hợp, cách ghi số tự nhiên, các phép toán (cộng, trừ, nhân, chia, luỹ thừa) và thứ tự thực hiện phép tính.",
+      "objectives": [
+        "So sánh hai số tự nhiên cho trước.",
+        "Sắp xếp một dãy các số tự nhiên theo thứ tự tăng hoặc giảm dần.",
+        "Sử dụng các kí hiệu <, >, ≤, ≥ để biểu diễn thứ tự.",
+        "Tìm số liền trước, số liền sau của một số tự nhiên."
+      ],
+      "common_exercises": []
+    },
+    "Bài 4. Phép cộng và phép trừ số tự nhiên": {
+      "chapter": "TẬP HỢP CÁC SỐ TỰ NHIÊN",
+      "content": "Nghiên cứu về tập hợp, cách ghi số tự nhiên, các phép toán (cộng, trừ, nhân, chia, luỹ thừa) và thứ tự thực hiện phép tính.",
+      "objectives": [
+        "Thực hiện thành thạo phép cộng và phép trừ các số tự nhiên.",
+        "Áp dụng tính chất giao hoán, kết hợp của phép cộng để tính nhẩm, tính nhanh.",
+        "Giải các bài toán thực tế liên quan đến phép cộng và phép trừ."
+      ],
+      "common_exercises": []
+    },
+    "Bài 5. Phép nhân và phép chia số tự nhiên": {
+      "chapter": "TẬP HỢP CÁC SỐ TỰ NHIÊN",
+      "content": "Nghiên cứu về tập hợp, cách ghi số tự nhiên, các phép toán (cộng, trừ, nhân, chia, luỹ thừa) và thứ tự thực hiện phép tính.",
+      "objectives": [
+        "Thực hiện thành thạo phép nhân và phép chia (chia hết và chia có dư) các số tự nhiên.",
+        "Áp dụng tính chất giao hoán, kết hợp, phân phối của phép nhân để tính nhẩm, tính nhanh.",
+        "Giải các bài toán thực tế liên quan đến phép nhân và phép chia."
+      ],
+      "common_exercises": []
+    },
+    "Bài 6. Luỹ thừa với số mũ tự nhiên": {
+      "chapter": "TẬP HỢP CÁC SỐ TỰ NHIÊN",
+      "content": "Nghiên cứu về tập hợp, cách ghi số tự nhiên, các phép toán (cộng, trừ, nhân, chia, luỹ thừa) và thứ tự thực hiện phép tính.",
+      "objectives": [
+        "Viết một tích các thừa số bằng nhau dưới dạng luỹ thừa.",
+        "Tính giá trị của một luỹ thừa.",
+        "Thực hiện phép nhân và chia hai luỹ thừa cùng cơ số.",
+        "So sánh hai luỹ thừa cùng cơ số."
+      ],
+      "common_exercises": []
+    },
+    "Bài 7. Thứ tự thực hiện các phép tính": {
+      "chapter": "TẬP HỢP CÁC SỐ TỰ NHIÊN",
+      "content": "Nghiên cứu về tập hợp, cách ghi số tự nhiên, các phép toán (cộng, trừ, nhân, chia, luỹ thừa) và thứ tự thực hiện phép tính.",
+      "objectives": [
+        "Áp dụng đúng thứ tự thực hiện các phép tính (luỹ thừa, nhân, chia, cộng, trừ) trong biểu thức không có dấu ngoặc.",
+        "Áp dụng đúng thứ tự thực hiện các phép tính trong biểu thức có dấu ngoặc (), [], {}."
+      ],
+      "common_exercises": []
+    },
+    "Bài 8. Quan hệ chia hết và tính chất": {
+      "chapter": "TÍNH CHIA HẾT TRONG TẬP HỢP CÁC SỐ TỰ NHIÊN",
+      "content": "Tìm hiểu về quan hệ chia hết, dấu hiệu chia hết, số nguyên tố, ước chung và bội chung.",
+      "objectives": [
+        "Nhận biết một số có chia hết cho một số khác hay không.",
+        "Tìm tất cả các ước của một số tự nhiên.",
+        "Tìm các bội của một số tự nhiên trong một khoảng cho trước.",
+        "Áp dụng tính chất chia hết của một tổng (hiệu) để xét tính chia hết."
+      ],
+      "common_exercises": []
+    },
+    "Bài 9. Dấu hiệu chia hết": {
+      "chapter": "TÍNH CHIA HẾT TRONG TẬP HỢP CÁC SỐ TỰ NHIÊN",
+      "content": "Tìm hiểu về quan hệ chia hết, dấu hiệu chia hết, số nguyên tố, ước chung và bội chung.",
+      "objectives": [
+        "Vận dụng dấu hiệu chia hết cho 2, 5 để xác định một số có chia hết cho 2, 5 hay không.",
+        "Vận dụng dấu hiệu chia hết cho 3, 9 để xác định một số có chia hết cho 3, 9 hay không.",
+        "Tìm chữ số chưa biết để một số chia hết cho 2, 3, 5, 9."
+      ],
+      "common_exercises": []
+    },
+    "Bài 10. Số nguyên tố": {
+      "chapter": "TÍNH CHIA HẾT TRONG TẬP HỢP CÁC SỐ TỰ NHIÊN",
+      "content": "Tìm hiểu về quan hệ chia hết, dấu hiệu chia hết, số nguyên tố, ước chung và bội chung.",
+      "objectives": [
+        "Phân biệt số nguyên tố và hợp số.",
+        "Phân tích một số tự nhiên lớn hơn 1 ra thừa số nguyên tố bằng sơ đồ cột hoặc sơ đồ cây."
+      ],
+      "common_exercises": []
+    },
+    "Bài 11. Ước chung. Ước chung lớn nhất": {
+      "chapter": "TÍNH CHIA HẾT TRONG TẬP HỢP CÁC SỐ TỰ NHIÊN",
+      "content": "Tìm hiểu về quan hệ chia hết, dấu hiệu chia hết, số nguyên tố, ước chung và bội chung.",
+      "objectives": [
+        "Tìm tập hợp ước chung của hai hay nhiều số.",
+        "Tìm ƯCLN của hai hay nhiều số bằng cách phân tích ra thừa số nguyên tố.",
+        "Tìm tập hợp ước chung thông qua ƯCLN.",
+        "Giải các bài toán thực tế liên quan đến ƯCLN."
+      ],
+      "common_exercises": []
+    },
+    "Bài 12. Bội chung. Bội chung nhỏ nhất": {
+      "chapter": "TÍNH CHIA HẾT TRONG TẬP HỢP CÁC SỐ TỰ NHIÊN",
+      "content": "Tìm hiểu về quan hệ chia hết, dấu hiệu chia hết, số nguyên tố, ước chung và bội chung.",
+      "objectives": [
+        "Tìm tập hợp bội chung của hai hay nhiều số.",
+        "Tìm BCNN của hai hay nhiều số bằng cách phân tích ra thừa số nguyên tố.",
+        "Tìm tập hợp bội chung thông qua BCNN.",
+        "Giải các bài toán thực tế liên quan đến BCNN."
+      ],
+      "common_exercises": []
+    },
+    "Bài 13. Tập hợp các số nguyên": {
+      "chapter": "SỐ NGUYÊN",
+      "content": "Mở rộng sang tập hợp số nguyên, bao gồm các phép toán, quy tắc dấu ngoặc, ước và bội của số nguyên.",
+      "objectives": [
+        "Biểu diễn số nguyên trên trục số.",
+        "So sánh hai số nguyên.",
+        "Tìm số đối của một số nguyên.",
+        "Nhận biết ý nghĩa của số nguyên âm trong các tình huống thực tế."
+      ],
+      "common_exercises": []
+    },
+    "Bài 14. Phép cộng và phép trừ số nguyên": {
+      "chapter": "SỐ NGUYÊN",
+      "content": "Mở rộng sang tập hợp số nguyên, bao gồm các phép toán, quy tắc dấu ngoặc, ước và bội của số nguyên.",
+      "objectives": [
+        "Thực hiện phép cộng hai số nguyên cùng dấu, khác dấu.",
+        "Thực hiện phép trừ hai số nguyên.",
+        "Áp dụng tính chất giao hoán, kết hợp của phép cộng số nguyên để tính nhanh."
+      ],
+      "common_exercises": []
+    },
+    "Bài 15. Quy tắc dấu ngoặc": {
+      "chapter": "SỐ NGUYÊN",
+      "content": "Mở rộng sang tập hợp số nguyên, bao gồm các phép toán, quy tắc dấu ngoặc, ước và bội của số nguyên.",
+      "objectives": [
+        "Áp dụng quy tắc dấu ngoặc để bỏ ngoặc trong biểu thức có dấu cộng hoặc dấu trừ đằng trước.",
+        "Sử dụng quy tắc dấu ngoặc và các tính chất để tính giá trị biểu thức một cách hợp lý."
+      ],
+      "common_exercises": []
+    },
+    "Bài 16. Phép nhân số nguyên": {
+      "chapter": "SỐ NGUYÊN",
+      "content": "Mở rộng sang tập hợp số nguyên, bao gồm các phép toán, quy tắc dấu ngoặc, ước và bội của số nguyên.",
+      "objectives": [
+        "Thực hiện phép nhân hai số nguyên cùng dấu, khác dấu.",
+        "Áp dụng tính chất giao hoán, kết hợp, phân phối của phép nhân để tính nhanh."
+      ],
+      "common_exercises": []
+    },
+    "Bài 17. Phép chia hết. Ước và bội của một số nguyên": {
+      "chapter": "SỐ NGUYÊN",
+      "content": "Mở rộng sang tập hợp số nguyên, bao gồm các phép toán, quy tắc dấu ngoặc, ước và bội của số nguyên.",
+      "objectives": [
+        "Thực hiện phép chia hết hai số nguyên.",
+        "Tìm tất cả các ước của một số nguyên.",
+        "Tìm các bội của một số nguyên."
+      ],
+      "common_exercises": []
+    },
+    "Bài 18. Hình tam giác đều. Hình vuông. Hình lục giác đều": {
+      "chapter": "MỘT SỐ HÌNH PHẲNG TRONG THỰC TIỄN",
+      "content": "Nhận dạng, mô tả và tính toán chu vi, diện tích các hình phẳng quen thuộc như tam giác đều, hình vuông, hình chữ nhật, hình thang cân, hình thoi, hình bình hành.",
+      "objectives": [
+        "Nhận dạng và mô tả các yếu tố (cạnh, góc, đường chéo) của tam giác đều, hình vuông, lục giác đều.",
+        "Vẽ tam giác đều, hình vuông bằng thước và compa."
+      ],
+      "common_exercises": []
+    },
+    "Bài 19. Hình chữ nhật. Hình thoi. Hình bình hành. Hình thang cân": {
+      "chapter": "MỘT SỐ HÌNH PHẲNG TRONG THỰC TIỄN",
+      "content": "Nhận dạng, mô tả và tính toán chu vi, diện tích các hình phẳng quen thuộc như tam giác đều, hình vuông, hình chữ nhật, hình thang cân, hình thoi, hình bình hành.",
+      "objectives": [
+        "Nhận dạng và mô tả các yếu tố (cạnh, góc, đường chéo) của hình chữ nhật, hình thoi, hình bình hành, hình thang cân."
+      ],
+      "common_exercises": []
+    },
+    "Bài 20. Chu vi và diện tích của một số tứ giác đã học": {
+      "chapter": "MỘT SỐ HÌNH PHẲNG TRONG THỰC TIỄN",
+      "content": "Nhận dạng, mô tả và tính toán chu vi, diện tích các hình phẳng quen thuộc như tam giác đều, hình vuông, hình chữ nhật, hình thang cân, hình thoi, hình bình hành.",
+      "objectives": [
+        "Tính chu vi và diện tích của hình vuông, hình chữ nhật, hình thang cân.",
+        "Tính chu vi và diện tích của hình bình hành, hình thoi.",
+        "Giải các bài toán thực tế liên quan đến chu vi và diện tích các hình đã học."
+      ],
+      "common_exercises": []
+    },
+    "Bài 21. Hình có trục đối xứng": {
+      "chapter": "TÍNH ĐỐI XỨNG CỦA HÌNH PHẲNG TRONG TỰ NHIÊN",
+      "content": "Khám phá tính đối xứng trục và đối xứng tâm của các hình phẳng trong hình học và tự nhiên.",
+      "objectives": [
+        "Nhận biết trục đối xứng của các hình phẳng quen thuộc (đoạn thẳng, tam giác đều, hình vuông, hình chữ nhật, hình thoi, hình thang cân, lục giác đều, hình tròn)."
+      ],
+      "common_exercises": []
+    },
+    "Bài 22. Hình có tâm đối xứng": {
+      "chapter": "TÍNH ĐỐI XỨNG CỦA HÌNH PHẲNG TRONG TỰ NHIÊN",
+      "content": "Khám phá tính đối xứng trục và đối xứng tâm của các hình phẳng trong hình học và tự nhiên.",
+      "objectives": [
+        "Nhận biết tâm đối xứng của các hình phẳng quen thuộc (đoạn thẳng, hình bình hành, hình chữ nhật, hình thoi, hình vuông, lục giác đều, hình tròn)."
+      ],
+      "common_exercises": []
+    },
+    "Bài 23. Mở rộng phân số. Phân số bằng nhau": {
+      "chapter": "PHÂN SỐ",
+      "content": "Nghiên cứu về phân số, các phép toán cộng, trừ, nhân, chia phân số và giải các bài toán liên quan.",
+      "objectives": [
+        "Nhận biết phân số với tử và mẫu là số nguyên.",
+        "Kiểm tra hai phân số có bằng nhau không.",
+        "Áp dụng tính chất cơ bản của phân số để rút gọn phân số về dạng tối giản."
+      ],
+      "common_exercises": []
+    },
+    "Bài 24. So sánh phân số. Hỗn số dương": {
+      "chapter": "PHÂN SỐ",
+      "content": "Nghiên cứu về phân số, các phép toán cộng, trừ, nhân, chia phân số và giải các bài toán liên quan.",
+      "objectives": [
+        "Quy đồng mẫu nhiều phân số.",
+        "So sánh hai phân số.",
+        "Viết một phân số lớn hơn 1 dưới dạng hỗn số và ngược lại."
+      ],
+      "common_exercises": []
+    },
+    "Bài 25. Phép cộng và phép trừ phân số": {
+      "chapter": "PHÂN SỐ",
+      "content": "Nghiên cứu về phân số, các phép toán cộng, trừ, nhân, chia phân số và giải các bài toán liên quan.",
+      "objectives": [
+        "Thực hiện phép cộng, trừ hai phân số cùng mẫu, khác mẫu.",
+        "Tìm số đối của một phân số.",
+        "Áp dụng các tính chất của phép cộng để tính nhanh."
+      ],
+      "common_exercises": []
+    },
+    "Bài 26. Phép nhân và phép chia phân số": {
+      "chapter": "PHÂN SỐ",
+      "content": "Nghiên cứu về phân số, các phép toán cộng, trừ, nhân, chia phân số và giải các bài toán liên quan.",
+      "objectives": [
+        "Thực hiện phép nhân, chia hai phân số.",
+        "Tìm phân số nghịch đảo của một phân số.",
+        "Áp dụng các tính chất của phép nhân để tính nhanh."
+      ],
+      "common_exercises": []
+    },
+    "Bài 27. Hai bài toán về phân số": {
+      "chapter": "PHÂN SỐ",
+      "content": "Nghiên cứu về phân số, các phép toán cộng, trừ, nhân, chia phân số và giải các bài toán liên quan.",
+      "objectives": [
+        "Giải bài toán tìm giá trị phân số của một số cho trước.",
+        "Giải bài toán tìm một số khi biết giá trị phân số của nó."
+      ],
+      "common_exercises": []
+    },
+    "Bài 28. Số thập phân": {
+      "chapter": "SỐ THẬP PHÂN",
+      "content": "Tìm hiểu về số thập phân, các phép toán, làm tròn, ước lượng và giải các bài toán về tỉ số, tỉ số phần trăm.",
+      "objectives": [
+        "Viết phân số thập phân dưới dạng số thập phân và ngược lại.",
+        "Tìm số đối của một số thập phân.",
+        "So sánh hai số thập phân."
+      ],
+      "common_exercises": []
+    },
+    "Bài 29. Tính toán với số thập phân": {
+      "chapter": "SỐ THẬP PHÂN",
+      "content": "Tìm hiểu về số thập phân, các phép toán, làm tròn, ước lượng và giải các bài toán về tỉ số, tỉ số phần trăm.",
+      "objectives": [
+        "Thực hiện các phép tính cộng, trừ, nhân, chia số thập phân.",
+        "Áp dụng các tính chất của phép tính để tính giá trị biểu thức một cách hợp lý."
+      ],
+      "common_exercises": []
+    },
+    "Bài 30. Làm tròn và ước lượng": {
+      "chapter": "SỐ THẬP PHÂN",
+      "content": "Tìm hiểu về số thập phân, các phép toán, làm tròn, ước lượng và giải các bài toán về tỉ số, tỉ số phần trăm.",
+      "objectives": [
+        "Làm tròn số thập phân đến một hàng cho trước.",
+        "Ước lượng kết quả của phép tính."
+      ],
+      "common_exercises": []
+    },
+    "Bài 31. Một số bài toán về tỉ số và tỉ số phần trăm": {
+      "chapter": "SỐ THẬP PHÂN",
+      "content": "Tìm hiểu về số thập phân, các phép toán, làm tròn, ước lượng và giải các bài toán về tỉ số, tỉ số phần trăm.",
+      "objectives": [
+        "Tính tỉ số và tỉ số phần trăm của hai đại lượng.",
+        "Giải bài toán tìm giá trị phần trăm của một số.",
+        "Giải bài toán tìm một số khi biết giá trị phần trăm của nó."
+      ],
+      "common_exercises": []
+    },
+    "Bài 32. Điểm và đường thẳng": {
+      "chapter": "NHỮNG HÌNH HÌNH HỌC CƠ BẢN",
+      "content": "Nghiên cứu các khái niệm cơ bản về hình học như điểm, đường thẳng, tia, đoạn thẳng, trung điểm, góc và số đo góc.",
+      "objectives": [
+        "Nhận biết điểm thuộc/không thuộc đường thẳng.",
+        "Nhận biết ba điểm thẳng hàng.",
+        "Xác định hai đường thẳng song song, cắt nhau."
+      ],
+      "common_exercises": []
+    },
+    "Bài 33. Điểm nằm giữa hai điểm. Tia": {
+      "chapter": "NHỮNG HÌNH HÌNH HỌC CƠ BẢN",
+      "content": "Nghiên cứu các khái niệm cơ bản về hình học như điểm, đường thẳng, tia, đoạn thẳng, trung điểm, góc và số đo góc.",
+      "objectives": [
+        "Nhận biết điểm nằm giữa hai điểm.",
+        "Nhận biết hai điểm nằm cùng phía, khác phía đối với một điểm.",
+        "Nhận biết tia, hai tia đối nhau."
+      ],
+      "common_exercises": []
+    },
+    "Bài 34. Đoạn thẳng. Độ dài đoạn thẳng": {
+      "chapter": "NHỮNG HÌNH HÌNH HỌC CƠ BẢN",
+      "content": "Nghiên cứu các khái niệm cơ bản về hình học như điểm, đường thẳng, tia, đoạn thẳng, trung điểm, góc và số đo góc.",
+      "objectives": [
+        "Nhận biết đoạn thẳng, hai đầu mút của đoạn thẳng.",
+        "Đo độ dài đoạn thẳng.",
+        "So sánh hai đoạn thẳng."
+      ],
+      "common_exercises": []
+    },
+    "Bài 35. Trung điểm của đoạn thẳng": {
+      "chapter": "NHỮNG HÌNH HÌNH HỌC CƠ BẢN",
+      "content": "Nghiên cứu các khái niệm cơ bản về hình học như điểm, đường thẳng, tia, đoạn thẳng, trung điểm, góc và số đo góc.",
+      "objectives": [
+        "Nhận biết trung điểm của đoạn thẳng.",
+        "Tính độ dài đoạn thẳng liên quan đến trung điểm."
+      ],
+      "common_exercises": []
+    },
+    "Bài 36. Góc": {
+      "chapter": "NHỮNG HÌNH HÌNH HỌC CƠ BẢN",
+      "content": "Nghiên cứu các khái niệm cơ bản về hình học như điểm, đường thẳng, tia, đoạn thẳng, trung điểm, góc và số đo góc.",
+      "objectives": [
+        "Nhận biết góc, đỉnh và cạnh của góc.",
+        "Nhận biết góc bẹt.",
+        "Nhận biết điểm trong của một góc."
+      ],
+      "common_exercises": []
+    },
+    "Bài 37. Số đo góc": {
+      "chapter": "NHỮNG HÌNH HÌNH HỌC CƠ BẢN",
+      "content": "Nghiên cứu các khái niệm cơ bản về hình học như điểm, đường thẳng, tia, đoạn thẳng, trung điểm, góc và số đo góc.",
+      "objectives": [
+        "Đo số đo của một góc bằng thước đo góc.",
+        "Nhận biết góc vuông, góc nhọn, góc tù."
+      ],
+      "common_exercises": []
+    },
+    "Bài 38. Dữ liệu và thu thập dữ liệu": {
+      "chapter": "DỮ LIỆU VÀ XÁC SUẤT THỰC NGHIỆM",
+      "content": "Làm quen với việc thu thập và biểu diễn dữ liệu qua các loại biểu đồ, và tính xác suất thực nghiệm của sự kiện.",
+      "objectives": [
+        "Phân biệt dữ liệu là số (số liệu) và dữ liệu không phải là số.",
+        "Xác định tính hợp lý của dữ liệu.",
+        "Thu thập dữ liệu bằng cách quan sát, lập phiếu hỏi."
+      ],
+      "common_exercises": []
+    },
+    "Bài 39. Bảng thống kê và biểu đồ tranh": {
+      "chapter": "DỮ LIỆU VÀ XÁC SUẤT THỰC NGHIỆM",
+      "content": "Làm quen với việc thu thập và biểu diễn dữ liệu qua các loại biểu đồ, và tính xác suất thực nghiệm của sự kiện.",
+      "objectives": [
+        "Lập bảng thống kê từ dãy dữ liệu.",
+        "Đọc và phân tích dữ liệu từ bảng thống kê, biểu đồ tranh.",
+        "Biểu diễn dữ liệu bằng biểu đồ tranh."
+      ],
+      "common_exercises": []
+    },
+    "Bài 40. Biểu đồ cột": {
+      "chapter": "DỮ LIỆU VÀ XÁC SUẤT THỰC NGHIỆM",
+      "content": "Làm quen với việc thu thập và biểu diễn dữ liệu qua các loại biểu đồ, và tính xác suất thực nghiệm của sự kiện.",
+      "objectives": [
+        "Vẽ biểu đồ cột từ bảng thống kê.",
+        "Đọc và phân tích dữ liệu từ biểu đồ cột."
+      ],
+      "common_exercises": []
+    },
+    "Bài 41. Biểu đồ cột kép": {
+      "chapter": "DỮ LIỆU VÀ XÁC SUẤT THỰC NGHIỆM",
+      "content": "Làm quen với việc thu thập và biểu diễn dữ liệu qua các loại biểu đồ, và tính xác suất thực nghiệm của sự kiện.",
+      "objectives": [
+        "Vẽ biểu đồ cột kép.",
+        "Đọc và phân tích dữ liệu từ biểu đồ cột kép để so sánh hai tập dữ liệu."
+      ],
+      "common_exercises": []
+    },
+    "Bài 42. Kết quả có thể và sự kiện trong trò chơi, thí nghiệm": {
+      "chapter": "DỮ LIỆU VÀ XÁC SUẤT THỰC NGHIỆM",
+      "content": "Làm quen với việc thu thập và biểu diễn dữ liệu qua các loại biểu đồ, và tính xác suất thực nghiệm của sự kiện.",
+      "objectives": [
+        "Liệt kê các kết quả có thể xảy ra trong các trò chơi, thí nghiệm đơn giản.",
+        "Nhận biết một sự kiện có xảy ra hay không."
+      ],
+      "common_exercises": []
+    },
+    "Bài 43. Xác suất thực nghiệm": {
+      "chapter": "DỮ LIỆU VÀ XÁC SUẤT THỰC NGHIỆM",
+      "content": "Làm quen với việc thu thập và biểu diễn dữ liệu qua các loại biểu đồ, và tính xác suất thực nghiệm của sự kiện.",
+      "objectives": [
+        "Tính xác suất thực nghiệm của một sự kiện trong trò chơi, thí nghiệm."
+      ],
+      "common_exercises": []
+    }
+  },
+  "7": {
+    "Bài 1. Tập hợp các số hữu tỉ": {
+      "chapter": "SỐ HỮU TỈ",
+      "content": "Nghiên cứu tập hợp số hữu tỉ, các phép toán, luỹ thừa và thứ tự thực hiện phép tính.",
+      "objectives": [
+        "Nhận biết số hữu tỉ, tập hợp các số hữu tỉ.",
+        "Tìm số đối của một số hữu tỉ.",
+        "Biểu diễn số hữu tỉ trên trục số.",
+        "So sánh hai số hữu tỉ."
+      ],
+      "common_exercises": []
+    },
+    "Bài 2. Cộng, trừ, nhân, chia số hữu tỉ": {
+      "chapter": "SỐ HỮU TỈ",
+      "content": "Nghiên cứu tập hợp số hữu tỉ, các phép toán, luỹ thừa và thứ tự thực hiện phép tính.",
+      "objectives": [
+        "Thực hiện các phép tính cộng, trừ, nhân, chia trong tập hợp số hữu tỉ.",
+        "Áp dụng các tính chất của phép toán và quy tắc dấu ngoặc để tính nhanh."
+      ],
+      "common_exercises": []
+    },
+    "Bài 3. Luỹ thừa với số mũ tự nhiên của một số hữu tỉ": {
+      "chapter": "SỐ HỮU TỈ",
+      "content": "Nghiên cứu tập hợp số hữu tỉ, các phép toán, luỹ thừa và thứ tự thực hiện phép tính.",
+      "objectives": [
+        "Tính giá trị của luỹ thừa với số mũ tự nhiên.",
+        "Thực hiện các phép tính nhân, chia hai luỹ thừa cùng cơ số.",
+        "Thực hiện phép tính luỹ thừa của một luỹ thừa."
+      ],
+      "common_exercises": []
+    },
+    "Bài 4. Thứ tự thực hiện các phép tính. Quy tắc chuyển vế": {
+      "chapter": "SỐ HỮU TỈ",
+      "content": "Nghiên cứu tập hợp số hữu tỉ, các phép toán, luỹ thừa và thứ tự thực hiện phép tính.",
+      "objectives": [
+        "Áp dụng đúng thứ tự thực hiện các phép tính trong một biểu thức số hữu tỉ.",
+        "Áp dụng quy tắc chuyển vế để tìm x trong một đẳng thức."
+      ],
+      "common_exercises": []
+    },
+    "Bài 5. Làm quen với số thập phân vô hạn tuần hoàn": {
+      "chapter": "SỐ THỰC",
+      "content": "Tìm hiểu về số thập phân vô hạn tuần hoàn, số vô tỉ, căn bậc hai và tập hợp số thực.",
+      "objectives": [
+        "Nhận biết số thập phân hữu hạn và số thập phân vô hạn tuần hoàn.",
+        "Viết gọn số thập phân vô hạn tuần hoàn.",
+        "Làm tròn số thập phân căn cứ vào độ chính xác cho trước."
+      ],
+      "common_exercises": []
+    },
+    "Bài 6. Số vô tỉ. Căn bậc hai số học": {
+      "chapter": "SỐ THỰC",
+      "content": "Tìm hiểu về số thập phân vô hạn tuần hoàn, số vô tỉ, căn bậc hai và tập hợp số thực.",
+      "objectives": [
+        "Nhận biết số vô tỉ.",
+        "Tính giá trị đúng hoặc gần đúng của căn bậc hai số học bằng máy tính cầm tay."
+      ],
+      "common_exercises": []
+    },
+    "Bài 7. Tập hợp các số thực": {
+      "chapter": "SỐ THỰC",
+      "content": "Tìm hiểu về số thập phân vô hạn tuần hoàn, số vô tỉ, căn bậc hai và tập hợp số thực.",
+      "objectives": [
+        "Nhận biết tập hợp các số thực.",
+        "Tìm số đối, giá trị tuyệt đối của một số thực.",
+        "Biểu diễn số thực trên trục số."
+      ],
+      "common_exercises": []
+    },
+    "Bài 8. Góc ở vị trí đặc biệt. Tia phân giác của một góc": {
+      "chapter": "GÓC VÀ ĐƯỜNG THẲNG SONG SONG",
+      "content": "Nghiên cứu về các loại góc, tia phân giác, hai đường thẳng song song, tiên đề Euclid và định lí.",
+      "objectives": [
+        "Nhận biết hai góc kề bù, hai góc đối đỉnh.",
+        "Tính số đo góc dựa vào tính chất của hai góc kề bù, hai góc đối đỉnh.",
+        "Nhận biết và vẽ tia phân giác của một góc."
+      ],
+      "common_exercises": []
+    },
+    "Bài 9. Hai đường thẳng song song và dấu hiệu nhận biết": {
+      "chapter": "GÓC VÀ ĐƯỜNG THẲNG SONG SONG",
+      "content": "Nghiên cứu về các loại góc, tia phân giác, hai đường thẳng song song, tiên đề Euclid và định lí.",
+      "objectives": [
+        "Nhận biết các cặp góc so le trong, đồng vị, trong cùng phía.",
+        "Vận dụng dấu hiệu nhận biết hai đường thẳng song song thông qua cặp góc so le trong hoặc đồng vị bằng nhau."
+      ],
+      "common_exercises": []
+    },
+    "Bài 10. Tiên đề Euclid. Tính chất của hai đường thẳng song song": {
+      "chapter": "GÓC VÀ ĐƯỜNG THẲNG SONG SONG",
+      "content": "Nghiên cứu về các loại góc, tia phân giác, hai đường thẳng song song, tiên đề Euclid và định lí.",
+      "objectives": [
+        "Phát biểu và vận dụng Tiên đề Euclid.",
+        "Áp dụng tính chất của hai đường thẳng song song để tính số đo góc."
+      ],
+      "common_exercises": []
+    },
+    "Bài 11. Định lí và chứng minh định lí": {
+      "chapter": "GÓC VÀ ĐƯỜNG THẲNG SONG SONG",
+      "content": "Nghiên cứu về các loại góc, tia phân giác, hai đường thẳng song song, tiên đề Euclid và định lí.",
+      "objectives": [
+        "Nhận biết một định lí, giả thiết và kết luận của định lí.",
+        "Làm quen với các bước chứng minh một định lí."
+      ],
+      "common_exercises": []
+    },
+    "Bài 12. Tổng các góc trong một tam giác": {
+      "chapter": "TAM GIÁC BẰNG NHAU",
+      "content": "Khảo sát các trường hợp bằng nhau của tam giác thường và tam giác vuông, tam giác cân và đường trung trực.",
+      "objectives": [
+        "Tính số đo góc chưa biết trong một tam giác.",
+        "Nhận biết tam giác nhọn, tam giác vuông, tam giác tù.",
+        "Tính số đo góc ngoài của tam giác."
+      ],
+      "common_exercises": []
+    },
+    "Bài 13. Hai tam giác bằng nhau. Trường hợp bằng nhau thứ nhất của tam giác": {
+      "chapter": "TAM GIÁC BẰNG NHAU",
+      "content": "Khảo sát các trường hợp bằng nhau của tam giác thường và tam giác vuông, tam giác cân và đường trung trực.",
+      "objectives": [
+        "Nhận biết hai tam giác bằng nhau, các cạnh và góc tương ứng.",
+        "Chứng minh hai tam giác bằng nhau theo trường hợp cạnh - cạnh - cạnh (c.c.c)."
+      ],
+      "common_exercises": []
+    },
+    "Bài 14. Trường hợp bằng nhau thứ hai và thứ ba của tam giác": {
+      "chapter": "TAM GIÁC BẰNG NHAU",
+      "content": "Khảo sát các trường hợp bằng nhau của tam giác thường và tam giác vuông, tam giác cân và đường trung trực.",
+      "objectives": [
+        "Chứng minh hai tam giác bằng nhau theo trường hợp cạnh - góc - cạnh (c.g.c).",
+        "Chứng minh hai tam giác bằng nhau theo trường hợp góc - cạnh - góc (g.c.g)."
+      ],
+      "common_exercises": []
+    },
+    "Bài 15. Các trường hợp bằng nhau của tam giác vuông": {
+      "chapter": "TAM GIÁC BẰNG NHAU",
+      "content": "Khảo sát các trường hợp bằng nhau của tam giác thường và tam giác vuông, tam giác cân và đường trung trực.",
+      "objectives": [
+        "Chứng minh hai tam giác vuông bằng nhau theo các trường hợp: hai cạnh góc vuông, cạnh góc vuông - góc nhọn kề, cạnh huyền - góc nhọn, cạnh huyền - cạnh góc vuông."
+      ],
+      "common_exercises": []
+    },
+    "Bài 16. Tam giác cân. Đường trung trực của đoạn thẳng": {
+      "chapter": "TAM GIÁC BẰNG NHAU",
+      "content": "Khảo sát các trường hợp bằng nhau của tam giác thường và tam giác vuông, tam giác cân và đường trung trực.",
+      "objectives": [
+        "Nhận biết và chứng minh một tam giác là tam giác cân.",
+        "Áp dụng tính chất của tam giác cân để tính số đo góc, chứng minh các đoạn thẳng bằng nhau.",
+        "Nhận biết và vẽ đường trung trực của một đoạn thẳng."
+      ],
+      "common_exercises": []
+    },
+    "Bài 17. Thu thập và phân loại dữ liệu": {
+      "chapter": "THU THẬP VÀ BIỂU DIỄN DỮ LIỆU",
+      "content": "Tìm hiểu cách thu thập, phân loại dữ liệu và biểu diễn chúng bằng biểu đồ hình quạt tròn, biểu đồ đoạn thẳng.",
+      "objectives": [
+        "Phân loại dữ liệu là số liệu hoặc không phải là số liệu.",
+        "Nhận biết tính đại diện của dữ liệu."
+      ],
+      "common_exercises": []
+    },
+    "Bài 18. Biểu đồ hình quạt tròn": {
+      "chapter": "THU THẬP VÀ BIỂU DIỄN DỮ LIỆU",
+      "content": "Tìm hiểu cách thu thập, phân loại dữ liệu và biểu diễn chúng bằng biểu đồ hình quạt tròn, biểu đồ đoạn thẳng.",
+      "objectives": [
+        "Đọc và mô tả dữ liệu từ biểu đồ hình quạt tròn.",
+        "Biểu diễn dữ liệu vào biểu đồ hình quạt tròn."
+      ],
+      "common_exercises": []
+    },
+    "Bài 19. Biểu đồ đoạn thẳng": {
+      "chapter": "THU THẬP VÀ BIỂU DIỄN DỮ LIỆU",
+      "content": "Tìm hiểu cách thu thập, phân loại dữ liệu và biểu diễn chúng bằng biểu đồ hình quạt tròn, biểu đồ đoạn thẳng.",
+      "objectives": [
+        "Đọc và mô tả dữ liệu từ biểu đồ đoạn thẳng.",
+        "Vẽ biểu đồ đoạn thẳng."
+      ],
+      "common_exercises": []
+    },
+    "Bài 20. Tỉ lệ thức": {
+      "chapter": "TỈ LỆ THỨC VÀ ĐẠI LƯỢNG TỈ LỆ",
+      "content": "Nghiên cứu về tỉ lệ thức, dãy tỉ số bằng nhau và các đại lượng tỉ lệ thuận, tỉ lệ nghịch.",
+      "objectives": [
+        "Lập tỉ lệ thức từ các tỉ số bằng nhau.",
+        "Áp dụng tính chất của tỉ lệ thức (tính chất cơ bản và tính chất hoán vị) để tìm thành phần chưa biết."
+      ],
+      "common_exercises": []
+    },
+    "Bài 21. Tính chất của dãy tỉ số bằng nhau": {
+      "chapter": "TỈ LỆ THỨC VÀ ĐẠI LƯỢNG TỈ LỆ",
+      "content": "Nghiên cứu về tỉ lệ thức, dãy tỉ số bằng nhau và các đại lượng tỉ lệ thuận, tỉ lệ nghịch.",
+      "objectives": [
+        "Áp dụng tính chất của dãy tỉ số bằng nhau để giải các bài toán chia tỉ lệ."
+      ],
+      "common_exercises": []
+    },
+    "Bài 22. Đại lượng tỉ lệ thuận": {
+      "chapter": "TỈ LỆ THỨC VÀ ĐẠI LƯỢNG TỈ LỆ",
+      "content": "Nghiên cứu về tỉ lệ thức, dãy tỉ số bằng nhau và các đại lượng tỉ lệ thuận, tỉ lệ nghịch.",
+      "objectives": [
+        "Nhận biết hai đại lượng tỉ lệ thuận.",
+        "Giải các bài toán về đại lượng tỉ lệ thuận."
+      ],
+      "common_exercises": []
+    },
+    "Bài 23. Đại lượng tỉ lệ nghịch": {
+      "chapter": "TỈ LỆ THỨC VÀ ĐẠI LƯỢNG TỈ LỆ",
+      "content": "Nghiên cứu về tỉ lệ thức, dãy tỉ số bằng nhau và các đại lượng tỉ lệ thuận, tỉ lệ nghịch.",
+      "objectives": [
+        "Nhận biết hai đại lượng tỉ lệ nghịch.",
+        "Giải các bài toán về đại lượng tỉ lệ nghịch."
+      ],
+      "common_exercises": []
+    },
+    "Bài 24. Biểu thức đại số": {
+      "chapter": "BIỂU THỨC ĐẠI SỐ VÀ ĐA THỨC MỘT BIẾN",
+      "content": "Làm quen với biểu thức đại số, đa thức một biến và các phép toán cộng, trừ, nhân, chia đa thức.",
+      "objectives": [
+        "Nhận biết biểu thức số, biểu thức đại số.",
+        "Tính giá trị của một biểu thức đại số."
+      ],
+      "common_exercises": []
+    },
+    "Bài 25. Đa thức một biến": {
+      "chapter": "BIỂU THỨC ĐẠI SỐ VÀ ĐA THỨC MỘT BIẾN",
+      "content": "Làm quen với biểu thức đại số, đa thức một biến và các phép toán cộng, trừ, nhân, chia đa thức.",
+      "objectives": [
+        "Nhận biết đơn thức, đa thức một biến.",
+        "Thu gọn và sắp xếp đa thức một biến.",
+        "Xác định bậc, hệ số cao nhất, hệ số tự do của đa thức.",
+        "Nhận biết nghiệm của đa thức một biến."
+      ],
+      "common_exercises": []
+    },
+    "Bài 26. Phép cộng và phép trừ đa thức một biến": {
+      "chapter": "BIỂU THỨC ĐẠI SỐ VÀ ĐA THỨC MỘT BIẾN",
+      "content": "Làm quen với biểu thức đại số, đa thức một biến và các phép toán cộng, trừ, nhân, chia đa thức.",
+      "objectives": [
+        "Thực hiện phép cộng và trừ đa thức một biến theo hàng ngang hoặc cột dọc."
+      ],
+      "common_exercises": []
+    },
+    "Bài 27. Phép nhân đa thức một biến": {
+      "chapter": "BIỂU THỨC ĐẠI SỐ VÀ ĐA THỨC MỘT BIẾN",
+      "content": "Làm quen với biểu thức đại số, đa thức một biến và các phép toán cộng, trừ, nhân, chia đa thức.",
+      "objectives": [
+        "Thực hiện phép nhân đơn thức với đa thức.",
+        "Thực hiện phép nhân hai đa thức một biến."
+      ],
+      "common_exercises": []
+    },
+    "Bài 28. Phép chia đa thức một biến": {
+      "chapter": "BIỂU THỨC ĐẠI SỐ VÀ ĐA THỨC MỘT BIẾN",
+      "content": "Làm quen với biểu thức đại số, đa thức một biến và các phép toán cộng, trừ, nhân, chia đa thức.",
+      "objectives": [
+        "Thực hiện phép chia đa thức cho đơn thức (trường hợp chia hết).",
+        "Thực hiện phép chia đa thức cho đa thức (chia hết và chia có dư)."
+      ],
+      "common_exercises": []
+    },
+    "Bài 29. Làm quen với biến cố": {
+      "chapter": "LÀM QUEN VỚI BIẾN CỐ VÀ XÁC SUẤT CỦA BIẾN CỐ",
+      "content": "Giới thiệu các khái niệm về biến cố (chắc chắn, không thể, ngẫu nhiên) và cách tính xác suất của biến cố.",
+      "objectives": [
+        "Phân biệt biến cố chắc chắn, biến cố không thể, biến cố ngẫu nhiên."
+      ],
+      "common_exercises": []
+    },
+    "Bài 30. Làm quen với xác suất của biến cố": {
+      "chapter": "LÀM QUEN VỚI BIẾN CỐ VÀ XÁC SUẤT CỦA BIẾN CỐ",
+      "content": "Giới thiệu các khái niệm về biến cố (chắc chắn, không thể, ngẫu nhiên) và cách tính xác suất của biến cố.",
+      "objectives": [
+        "Tính xác suất của một biến cố trong các trò chơi, thí nghiệm đơn giản có các kết quả đồng khả năng."
+      ],
+      "common_exercises": []
+    },
+    "Bài 31. Quan hệ giữa góc và cạnh đối diện trong một tam giác": {
+      "chapter": "QUAN HỆ GIỮA CÁC YẾU TỐ TRONG MỘT TAM GIÁC",
+      "content": "Nghiên cứu các quan hệ về góc và cạnh, đường vuông góc, đường xiên, bất đẳng thức tam giác và sự đồng quy của các đường đặc biệt.",
+      "objectives": [
+        "So sánh các góc của một tam giác khi biết độ dài các cạnh.",
+        "So sánh các cạnh của một tam giác khi biết số đo các góc."
+      ],
+      "common_exercises": []
+    },
+    "Bài 32. Quan hệ giữa đường vuông góc và đường xiên": {
+      "chapter": "QUAN HỆ GIỮA CÁC YẾU TỐ TRONG MỘT TAM GIÁC",
+      "content": "Nghiên cứu các quan hệ về góc và cạnh, đường vuông góc, đường xiên, bất đẳng thức tam giác và sự đồng quy của các đường đặc biệt.",
+      "objectives": [
+        "So sánh đường vuông góc và đường xiên.",
+        "Xác định khoảng cách từ một điểm đến một đường thẳng."
+      ],
+      "common_exercises": []
+    },
+    "Bài 33. Quan hệ giữa ba cạnh của một tam giác": {
+      "chapter": "QUAN HỆ GIỮA CÁC YẾU TỐ TRONG MỘT TAM GIÁC",
+      "content": "Nghiên cứu các quan hệ về góc và cạnh, đường vuông góc, đường xiên, bất đẳng thức tam giác và sự đồng quy của các đường đặc biệt.",
+      "objectives": [
+        "Kiểm tra một bộ ba độ dài có phải là ba cạnh của một tam giác hay không bằng cách sử dụng bất đẳng thức tam giác."
+      ],
+      "common_exercises": []
+    },
+    "Bài 34. Sự đồng quy của ba đường trung tuyến, ba đường phân giác trong một tam giác": {
+      "chapter": "QUAN HỆ GIỮA CÁC YẾU TỐ TRONG MỘT TAM GIÁC",
+      "content": "Nghiên cứu các quan hệ về góc và cạnh, đường vuông góc, đường xiên, bất đẳng thức tam giác và sự đồng quy của các đường đặc biệt.",
+      "objectives": [
+        "Nhận biết đường trung tuyến, trọng tâm của tam giác và áp dụng tính chất trọng tâm.",
+        "Nhận biết đường phân giác của tam giác và tính chất đồng quy của ba đường phân giác."
+      ],
+      "common_exercises": []
+    },
+    "Bài 35. Sự đồng quy của ba đường trung trực, ba đường cao trong một tam giác": {
+      "chapter": "QUAN HỆ GIỮA CÁC YẾU TỐ TRONG MỘT TAM GIÁC",
+      "content": "Nghiên cứu các quan hệ về góc và cạnh, đường vuông góc, đường xiên, bất đẳng thức tam giác và sự đồng quy của các đường đặc biệt.",
+      "objectives": [
+        "Nhận biết đường trung trực, đường cao của tam giác.",
+        "Nhận biết tính chất đồng quy của ba đường trung trực, ba đường cao."
+      ],
+      "common_exercises": []
+    },
+    "Bài 36. Hình hộp chữ nhật và hình lập phương": {
+      "chapter": "MỘT SỐ HÌNH KHỐI TRONG THỰC TIỄN",
+      "content": "Mô tả và tính toán diện tích xung quanh, thể tích của các hình khối như hình hộp chữ nhật, lập phương và lăng trụ đứng.",
+      "objectives": [
+        "Mô tả các yếu tố (đỉnh, cạnh, mặt, đường chéo) của hình hộp chữ nhật, hình lập phương.",
+        "Tính diện tích xung quanh và thể tích của hình hộp chữ nhật, hình lập phương."
+      ],
+      "common_exercises": []
+    },
+    "Bài 37. Hình lăng trụ đứng tam giác và hình lăng trụ đứng tứ giác": {
+      "chapter": "MỘT SỐ HÌNH KHỐI TRONG THỰC TIỄN",
+      "content": "Mô tả và tính toán diện tích xung quanh, thể tích của các hình khối như hình hộp chữ nhật, lập phương và lăng trụ đứng.",
+      "objectives": [
+        "Mô tả các yếu tố của hình lăng trụ đứng tam giác, hình lăng trụ đứng tứ giác.",
+        "Tính diện tích xung quanh và thể tích của hình lăng trụ đứng tam giác, hình lăng trụ đứng tứ giác."
+      ],
+      "common_exercises": []
+    }
+  },
+  "8": {
+    "Bài 1. Đơn thức": {
+      "chapter": "ĐA THỨC",
+      "content": "Nghiên cứu về đơn thức, đa thức nhiều biến và các phép toán cộng, trừ, nhân, chia đa thức.",
+      "objectives": [
+        "Nhận biết đơn thức, đơn thức thu gọn.",
+        "Xác định hệ số, phần biến, bậc của đơn thức.",
+        "Thực hiện cộng, trừ các đơn thức đồng dạng."
+      ],
+      "common_exercises": []
+    },
+    "Bài 2. Đa thức": {
+      "chapter": "ĐA THỨC",
+      "content": "Nghiên cứu về đơn thức, đa thức nhiều biến và các phép toán cộng, trừ, nhân, chia đa thức.",
+      "objectives": [
+        "Nhận biết đa thức, hạng tử của đa thức.",
+        "Thu gọn đa thức và xác định bậc của đa thức.",
+        "Tính giá trị của đa thức khi biết giá trị của các biến."
+      ],
+      "common_exercises": []
+    },
+    "Bài 3. Phép cộng và phép trừ đa thức": {
+      "chapter": "ĐA THỨC",
+      "content": "Nghiên cứu về đơn thức, đa thức nhiều biến và các phép toán cộng, trừ, nhân, chia đa thức.",
+      "objectives": [
+        "Thực hiện phép cộng và trừ hai đa thức nhiều biến."
+      ],
+      "common_exercises": []
+    },
+    "Bài 4. Phép nhân đa thức": {
+      "chapter": "ĐA THỨC",
+      "content": "Nghiên cứu về đơn thức, đa thức nhiều biến và các phép toán cộng, trừ, nhân, chia đa thức.",
+      "objectives": [
+        "Thực hiện phép nhân đơn thức với đa thức.",
+        "Thực hiện phép nhân hai đa thức."
+      ],
+      "common_exercises": []
+    },
+    "Bài 5. Phép chia đa thức cho đơn thức": {
+      "chapter": "ĐA THỨC",
+      "content": "Nghiên cứu về đơn thức, đa thức nhiều biến và các phép toán cộng, trừ, nhân, chia đa thức.",
+      "objectives": [
+        "Thực hiện phép chia đơn thức cho đơn thức (trường hợp chia hết).",
+        "Thực hiện phép chia đa thức cho đơn thức (trường hợp chia hết)."
+      ],
+      "common_exercises": []
+    },
+    "Bài 6. Hiệu hai bình phương. Bình phương của một tổng hay một hiệu": {
+      "chapter": "HẰNG ĐẲNG THỨC ĐÁNG NHỚ VÀ ỨNG DỤNG",
+      "content": "Tìm hiểu và vận dụng các hằng đẳng thức đáng nhớ để khai triển, rút gọn và phân tích đa thức thành nhân tử.",
+      "objectives": [
+        "Khai triển hằng đẳng thức bình phương của một tổng, một hiệu.",
+        "Viết biểu thức dưới dạng tích bằng hằng đẳng thức hiệu hai bình phương.",
+        "Áp dụng hằng đẳng thức để tính nhanh."
+      ],
+      "common_exercises": []
+    },
+    "Bài 7. Lập phương của một tổng hay một hiệu": {
+      "chapter": "HẰNG ĐẲNG THỨC ĐÁNG NHỚ VÀ ỨNG DỤNG",
+      "content": "Tìm hiểu và vận dụng các hằng đẳng thức đáng nhớ để khai triển, rút gọn và phân tích đa thức thành nhân tử.",
+      "objectives": [
+        "Khai triển hằng đẳng thức lập phương của một tổng, một hiệu.",
+        "Viết biểu thức dưới dạng lập phương của một tổng hoặc một hiệu."
+      ],
+      "common_exercises": []
+    },
+    "Bài 8. Tổng và hiệu hai lập phương": {
+      "chapter": "HẰNG ĐẲNG THỨC ĐÁNG NHỚ VÀ ỨNG DỤNG",
+      "content": "Tìm hiểu và vận dụng các hằng đẳng thức đáng nhớ để khai triển, rút gọn và phân tích đa thức thành nhân tử.",
+      "objectives": [
+        "Viết biểu thức dưới dạng tích bằng hằng đẳng thức tổng hoặc hiệu hai lập phương."
+      ],
+      "common_exercises": []
+    },
+    "Bài 9. Phân tích đa thức thành nhân tử": {
+      "chapter": "HẰNG ĐẲNG THỨC ĐÁNG NHỚ VÀ ỨNG DỤNG",
+      "content": "Tìm hiểu và vận dụng các hằng đẳng thức đáng nhớ để khai triển, rút gọn và phân tích đa thức thành nhân tử.",
+      "objectives": [
+        "Phân tích đa thức thành nhân tử bằng phương pháp đặt nhân tử chung.",
+        "Phân tích đa thức thành nhân tử bằng phương pháp nhóm hạng tử.",
+        "Phân tích đa thức thành nhân tử bằng cách sử dụng hằng đẳng thức.",
+        "Phối hợp các phương pháp để phân tích đa thức thành nhân tử."
+      ],
+      "common_exercises": []
+    },
+    "Bài 10. Tứ giác": {
+      "chapter": "TỨ GIÁC",
+      "content": "Khảo sát các loại tứ giác đặc biệt như hình thang cân, hình bình hành, hình chữ nhật, hình thoi và hình vuông, bao gồm tính chất và dấu hiệu nhận biết.",
+      "objectives": [
+        "Nhận biết tứ giác, tứ giác lồi, các yếu tố (đỉnh, cạnh, góc, đường chéo) của tứ giác.",
+        "Tính số đo góc chưa biết trong một tứ giác."
+      ],
+      "common_exercises": []
+    },
+    "Bài 11. Hình thang cân": {
+      "chapter": "TỨ GIÁC",
+      "content": "Khảo sát các loại tứ giác đặc biệt như hình thang cân, hình bình hành, hình chữ nhật, hình thoi và hình vuông, bao gồm tính chất và dấu hiệu nhận biết.",
+      "objectives": [
+        "Nhận biết hình thang, hình thang cân.",
+        "Áp dụng các tính chất về cạnh bên và đường chéo của hình thang cân.",
+        "Vận dụng dấu hiệu nhận biết để chứng minh một hình thang là hình thang cân."
+      ],
+      "common_exercises": []
+    },
+    "Bài 12. Hình bình hành": {
+      "chapter": "TỨ GIÁC",
+      "content": "Khảo sát các loại tứ giác đặc biệt như hình thang cân, hình bình hành, hình chữ nhật, hình thoi và hình vuông, bao gồm tính chất và dấu hiệu nhận biết.",
+      "objectives": [
+        "Mô tả và áp dụng các tính chất của hình bình hành (về cạnh, góc, đường chéo).",
+        "Vận dụng các dấu hiệu nhận biết để chứng minh một tứ giác là hình bình hành."
+      ],
+      "common_exercises": []
+    },
+    "Bài 13. Hình chữ nhật": {
+      "chapter": "TỨ GIÁC",
+      "content": "Khảo sát các loại tứ giác đặc biệt như hình thang cân, hình bình hành, hình chữ nhật, hình thoi và hình vuông, bao gồm tính chất và dấu hiệu nhận biết.",
+      "objectives": [
+        "Mô tả và áp dụng các tính chất của hình chữ nhật.",
+        "Vận dụng các dấu hiệu nhận biết để chứng minh một tứ giác là hình chữ nhật."
+      ],
+      "common_exercises": []
+    },
+    "Bài 14. Hình thoi và hình vuông": {
+      "chapter": "TỨ GIÁC",
+      "content": "Khảo sát các loại tứ giác đặc biệt như hình thang cân, hình bình hành, hình chữ nhật, hình thoi và hình vuông, bao gồm tính chất và dấu hiệu nhận biết.",
+      "objectives": [
+        "Mô tả và áp dụng các tính chất của hình thoi, hình vuông.",
+        "Vận dụng các dấu hiệu nhận biết để chứng minh một tứ giác là hình thoi, hình vuông."
+      ],
+      "common_exercises": []
+    },
+    "Bài 15. Định lí Thalès trong tam giác": {
+      "chapter": "ĐỊNH LÍ THALÈS",
+      "content": "Nghiên cứu và áp dụng định lí Thalès, đường trung bình của tam giác và tính chất đường phân giác.",
+      "objectives": [
+        "Áp dụng định lí Thalès thuận để tính độ dài đoạn thẳng.",
+        "Áp dụng định lí Thalès đảo để chứng minh hai đường thẳng song song."
+      ],
+      "common_exercises": []
+    },
+    "Bài 16. Đường trung bình của tam giác": {
+      "chapter": "ĐỊNH LÍ THALÈS",
+      "content": "Nghiên cứu và áp dụng định lí Thalès, đường trung bình của tam giác và tính chất đường phân giác.",
+      "objectives": [
+        "Nhận biết và áp dụng tính chất đường trung bình của tam giác để tính độ dài đoạn thẳng và chứng minh song song."
+      ],
+      "common_exercises": []
+    },
+    "Bài 17. Tính chất đường phân giác của tam giác": {
+      "chapter": "ĐỊNH LÍ THALÈS",
+      "content": "Nghiên cứu và áp dụng định lí Thalès, đường trung bình của tam giác và tính chất đường phân giác.",
+      "objectives": [
+        "Áp dụng tính chất đường phân giác trong của tam giác để tính độ dài đoạn thẳng và tỉ số."
+      ],
+      "common_exercises": []
+    },
+    "Bài 18. Thu thập và phân loại dữ liệu": {
+      "chapter": "DỮ LIỆU VÀ BIỂU ĐỒ",
+      "content": "Học cách thu thập, phân loại dữ liệu và biểu diễn, phân tích số liệu thống kê qua các loại biểu đồ.",
+      "objectives": [
+        "Phân loại số liệu là rời rạc hay liên tục.",
+        "Lựa chọn phương pháp thu thập dữ liệu phù hợp."
+      ],
+      "common_exercises": []
+    },
+    "Bài 19. Biểu diễn dữ liệu bằng bảng, biểu đồ": {
+      "chapter": "DỮ LIỆU VÀ BIỂU ĐỒ",
+      "content": "Học cách thu thập, phân loại dữ liệu và biểu diễn, phân tích số liệu thống kê qua các loại biểu đồ.",
+      "objectives": [
+        "Lựa chọn biểu đồ tranh, biểu đồ cột hoặc biểu đồ đoạn thẳng để biểu diễn dữ liệu.",
+        "Chuyển dữ liệu từ bảng sang biểu đồ và ngược lại."
+      ],
+      "common_exercises": []
+    },
+    "Bài 20. Phân tích số liệu thống kê dựa vào biểu đồ": {
+      "chapter": "DỮ LIỆU VÀ BIỂU ĐỒ",
+      "content": "Học cách thu thập, phân loại dữ liệu và biểu diễn, phân tích số liệu thống kê qua các loại biểu đồ.",
+      "objectives": [
+        "Phân tích số liệu thống kê từ biểu đồ để rút ra kết luận.",
+        "Nhận biết tính hợp lý của dữ liệu được biểu diễn."
+      ],
+      "common_exercises": []
+    },
+    "Bài 21. Phân thức đại số": {
+      "chapter": "PHÂN THỨC ĐẠI SỐ",
+      "content": "Nghiên cứu về phân thức đại số, các tính chất và các phép toán cộng, trừ, nhân, chia phân thức.",
+      "objectives": [
+        "Nhận biết phân thức đại số.",
+        "Viết điều kiện xác định của phân thức.",
+        "Tính giá trị của phân thức tại một giá trị cho trước của biến."
+      ],
+      "common_exercises": []
+    },
+    "Bài 22. Tính chất cơ bản của phân thức đại số": {
+      "chapter": "PHÂN THỨC ĐẠI SỐ",
+      "content": "Nghiên cứu về phân thức đại số, các tính chất và các phép toán cộng, trừ, nhân, chia phân thức.",
+      "objectives": [
+        "Áp dụng tính chất cơ bản để rút gọn phân thức đại số.",
+        "Quy đồng mẫu thức nhiều phân thức."
+      ],
+      "common_exercises": []
+    },
+    "Bài 23. Phép cộng và phép trừ phân thức đại số": {
+      "chapter": "PHÂN THỨC ĐẠI SỐ",
+      "content": "Nghiên cứu về phân thức đại số, các tính chất và các phép toán cộng, trừ, nhân, chia phân thức.",
+      "objectives": [
+        "Thực hiện phép cộng và trừ các phân thức đại số (cùng mẫu, khác mẫu)."
+      ],
+      "common_exercises": []
+    },
+    "Bài 24. Phép nhân và phép chia phân thức đại số": {
+      "chapter": "PHÂN THỨC ĐẠI SỐ",
+      "content": "Nghiên cứu về phân thức đại số, các tính chất và các phép toán cộng, trừ, nhân, chia phân thức.",
+      "objectives": [
+        "Thực hiện phép nhân và chia các phân thức đại số."
+      ],
+      "common_exercises": []
+    },
+    "Bài 25. Phương trình bậc nhất một ẩn": {
+      "chapter": "PHƯƠNG TRÌNH BẬC NHẤT VÀ HÀM SỐ BẬC NHẤT",
+      "content": "Giải phương trình bậc nhất, giải toán bằng cách lập phương trình và tìm hiểu về hàm số bậc nhất, đồ thị của nó.",
+      "objectives": [
+        "Nhận biết và giải phương trình bậc nhất một ẩn.",
+        "Giải các phương trình đưa được về dạng ax + b = 0."
+      ],
+      "common_exercises": []
+    },
+    "Bài 26. Giải bài toán bằng cách lập phương trình": {
+      "chapter": "PHƯƠNG TRÌNH BẬC NHẤT VÀ HÀM SỐ BẬC NHẤT",
+      "content": "Giải phương trình bậc nhất, giải toán bằng cách lập phương trình và tìm hiểu về hàm số bậc nhất, đồ thị của nó.",
+      "objectives": [
+        "Giải các bài toán thực tế (toán chuyển động, toán năng suất, toán phần trăm...) bằng cách lập phương trình bậc nhất một ẩn."
+      ],
+      "common_exercises": []
+    },
+    "Bài 27. Khái niệm hàm số và đồ thị của hàm số": {
+      "chapter": "PHƯƠNG TRÌNH BẬC NHẤT VÀ HÀM SỐ BẬC NHẤT",
+      "content": "Giải phương trình bậc nhất, giải toán bằng cách lập phương trình và tìm hiểu về hàm số bậc nhất, đồ thị của nó.",
+      "objectives": [
+        "Nhận biết khái niệm hàm số.",
+        "Tính giá trị của hàm số khi cho bởi công thức.",
+        "Xác định toạ độ của một điểm và xác định điểm trên mặt phẳng toạ độ.",
+        "Vẽ đồ thị của hàm số cho bởi bảng giá trị."
+      ],
+      "common_exercises": []
+    },
+    "Bài 28. Hàm số bậc nhất và đồ thị của hàm số bậc nhất": {
+      "chapter": "PHƯƠNG TRÌNH BẬC NHẤT VÀ HÀM SỐ BẬC NHẤT",
+      "content": "Giải phương trình bậc nhất, giải toán bằng cách lập phương trình và tìm hiểu về hàm số bậc nhất, đồ thị của nó.",
+      "objectives": [
+        "Nhận biết hàm số bậc nhất.",
+        "Vẽ đồ thị của hàm số bậc nhất y = ax + b."
+      ],
+      "common_exercises": []
+    },
+    "Bài 29. Hệ số góc của đường thẳng": {
+      "chapter": "PHƯƠNG TRÌNH BẬC NHẤT VÀ HÀM SỐ BẬC NHẤT",
+      "content": "Giải phương trình bậc nhất, giải toán bằng cách lập phương trình và tìm hiểu về hàm số bậc nhất, đồ thị của nó.",
+      "objectives": [
+        "Nhận biết hệ số góc của đường thẳng y = ax + b.",
+        "Sử dụng hệ số góc để xét vị trí tương đối (song song, cắt nhau) của hai đường thẳng."
+      ],
+      "common_exercises": []
+    },
+    "Bài 30. Kết quả có thể và kết quả thuận lợi": {
+      "chapter": "MỞ ĐẦU VỀ TÍNH XÁC SUẤT CỦA BIẾN CỐ",
+      "content": "Làm quen với các kết quả có thể, kết quả thuận lợi và cách tính xác suất của biến cố bằng tỉ số.",
+      "objectives": [
+        "Xác định các kết quả có thể của một hành động, thực nghiệm.",
+        "Xác định các kết quả thuận lợi cho một biến cố."
+      ],
+      "common_exercises": []
+    },
+    "Bài 31. Cách tính xác suất của biến cố bằng tỉ số": {
+      "chapter": "MỞ ĐẦU VỀ TÍNH XÁC SUẤT CỦA BIẾN CỐ",
+      "content": "Làm quen với các kết quả có thể, kết quả thuận lợi và cách tính xác suất của biến cố bằng tỉ số.",
+      "objectives": [
+        "Tính xác suất của một biến cố bằng tỉ số giữa số kết quả thuận lợi và tổng số kết quả có thể (trường hợp đồng khả năng)."
+      ],
+      "common_exercises": []
+    },
+    "Bài 32. Mối liên hệ giữa xác suất thực nghiệm với xác suất và ứng dụng": {
+      "chapter": "MỞ ĐẦU VỀ TÍNH XÁC SUẤT CỦA BIẾN CỐ",
+      "content": "Làm quen với các kết quả có thể, kết quả thuận lợi và cách tính xác suất của biến cố bằng tỉ số.",
+      "objectives": [
+        "Tính xác suất thực nghiệm của một biến cố.",
+        "Ước lượng xác suất của một biến cố bằng xác suất thực nghiệm."
+      ],
+      "common_exercises": []
+    },
+    "Bài 33. Hai tam giác đồng dạng": {
+      "chapter": "TAM GIÁC ĐỒNG DẠNG",
+      "content": "Nghiên cứu các trường hợp đồng dạng của tam giác thường và tam giác vuông, định lí Pythagore và các hình đồng dạng.",
+      "objectives": [
+        "Nhận biết hai tam giác đồng dạng, tỉ số đồng dạng.",
+        "Áp dụng định lí về tam giác đồng dạng (đường thẳng song song với một cạnh)."
+      ],
+      "common_exercises": []
+    },
+    "Bài 34. Ba trường hợp đồng dạng của hai tam giác": {
+      "chapter": "TAM GIÁC ĐỒNG DẠNG",
+      "content": "Nghiên cứu các trường hợp đồng dạng của tam giác thường và tam giác vuông, định lí Pythagore và các hình đồng dạng.",
+      "objectives": [
+        "Chứng minh hai tam giác đồng dạng theo trường hợp cạnh - cạnh - cạnh (c.c.c).",
+        "Chứng minh hai tam giác đồng dạng theo trường hợp cạnh - góc - cạnh (c.g.c).",
+        "Chứng minh hai tam giác đồng dạng theo trường hợp góc - góc (g.g)."
+      ],
+      "common_exercises": []
+    },
+    "Bài 35. Định lí Pythagore và ứng dụng": {
+      "chapter": "TAM GIÁC ĐỒNG DẠNG",
+      "content": "Nghiên cứu các trường hợp đồng dạng của tam giác thường và tam giác vuông, định lí Pythagore và các hình đồng dạng.",
+      "objectives": [
+        "Áp dụng định lí Pythagore thuận và đảo để tính độ dài cạnh và kiểm tra tam giác vuông."
+      ],
+      "common_exercises": []
+    },
+    "Bài 36. Các trường hợp đồng dạng của hai tam giác vuông": {
+      "chapter": "TAM GIÁC ĐỒNG DẠNG",
+      "content": "Nghiên cứu các trường hợp đồng dạng của tam giác thường và tam giác vuông, định lí Pythagore và các hình đồng dạng.",
+      "objectives": [
+        "Áp dụng các trường hợp đồng dạng của tam giác vuông để giải toán."
+      ],
+      "common_exercises": []
+    },
+    "Bài 37. Hình đồng dạng": {
+      "chapter": "TAM GIÁC ĐỒNG DẠNG",
+      "content": "Nghiên cứu các trường hợp đồng dạng của tam giác thường và tam giác vuông, định lí Pythagore và các hình đồng dạng.",
+      "objectives": [
+        "Nhận biết các hình đồng dạng trong thực tế."
+      ],
+      "common_exercises": []
+    },
+    "Bài 38. Hình chóp tam giác đều": {
+      "chapter": "MỘT SỐ HÌNH KHỐI TRONG THỰC TIỄN",
+      "content": "Mô tả và tính toán diện tích xung quanh, thể tích của hình chóp tam giác đều và hình chóp tứ giác đều.",
+      "objectives": [
+        "Mô tả hình chóp tam giác đều.",
+        "Tính diện tích xung quanh và thể tích của hình chóp tam giác đều."
+      ],
+      "common_exercises": []
+    },
+    "Bài 39. Hình chóp tứ giác đều": {
+      "chapter": "MỘT SỐ HÌNH KHỐI TRONG THỰC TIỄN",
+      "content": "Mô tả và tính toán diện tích xung quanh, thể tích của hình chóp tam giác đều và hình chóp tứ giác đều.",
+      "objectives": [
+        "Mô tả hình chóp tứ giác đều.",
+        "Tính diện tích xung quanh và thể tích của hình chóp tứ giác đều."
+      ],
+      "common_exercises": []
+    }
+  },
+  "9": {
+    "Bài 1. Khái niệm phương trình và hệ hai phương trình bậc nhất hai ẩn": {
+      "chapter": "PHƯƠNG TRÌNH VÀ HỆ HAI PHƯƠNG TRÌNH BẬC NHẤT HAI ẨN",
+      "content": "Giải hệ hai phương trình bậc nhất hai ẩn bằng phương pháp thế, cộng đại số và giải toán bằng cách lập hệ phương trình.",
+      "objectives": [
+        "Nhận biết phương trình và hệ hai phương trình bậc nhất hai ẩn.",
+        "Kiểm tra một cặp số có phải là nghiệm của phương trình hoặc hệ phương trình hay không."
+      ],
+      "common_exercises": []
+    },
+    "Bài 2. Giải hệ hai phương trình bậc nhất hai ẩn": {
+      "chapter": "PHƯƠNG TRÌNH VÀ HỆ HAI PHƯƠNG TRÌNH BẬC NHẤT HAI ẨN",
+      "content": "Giải hệ hai phương trình bậc nhất hai ẩn bằng phương pháp thế, cộng đại số và giải toán bằng cách lập hệ phương trình.",
+      "objectives": [
+        "Giải hệ hai phương trình bậc nhất hai ẩn bằng phương pháp thế.",
+        "Giải hệ hai phương trình bậc nhất hai ẩn bằng phương pháp cộng đại số."
+      ],
+      "common_exercises": []
+    },
+    "Bài 3. Giải bài toán bằng cách lập hệ phương trình": {
+      "chapter": "PHƯƠNG TRÌNH VÀ HỆ HAI PHƯƠNG TRÌNH BẬC NHẤT HAI ẨN",
+      "content": "Giải hệ hai phương trình bậc nhất hai ẩn bằng phương pháp thế, cộng đại số và giải toán bằng cách lập hệ phương trình.",
+      "objectives": [
+        "Giải các bài toán thực tế bằng cách lập hệ hai phương trình bậc nhất hai ẩn."
+      ],
+      "common_exercises": []
+    },
+    "Bài 4. Phương trình quy về phương trình bậc nhất một ẩn": {
+      "chapter": "PHƯƠNG TRÌNH VÀ BẤT PHƯƠNG TRÌNH BẬC NHẤT MỘT ẨN",
+      "content": "Giải các phương trình quy về bậc nhất, phương trình tích, phương trình chứa ẩn ở mẫu và giải bất phương trình bậc nhất một ẩn.",
+      "objectives": [
+        "Giải phương trình tích.",
+        "Giải phương trình chứa ẩn ở mẫu."
+      ],
+      "common_exercises": []
+    },
+    "Bài 5. Bất đẳng thức và tính chất": {
+      "chapter": "PHƯƠNG TRÌNH VÀ BẤT PHƯƠNG TRÌNH BẬC NHẤT MỘT ẨN",
+      "content": "Giải các phương trình quy về bậc nhất, phương trình tích, phương trình chứa ẩn ở mẫu và giải bất phương trình bậc nhất một ẩn.",
+      "objectives": [
+        "Nhận biết và viết các bất đẳng thức.",
+        "Áp dụng tính chất liên hệ giữa thứ tự và phép cộng, phép nhân để so sánh."
+      ],
+      "common_exercises": []
+    },
+    "Bài 6. Bất phương trình bậc nhất một ẩn": {
+      "chapter": "PHƯƠNG TRÌNH VÀ BẤT PHƯƠNG TRÌNH BẬC NHẤT MỘT ẨN",
+      "content": "Giải các phương trình quy về bậc nhất, phương trình tích, phương trình chứa ẩn ở mẫu và giải bất phương trình bậc nhất một ẩn.",
+      "objectives": [
+        "Giải bất phương trình bậc nhất một ẩn và các bất phương trình đưa được về dạng này."
+      ],
+      "common_exercises": []
+    },
+    "Bài 7. Căn bậc hai và căn thức bậc hai": {
+      "chapter": "CĂN BẬC HAI VÀ CĂN BẬC BA",
+      "content": "Nghiên cứu về căn bậc hai, căn bậc ba và các phép biến đổi, rút gọn biểu thức chứa căn thức.",
+      "objectives": [
+        "Tìm căn bậc hai của một số không âm.",
+        "Tìm điều kiện xác định của một căn thức bậc hai.",
+        "Áp dụng hằng đẳng thức √A² = |A| để rút gọn biểu thức."
+      ],
+      "common_exercises": []
+    },
+    "Bài 8. Khai căn bậc hai với phép nhân và phép chia": {
+      "chapter": "CĂN BẬC HAI VÀ CĂN BẬC BA",
+      "content": "Nghiên cứu về căn bậc hai, căn bậc ba và các phép biến đổi, rút gọn biểu thức chứa căn thức.",
+      "objectives": [
+        "Áp dụng quy tắc khai phương một tích, một thương.",
+        "Áp dụng quy tắc nhân, chia các căn bậc hai."
+      ],
+      "common_exercises": []
+    },
+    "Bài 9. Biến đổi đơn giản và rút gọn biểu thức chứa căn thức bậc hai": {
+      "chapter": "CĂN BẬC HAI VÀ CĂN BẬC BA",
+      "content": "Nghiên cứu về căn bậc hai, căn bậc ba và các phép biến đổi, rút gọn biểu thức chứa căn thức.",
+      "objectives": [
+        "Thực hiện phép biến đổi đưa thừa số ra ngoài/vào trong dấu căn.",
+        "Thực hiện phép biến đổi khử mẫu của biểu thức lấy căn.",
+        "Thực hiện phép biến đổi trục căn thức ở mẫu."
+      ],
+      "common_exercises": []
+    },
+    "Bài 10. Căn bậc ba và căn thức bậc ba": {
+      "chapter": "CĂN BẬC HAI VÀ CĂN BẬC BA",
+      "content": "Nghiên cứu về căn bậc hai, căn bậc ba và các phép biến đổi, rút gọn biểu thức chứa căn thức.",
+      "objectives": [
+        "Tính căn bậc ba của một số.",
+        "Rút gọn biểu thức chứa căn thức bậc ba."
+      ],
+      "common_exercises": []
+    },
+    "Bài 11. Tỉ số lượng giác của góc nhọn": {
+      "chapter": "HỆ THỨC LƯỢNG TRONG TAM GIÁC VUÔNG",
+      "content": "Tìm hiểu về tỉ số lượng giác của góc nhọn và các hệ thức lượng để giải tam giác vuông và ứng dụng thực tế.",
+      "objectives": [
+        "Tính các tỉ số lượng giác sin, cos, tan, cot của một góc nhọn.",
+        "Sử dụng tỉ số lượng giác của các góc đặc biệt (30°, 45°, 60°).",
+        "Áp dụng quan hệ giữa tỉ số lượng giác của hai góc phụ nhau."
+      ],
+      "common_exercises": []
+    },
+    "Bài 12. Một số hệ thức giữa cạnh, góc trong tam giác vuông và ứng dụng": {
+      "chapter": "HỆ THỨC LƯỢNG TRONG TAM GIÁC VUÔNG",
+      "content": "Tìm hiểu về tỉ số lượng giác của góc nhọn và các hệ thức lượng để giải tam giác vuông và ứng dụng thực tế.",
+      "objectives": [
+        "Áp dụng các hệ thức lượng để giải tam giác vuông.",
+        "Giải các bài toán thực tế liên quan đến việc giải tam giác vuông."
+      ],
+      "common_exercises": []
+    },
+    "Bài 13. Mở đầu về đường tròn": {
+      "chapter": "ĐƯỜNG TRÒN",
+      "content": "Nghiên cứu các khái niệm về đường tròn, cung và dây, vị trí tương đối của đường thẳng và đường tròn, hai đường tròn.",
+      "objectives": [
+        "Xác định một điểm nằm trên, trong hay ngoài đường tròn.",
+        "Nhận biết tâm đối xứng và trục đối xứng của đường tròn."
+      ],
+      "common_exercises": []
+    },
+    "Bài 14. Cung và dây của một đường tròn": {
+      "chapter": "ĐƯỜNG TRÒN",
+      "content": "Nghiên cứu các khái niệm về đường tròn, cung và dây, vị trí tương đối của đường thẳng và đường tròn, hai đường tròn.",
+      "objectives": [
+        "So sánh độ dài đường kính và dây cung.",
+        "Xác định số đo của một cung tròn."
+      ],
+      "common_exercises": []
+    },
+    "Bài 15. Độ dài của cung tròn. Diện tích hình quạt tròn và hình vành khuyên": {
+      "chapter": "ĐƯỜNG TRÒN",
+      "content": "Nghiên cứu các khái niệm về đường tròn, cung và dây, vị trí tương đối của đường thẳng và đường tròn, hai đường tròn.",
+      "objectives": [
+        "Tính độ dài cung tròn.",
+        "Tính diện tích hình quạt tròn và hình vành khuyên."
+      ],
+      "common_exercises": []
+    },
+    "Bài 16. Vị trí tương đối của đường thẳng và đường tròn": {
+      "chapter": "ĐƯỜNG TRÒN",
+      "content": "Nghiên cứu các khái niệm về đường tròn, cung và dây, vị trí tương đối của đường thẳng và đường tròn, hai đường tròn.",
+      "objectives": [
+        "Xét vị trí tương đối của đường thẳng và đường tròn dựa vào khoảng cách từ tâm đến đường thẳng.",
+        "Áp dụng tính chất của tiếp tuyến."
+      ],
+      "common_exercises": []
+    },
+    "Bài 17. Vị trí tương đối của hai đường tròn": {
+      "chapter": "ĐƯỜNG TRÒN",
+      "content": "Nghiên cứu các khái niệm về đường tròn, cung và dây, vị trí tương đối của đường thẳng và đường tròn, hai đường tròn.",
+      "objectives": [
+        "Xét vị trí tương đối của hai đường tròn dựa vào đoạn nối tâm và các bán kính."
+      ],
+      "common_exercises": []
+    },
+    "Bài 18. Hàm số y = ax² (a≠0)": {
+      "chapter": "HÀM SỐ y = ax² (a≠0). PHƯƠNG TRÌNH BẬC HAI MỘT ẨN",
+      "content": "Khảo sát hàm số y = ax², giải phương trình bậc hai bằng công thức nghiệm, định lí Viète và giải toán bằng cách lập phương trình bậc hai.",
+      "objectives": [
+        "Lập bảng giá trị và vẽ đồ thị hàm số y = ax².",
+        "Nhận biết tính đối xứng của đồ thị hàm số y = ax²."
+      ],
+      "common_exercises": []
+    },
+    "Bài 19. Phương trình bậc hai một ẩn": {
+      "chapter": "HÀM SỐ y = ax² (a≠0). PHƯƠNG TRÌNH BẬC HAI MỘT ẨN",
+      "content": "Khảo sát hàm số y = ax², giải phương trình bậc hai bằng công thức nghiệm, định lí Viète và giải toán bằng cách lập phương trình bậc hai.",
+      "objectives": [
+        "Giải phương trình bậc hai dạng khuyết b hoặc c.",
+        "Giải phương trình bậc hai bằng công thức nghiệm và công thức nghiệm thu gọn."
+      ],
+      "common_exercises": []
+    },
+    "Bài 20. Định lí Viète và ứng dụng": {
+      "chapter": "HÀM SỐ y = ax² (a≠0). PHƯƠNG TRÌNH BẬC HAI MỘT ẨN",
+      "content": "Khảo sát hàm số y = ax², giải phương trình bậc hai bằng công thức nghiệm, định lí Viète và giải toán bằng cách lập phương trình bậc hai.",
+      "objectives": [
+        "Tính tổng và tích các nghiệm của phương trình bậc hai bằng định lí Viète.",
+        "Nhẩm nghiệm của phương trình bậc hai trong các trường hợp đặc biệt.",
+        "Tìm hai số khi biết tổng và tích của chúng."
+      ],
+      "common_exercises": []
+    },
+    "Bài 21. Giải bài toán bằng cách lập phương trình": {
+      "chapter": "HÀM SỐ y = ax² (a≠0). PHƯƠNG TRÌNH BẬC HAI MỘT ẨN",
+      "content": "Khảo sát hàm số y = ax², giải phương trình bậc hai bằng công thức nghiệm, định lí Viète và giải toán bằng cách lập phương trình bậc hai.",
+      "objectives": [
+        "Giải các bài toán thực tế bằng cách lập phương trình bậc hai một ẩn."
+      ],
+      "common_exercises": []
+    },
+    "Bài 22. Bảng tần số và biểu đồ tần số": {
+      "chapter": "TẦN SỐ VÀ TẦN SỐ TƯƠNG ĐỐI",
+      "content": "Tìm hiểu về cách lập bảng tần số, tần số tương đối (ghép nhóm và không ghép nhóm) và các biểu đồ tương ứng.",
+      "objectives": [
+        "Lập bảng tần số từ một mẫu dữ liệu.",
+        "Vẽ biểu đồ tần số dạng cột và dạng đoạn thẳng."
+      ],
+      "common_exercises": []
+    },
+    "Bài 23. Bảng tần số tương đối và biểu đồ tần số tương đối": {
+      "chapter": "TẦN SỐ VÀ TẦN SỐ TƯƠNG ĐỐI",
+      "content": "Tìm hiểu về cách lập bảng tần số, tần số tương đối (ghép nhóm và không ghép nhóm) và các biểu đồ tương ứng.",
+      "objectives": [
+        "Lập bảng tần số tương đối.",
+        "Vẽ biểu đồ tần số tương đối dạng cột và dạng hình quạt tròn."
+      ],
+      "common_exercises": []
+    },
+    "Bài 24. Bảng tần số, tần số tương đối ghép nhóm và biểu đồ": {
+      "chapter": "TẦN SỐ VÀ TẦN SỐ TƯƠNG ĐỐI",
+      "content": "Tìm hiểu về cách lập bảng tần số, tần số tương đối (ghép nhóm và không ghép nhóm) và các biểu đồ tương ứng.",
+      "objectives": [
+        "Lập bảng tần số và tần số tương đối ghép nhóm.",
+        "Vẽ biểu đồ tần số tương đối ghép nhóm dạng cột và dạng đoạn thẳng."
+      ],
+      "common_exercises": []
+    },
+    "Bài 25. Phép thử ngẫu nhiên và không gian mẫu": {
+      "chapter": "XÁC SUẤT CỦA BIẾN CỐ TRONG MỘT SỐ MÔ HÌNH XÁC SUẤT ĐƠN GIẢN",
+      "content": "Mô tả không gian mẫu, biến cố và tính xác suất của biến cố trong các phép thử có kết quả đồng khả năng.",
+      "objectives": [
+        "Mô tả không gian mẫu của một phép thử ngẫu nhiên."
+      ],
+      "common_exercises": []
+    },
+    "Bài 26. Xác suất của biến cố liên quan tới phép thử": {
+      "chapter": "XÁC SUẤT CỦA BIẾN CỐ TRONG MỘT SỐ MÔ HÌNH XÁC SUẤT ĐƠN GIẢN",
+      "content": "Mô tả không gian mẫu, biến cố và tính xác suất của biến cố trong các phép thử có kết quả đồng khả năng.",
+      "objectives": [
+        "Mô tả các kết quả thuận lợi cho một biến cố.",
+        "Tính xác suất của một biến cố trong các phép thử có kết quả đồng khả năng."
+      ],
+      "common_exercises": []
+    },
+    "Bài 27. Góc nội tiếp": {
+      "chapter": "ĐƯỜNG TRÒN NGOẠI TIẾP VÀ ĐƯỜNG TRÒN NỘI TIẾP",
+      "content": "Nghiên cứu về góc nội tiếp, tứ giác nội tiếp, đường tròn ngoại tiếp, nội tiếp tam giác và đa giác đều.",
+      "objectives": [
+        "Nhận biết góc nội tiếp và cung bị chắn.",
+        "Áp dụng định lí về số đo góc nội tiếp."
+      ],
+      "common_exercises": []
+    },
+    "Bài 28. Đường tròn ngoại tiếp và đường tròn nội tiếp của một tam giác": {
+      "chapter": "ĐƯỜNG TRÒN NGOẠI TIẾP VÀ ĐƯỜNG TRÒN NỘI TIẾP",
+      "content": "Nghiên cứu về góc nội tiếp, tứ giác nội tiếp, đường tròn ngoại tiếp, nội tiếp tam giác và đa giác đều.",
+      "objectives": [
+        "Xác định tâm và bán kính đường tròn ngoại tiếp, nội tiếp của tam giác (đặc biệt là tam giác vuông, tam giác đều)."
+      ],
+      "common_exercises": []
+    },
+    "Bài 29. Tứ giác nội tiếp": {
+      "chapter": "ĐƯỜNG TRÒN NGOẠI TIẾP VÀ ĐƯỜNG TRÒN NỘI TIẾP",
+      "content": "Nghiên cứu về góc nội tiếp, tứ giác nội tiếp, đường tròn ngoại tiếp, nội tiếp tam giác và đa giác đều.",
+      "objectives": [
+        "Áp dụng định lí về tổng hai góc đối của tứ giác nội tiếp.",
+        "Xác định đường tròn ngoại tiếp của hình chữ nhật, hình vuông."
+      ],
+      "common_exercises": []
+    },
+    "Bài 30. Đa giác đều": {
+      "chapter": "ĐƯỜNG TRÒN NGOẠI TIẾP VÀ ĐƯỜNG TRÒN NỘI TIẾP",
+      "content": "Nghiên cứu về góc nội tiếp, tứ giác nội tiếp, đường tròn ngoại tiếp, nội tiếp tam giác và đa giác đều.",
+      "objectives": [
+        "Nhận biết đa giác đều và đường tròn ngoại tiếp đa giác đều.",
+        "Nhận biết các phép quay giữ nguyên một đa giác đều."
+      ],
+      "common_exercises": []
+    },
+    "Bài 31. Hình trụ và hình nón": {
+      "chapter": "MỘT SỐ HÌNH KHỐI TRONG THỰC TIỄN",
+      "content": "Mô tả và tính toán diện tích, thể tích của các hình khối như hình trụ, hình nón và hình cầu.",
+      "objectives": [
+        "Mô tả các yếu tố của hình trụ, hình nón.",
+        "Tính diện tích xung quanh và thể tích của hình trụ, hình nón."
+      ],
+      "common_exercises": []
+    },
+    "Bài 32. Hình cầu": {
+      "chapter": "MỘT SỐ HÌNH KHỐI TRONG THỰC TIỄN",
+      "content": "Mô tả và tính toán diện tích, thể tích của các hình khối như hình trụ, hình nón và hình cầu.",
+      "objectives": [
+        "Mô tả các yếu tố của hình cầu.",
+        "Tính diện tích mặt cầu và thể tích hình cầu."
+      ],
+      "common_exercises": []
+    }
+  },
   "10": {
-    "Chủ đề: Tập hợp. Mệnh đề": {
-      "chapter": "ĐẠI SỐ VÀ MỘT SỐ YẾU TỐ GIẢI TÍCH",
-      "content": "Chủ đề này bao gồm việc thiết lập và phát biểu các mệnh đề toán học, như mệnh đề phủ định, mệnh đề đảo, mệnh đề tương đương, mệnh đề chứa kí hiệu ∀, ∃, và các điều kiện cần, đủ, cần và đủ. Học sinh cũng sẽ học cách xác định tính đúng/sai của mệnh đề và nắm vững các khái niệm cơ bản về tập hợp, các phép toán trên tập hợp (hợp, giao, hiệu, phần bù) và cách biểu diễn chúng bằng biểu đồ Ven. Chủ đề này còn tập trung vào việc giải quyết các vấn đề thực tiễn liên quan đến phép toán trên tập hợp, ví dụ như đếm số phần tử của hợp các tập hợp.",
+    "Bài 1. Mệnh đề": {
+      "chapter": "MỆNH ĐỀ VÀ TẬP HỢP",
+      "content": "Nghiên cứu về mệnh đề, mệnh đề chứa biến, mệnh đề phủ định, kéo theo, tương đương và các kí hiệu logic trong toán học.",
       "objectives": [
-        "Thiết lập và phát biểu được các mệnh đề toán học, bao gồm: mệnh đề phủ định; mệnh đề đảo; mệnh đề tương đương; mệnh đề có chứa kí hiệu ∀, ∃; điều kiện cần, điều kiện đủ, điều kiện cần và đủ.",
-        "Xác định được tính đúng/sai của một mệnh đề toán học trong những trường hợp đơn giản.",
-        "Nhận biết được các khái niệm cơ bản về tập hợp (tập con, hai tập hợp bằng nhau, tập rỗng) và biết sử dụng các kí hiệu ⊂, ⊃, ∅.",
-        "Thực hiện được phép toán trên các tập hợp (hợp, giao, hiệu của hai tập hợp, phần bù của một tập con) và biết dùng biểu đồ Ven để biểu diễn chúng trong những trường hợp cụ thể.",
-        "Giải quyết được một số vấn đề thực tiễn gắn với phép toán trên tập hợp (ví dụ: những bài toán liên quan đến đếm số phần tử của hợp các tập hợp,...)."
+        "Nhận biết mệnh đề, mệnh đề chứa biến, xác định tính đúng sai của một mệnh đề.",
+        "Phát biểu mệnh đề phủ định của một mệnh đề và xác định tính đúng sai.",
+        "Phát biểu mệnh đề kéo theo, mệnh đề đảo từ hai mệnh đề đã cho và xác định tính đúng sai.",
+        "Phát biểu mệnh đề tương đương và xác định tính đúng sai.",
+        "Vận dụng các khái niệm 'điều kiện cần', 'điều kiện đủ', 'điều kiện cần và đủ' để diễn đạt các định lí toán học.",
+        "Sử dụng các kí hiệu ∀, ∃ để viết các mệnh đề toán học.",
+        "Lập mệnh đề phủ định của mệnh đề chứa kí hiệu ∀, ∃ và xác định tính đúng sai."
       ],
       "common_exercises": [
-        "Viết mệnh đề phủ định, mệnh đề đảo, mệnh đề tương đương của một mệnh đề cho trước.",
-        "Xác định tính đúng/sai của mệnh đề đơn giản, ví dụ: '∀x ∈ ℝ, x² ≥ 0'.",
-        "Xác định tập con, tập rỗng, kiểm tra hai tập hợp bằng nhau, sử dụng kí hiệu ⊂, ⊃, ∅.",
-        "Thực hiện phép toán hợp, giao, hiệu, phần bù trên các tập hợp và biểu diễn bằng biểu đồ Ven.",
-        "Bài toán đếm số phần tử: Tính |A ∪ B|, |A ∩ B| khi biết số phần tử của A, B và A ∩ B."
+        "Xác định tính đúng sai của mệnh đề.",
+        "Lập mệnh đề phủ định, kéo theo, tương đương.",
+        "Sử dụng kí hiệu ∀, ∃ để viết các mệnh đề."
       ]
     },
-    "Chủ đề: Bất phương trình và hệ bất phương trình bậc nhất hai ẩn": {
-      "chapter": "ĐẠI SỐ VÀ MỘT SỐ YẾU TỐ GIẢI TÍCH",
-      "content": "Chủ đề này giới thiệu về bất phương trình và hệ bất phương trình bậc nhất hai ẩn. Học sinh sẽ học cách nhận biết, biểu diễn miền nghiệm trên mặt phẳng toạ độ và vận dụng kiến thức này để giải quyết các bài toán thực tiễn, chẳng hạn như tìm cực trị của một biểu thức trên miền đa giác.",
+    "Bài 2. Tập hợp và các phép toán trên tập hợp": {
+      "chapter": "MỆNH ĐỀ VÀ TẬP HỢP",
+      "content": "Nghiên cứu về các khái niệm tập hợp, tập con, các phép toán hợp, giao, hiệu của hai tập hợp và biểu đồ Ven.",
       "objectives": [
-        "Nhận biết được bất phương trình và hệ bất phương trình bậc nhất hai ẩn.",
-        "Biểu diễn được miền nghiệm của bất phương trình và hệ bất phương trình bậc nhất hai ẩn trên mặt phẳng toạ độ.",
-        "Vận dụng được kiến thức về bất phương trình, hệ bất phương trình bậc nhất hai ẩn vào giải quyết bài toán thực tiễn (ví dụ: bài toán tìm cực trị của biểu thức F = ax + by trên một miền đa giác,...)."
+        "Viết một tập hợp bằng cách liệt kê các phần tử hoặc chỉ ra tính chất đặc trưng.",
+        "Xác định một phần tử có thuộc một tập hợp hay không.",
+        "Tìm tất cả các tập con của một tập hợp cho trước.",
+        "Kiểm tra hai tập hợp có bằng nhau không.",
+        "Thực hiện các phép toán: hợp, giao, hiệu của hai tập hợp.",
+        "Tìm phần bù của một tập con.",
+        "Biểu diễn các tập hợp số (khoảng, đoạn, nửa khoảng) trên trục số.",
+        "Thực hiện các phép toán hợp, giao, hiệu trên các tập hợp số và biểu diễn kết quả trên trục số.",
+        "Giải quyết các bài toán thực tế sử dụng biểu đồ Ven để đếm số phần tử."
       ],
       "common_exercises": [
-        "Giải và biểu diễn miền nghiệm của bất phương trình bậc nhất hai ẩn, ví dụ: 2x + 3y ≤ 6.",
-        "Giải hệ bất phương trình bậc nhất hai ẩn và vẽ miền nghiệm trên mặt phẳng toạ độ.",
-        "Tìm giá trị lớn nhất/nhỏ nhất của biểu thức F = ax + by trên miền nghiệm của hệ bất phương trình."
+        "Thực hiện các phép toán trên tập hợp.",
+        "Biểu diễn tập hợp số trên trục số.",
+        "Giải quyết bài toán thực tế bằng biểu đồ Ven."
       ]
     },
-    "Chủ đề: Hàm số và đồ thị": {
-      "chapter": "ĐẠI SỐ VÀ MỘT SỐ YẾU TỐ GIẢI TÍCH",
-      "content": "Chủ đề này tập trung vào các khái niệm cơ bản về hàm số và đồ thị, bao gồm định nghĩa, tập xác định, tập giá trị, tính đồng biến, nghịch biến, và các đặc trưng hình học của đồ thị hàm số. Học sinh sẽ học về hàm số bậc hai, cách thiết lập bảng giá trị, vẽ đồ thị Parabol, nhận biết tính chất của Parabol (đỉnh, trục đối xứng) và vận dụng vào các bài toán thực tiễn như xác định độ cao của cầu. Ngoài ra, chủ đề cũng đề cập đến dấu của tam thức bậc hai, bất phương trình bậc hai một ẩn và các phương trình quy về bậc hai, áp dụng để giải quyết các vấn đề thực tiễn.",
+    "Bài 3. Bất phương trình bậc nhất hai ẩn": {
+      "chapter": "BẤT PHƯƠNG TRÌNH VÀ HỆ BẤT PHƯƠNG TRÌNH BẬC NHẤT HAI ẨN",
+      "content": "Nghiên cứu cách biểu diễn miền nghiệm của bất phương trình bậc nhất hai ẩn trên mặt phẳng tọa độ.",
       "objectives": [
-        "Nhận biết được những mô hình thực tế (dạng bảng, biểu đồ, công thức) dẫn đến khái niệm hàm số.",
-        "Mô tả được các khái niệm cơ bản về hàm số: định nghĩa hàm số, tập xác định, tập giá trị, hàm số đồng biến, hàm số nghịch biến, đồ thị của hàm số.",
-        "Mô tả được các đặc trưng hình học của đồ thị hàm số đồng biến, hàm số nghịch biến.",
-        "Vận dụng được kiến thức của hàm số vào giải quyết bài toán thực tiễn (ví dụ: xây dựng hàm số bậc nhất trên những khoảng khác nhau để tính số tiền y (phải trả) theo số phút gọi x đối với một gói cước điện thoại,...).",
-        "Thiết lập được bảng giá trị của hàm số bậc hai.",
-        "Vẽ được Parabola (parabol) là đồ thị hàm số bậc hai.",
-        "Nhận biết được các tính chất cơ bản của Parabola như đỉnh, trục đối xứng.",
-        "Nhận biết và giải thích được các tính chất của hàm số bậc hai thông qua đồ thị.",
-        "Vận dụng được kiến thức về hàm số bậc hai và đồ thị vào giải quyết bài toán thực tiễn (ví dụ: xác định độ cao của cầu, cổng có hình dạng Parabola,...).",
-        "Giải thích được định lí về dấu của tam thức bậc hai từ việc quan sát đồ thị của hàm bậc hai.",
-        "Giải được bất phương trình bậc hai.",
-        "Vận dụng được bất phương trình bậc hai một ẩn vào giải quyết bài toán thực tiễn (ví dụ: xác định chiều cao tối đa để xe có thể qua hầm có hình dạng Parabola,...).",
-        "Giải được phương trình chứa căn thức có dạng: ax² + bx + c = dx² + ex + f; ax² + bx + c = dx + e."
+        "Kiểm tra một cặp số có phải là nghiệm của một bất phương trình bậc nhất hai ẩn hay không.",
+        "Biểu diễn miền nghiệm của một bất phương trình bậc nhất hai ẩn trên mặt phẳng tọa độ."
       ],
       "common_exercises": [
-        "Tìm tập xác định, tập giá trị của hàm số bậc nhất hoặc bậc hai, ví dụ: y = 2x² - 4x + 1.",
-        "Xác định tính đồng biến, nghịch biến của hàm số trên một khoảng.",
-        "Lập bảng giá trị và vẽ đồ thị Parabol của hàm số bậc hai.",
-        "Tìm đỉnh, trục đối xứng, và giao điểm của Parabol với trục tọa độ.",
-        "Giải bất phương trình bậc hai một ẩn, ví dụ: x² - 3x + 2 > 0.",
-        "Giải phương trình chứa căn thức quy về bậc hai, ví dụ: √(x² - 4) = x - 2.",
-        "Bài toán thực tiễn: Xác định chiều cao tối đa của vật thể dựa trên hàm số bậc hai."
+        "Xác định nghiệm của bất phương trình.",
+        "Biểu diễn miền nghiệm trên mặt phẳng tọa độ."
       ]
     },
-    "Chủ đề: Đại số tổ hợp": {
-      "chapter": "ĐẠI SỐ VÀ MỘT SỐ YẾU TỐ GIẢI TÍCH",
-      "content": "Chủ đề này giới thiệu các quy tắc đếm cơ bản như quy tắc cộng, quy tắc nhân, và cách vận dụng sơ đồ hình cây trong các bài toán đếm đơn giản. Học sinh cũng sẽ học cách tính số hoán vị, chỉnh hợp, tổ hợp bằng máy tính cầm tay, và khai triển nhị thức Newton với số mũ không quá 5 bằng cách vận dụng tổ hợp.",
+    "Bài 4. Hệ bất phương trình bậc nhất hai ẩn": {
+      "chapter": "BẤT PHƯƠNG TRÌNH VÀ HỆ BẤT PHƯƠNG TRÌNH BẬC NHẤT HAI ẨN",
+      "content": "Nghiên cứu cách biểu diễn miền nghiệm của hệ bất phương trình bậc nhất hai ẩn và ứng dụng vào bài toán tối ưu hóa trong thực tế.",
       "objectives": [
-        "Vận dụng được quy tắc cộng và quy tắc nhân trong một số tình huống đơn giản (ví dụ: đếm số khả năng xuất hiện mặt sấp/ngửa khi tung một số đồng xu,...).",
-        "Vận dụng được sơ đồ hình cây trong các bài toán đếm đơn giản các đối tượng trong Toán học, trong các môn học khác cũng như trong thực tiễn (ví dụ: đếm số hợp tử tạo thành trong Sinh học, hoặc đếm số trận đấu trong một giải thể thao,...).",
-        "Tính được số các hoán vị, chỉnh hợp, tổ hợp.",
-        "Tính được số các hoán vị, chỉnh hợp, tổ hợp bằng máy tính cầm tay.",
-        "Khai triển được nhị thức Newton (a + b)^n với số mũ thấp (n = 4 hoặc n = 5) bằng cách vận dụng tổ hợp."
+        "Kiểm tra một cặp số có phải là nghiệm của một hệ bất phương trình bậc nhất hai ẩn hay không.",
+        "Biểu diễn miền nghiệm của một hệ bất phương trình bậc nhất hai ẩn trên mặt phẳng tọa độ.",
+        "Mô hình hóa bài toán thực tế bằng hệ bất phương trình bậc nhất hai ẩn.",
+        "Tìm giá trị lớn nhất, giá trị nhỏ nhất của biểu thức F(x,y) = ax + by trên một miền đa giác (bài toán tối ưu hóa)."
       ],
       "common_exercises": [
-        "Tính số cách sắp xếp n đối tượng (hoán vị), ví dụ: Sắp xếp 5 người vào 5 ghế.",
-        "Tính số chỉnh hợp, tổ hợp, ví dụ: Chọn 3 người từ 5 người để lập đội.",
-        "Sử dụng quy tắc cộng, nhân để đếm số trường hợp, ví dụ: Đếm số cách chọn trang phục từ 3 áo và 2 quần.",
-        "Vẽ sơ đồ hình cây để đếm số trường hợp trong bài toán tung đồng xu hoặc xúc xắc.",
-        "Khai triển nhị thức Newton (a + b)^4 và tìm hệ số của số hạng chứa x²."
+        "Biểu diễn miền nghiệm của hệ bất phương trình.",
+        "Giải các bài toán tối ưu hóa thực tế."
       ]
     },
-    "Chủ đề: Hệ thức lượng trong tam giác. Vectơ": {
-      "chapter": "HÌNH HỌC VÀ ĐO LƯỜNG",
-      "content": "Chủ đề này bao gồm giá trị lượng giác của một góc từ 0° đến 180°, các hệ thức liên hệ giữa chúng (phụ nhau, bù nhau), các định lí côsin, sin và công thức tính diện tích tam giác để giải các bài toán thực tiễn. Học sinh cũng sẽ tìm hiểu về khái niệm vectơ, các phép toán vectơ (tổng, hiệu, tích vô hướng), biểu thị đại lượng bằng vectơ, và vận dụng vectơ để giải thích các hiện tượng trong Vật lí, Hoá học, cũng như giải các bài toán hình học và thực tiễn.",
+    "Bài 5. Giá trị lượng giác của một góc từ 0° đến 180°": {
+      "chapter": "HỆ THỨC LƯỢNG TRONG TAM GIÁC",
+      "content": "Tìm hiểu về các giá trị lượng giác của một góc từ 0 đến 180 độ và mối quan hệ giữa các giá trị lượng giác của các góc có liên quan đặc biệt.",
       "objectives": [
-        "Nhận biết được giá trị lượng giác của một góc từ 0° đến 180°.",
-        "Tính được giá trị lượng giác (đúng hoặc gần đúng) của một góc từ 0° đến 180° bằng máy tính cầm tay.",
-        "Giải thích được hệ thức liên hệ giữa giá trị lượng giác của các góc phụ nhau, bù nhau.",
-        "Giải thích được các hệ thức lượng cơ bản trong tam giác: định lí côsin, định lí sin, công thức tính diện tích tam giác.",
-        "Mô tả được cách giải tam giác và vận dụng được vào việc giải một số bài toán có nội dung thực tiễn (ví dụ: xác định khoảng cách giữa hai địa điểm khi gặp vật cản, xác định chiều cao của vật khi không thể đo trực tiếp,...).",
-        "Nhận biết được khái niệm vectơ, vectơ bằng nhau, vectơ-không.",
-        "Biểu thị được một số đại lượng trong thực tiễn bằng vectơ.",
-        "Thực hiện được các phép toán trên vectơ (tổng và hiệu hai vectơ, tích của một số với vectơ, tích vô hướng của hai vectơ) và mô tả được những tính chất hình học (ba điểm thẳng hàng, trung điểm của đoạn thẳng, trọng tâm của tam giác,...) bằng vectơ.",
-        "Sử dụng được vectơ và các phép toán trên vectơ để giải thích một số hiện tượng có liên quan đến Vật lí và Hoá học (ví dụ: những vấn đề liên quan đến lực, đến chuyển động,...).",
-        "Vận dụng được kiến thức về vectơ để giải một số bài toán hình học và một số bài toán liên quan đến thực tiễn (ví dụ: xác định lực tác dụng lên vật,...)."
+        "Tính giá trị lượng giác (sin, cos, tan, cot) của các góc đặc biệt.",
+        "Sử dụng máy tính cầm tay để tính giá trị lượng giác của một góc.",
+        "Vận dụng mối quan hệ giữa các giá trị lượng giác của hai góc bù nhau, phụ nhau để rút gọn biểu thức hoặc tính toán."
       ],
       "common_exercises": [
-        "Tính giá trị lượng giác của góc từ 0° đến 180°, ví dụ: Tìm sin 60°, cos 135°.",
-        "Chứng minh hệ thức lượng giác, ví dụ: sin(90° - A) = cos A.",
-        "Giải tam giác bằng định lí sin hoặc côsin, ví dụ: Tìm độ dài cạnh hoặc góc trong tam giác biết hai cạnh và góc xen giữa.",
-        "Tính diện tích tam giác bằng công thức lượng giác, ví dụ: S = ½ab sin C.",
-        "Thực hiện phép toán vectơ: Tính tổng, hiệu, tích vô hướng của hai vectơ.",
-        "Chứng minh ba điểm thẳng hàng hoặc tìm tọa độ trọng tâm tam giác bằng vectơ.",
-        "Bài toán thực tiễn: Tính lực tổng hợp hoặc khoảng cách bằng phương pháp vectơ."
+        "Tính giá trị lượng giác của góc đặc biệt.",
+        "Rút gọn biểu thức lượng giác."
       ]
     },
-    "Chủ đề: Phương pháp toạ độ trong mặt phẳng": {
-      "chapter": "HÌNH HỌC VÀ ĐO LƯỜNG",
-      "content": "Chủ đề này giới thiệu toạ độ của vectơ và các phép toán vectơ trong hệ trục toạ độ, ứng dụng vào bài toán giải tam giác và giải quyết các vấn đề thực tiễn. Học sinh sẽ học về phương trình tổng quát và tham số của đường thẳng, cách thiết lập phương trình đường thẳng, xác định vị trí tương đối giữa hai đường thẳng, tính góc và khoảng cách từ một điểm đến một đường thẳng. Ngoài ra, chủ đề còn đề cập đến phương trình đường tròn, tiếp tuyến của đường tròn và ba đường conic (Elip, Parabol, Hypebol) cùng ứng dụng của chúng trong thực tiễn.",
+    "Bài 6. Hệ thức lượng trong tam giác": {
+      "chapter": "HỆ THỨC LƯỢNG TRONG TAM GIÁC",
+      "content": "Nghiên cứu các hệ thức lượng trong tam giác như định lí côsin, định lí sin và các công thức tính diện tích tam giác để giải các bài toán thực tế.",
       "objectives": [
-        "Nhận biết được toạ độ của vectơ đối với một hệ trục toạ độ.",
-        "Tìm được toạ độ của một vectơ, độ dài của một vectơ khi biết toạ độ hai đầu mút của nó.",
-        "Sử dụng được biểu thức toạ độ của các phép toán vectơ trong tính toán.",
-        "Vận dụng được phương pháp toạ độ vào bài toán giải tam giác.",
-        "Vận dụng được kiến thức về toạ độ của vectơ để giải một số bài toán liên quan đến thực tiễn (ví dụ: vị trí của vật trên mặt phẳng toạ độ,...).",
-        "Mô tả được phương trình tổng quát và phương trình tham số của đường thẳng trong mặt phẳng toạ độ.",
-        "Thiết lập được phương trình của đường thẳng trong mặt phẳng khi biết: một điểm và một vectơ pháp tuyến; biết một điểm và một vectơ chỉ phương; biết hai điểm.",
-        "Nhận biết được hai đường thẳng cắt nhau, song song, trùng nhau, vuông góc với nhau bằng phương pháp toạ độ.",
-        "Thiết lập được công thức tính góc giữa hai đường thẳng.",
-        "Tính được khoảng cách từ một điểm đến một đường thẳng bằng phương pháp toạ độ.",
-        "Giải thích được mối liên hệ giữa đồ thị hàm số bậc nhất và đường thẳng trong mặt phẳng toạ độ.",
-        "Vận dụng được kiến thức về phương trình đường thẳng để giải một số bài toán có liên quan đến thực tiễn.",
-        "Thiết lập được phương trình đường tròn khi biết toạ độ tâm và bán kính; biết toạ độ ba điểm mà đường tròn đi qua; xác định được tâm và bán kính đường tròn khi biết phương trình của đường tròn.",
-        "Thiết lập được phương trình tiếp tuyến của đường tròn khi biết toạ độ của tiếp điểm.",
-        "Vận dụng được kiến thức về phương trình đường tròn để giải một số bài toán liên quan đến thực tiễn (ví dụ: bài toán về chuyển động tròn trong Vật lí,...).",
-        "Nhận biết được ba đường conic bằng hình học.",
-        "Nhận biết được phương trình chính tắc của ba đường conic trong mặt phẳng toạ độ.",
-        "Giải quyết được một số vấn đề thực tiễn gắn với ba đường conic (ví dụ: giải thích một số hiện tượng trong Quang học,...)."
+        "Áp dụng Định lí côsin để tính độ dài cạnh của tam giác khi biết hai cạnh và góc xen giữa.",
+        "Áp dụng Định lí côsin để tính số đo góc của tam giác khi biết độ dài ba cạnh.",
+        "Áp dụng Định lí sin để tính độ dài cạnh, số đo góc, bán kính đường tròn ngoại tiếp tam giác.",
+        "Vận dụng các công thức tính diện tích tam giác (S = 1/2 bc sinA, S = pr, S = abc/4R, công thức Heron).",
+        "Giải tam giác trong các trường hợp: biết cạnh-góc-cạnh, góc-cạnh-góc, cạnh-cạnh-cạnh.",
+        "Giải quyết các bài toán thực tế về đo đạc khoảng cách, chiều cao sử dụng hệ thức lượng."
       ],
       "common_exercises": [
-        "Tìm tọa độ và độ dài vectơ khi biết tọa độ hai điểm.",
-        "Thiết lập phương trình đường thẳng qua hai điểm hoặc qua một điểm với vectơ chỉ phương.",
-        "Xác định vị trí tương đối của hai đường thẳng (cắt nhau, song song, trùng nhau).",
-        "Tính góc giữa hai đường thẳng hoặc khoảng cách từ một điểm đến đường thẳng.",
-        "Thiết lập phương trình đường tròn khi biết tâm và bán kính hoặc ba điểm.",
-        "Tìm phương trình tiếp tuyến của đường tròn tại một điểm cho trước.",
-        "Nhận diện và viết phương trình chính tắc của Elip, Parabol, Hypebol."
+        "Sử dụng định lí sin và côsin để giải tam giác.",
+        "Tính diện tích tam giác bằng nhiều công thức.",
+        "Giải các bài toán đo đạc thực tế."
       ]
     },
-    "Chủ đề: Thống kê": {
-      "chapter": "THỐNG KÊ VÀ XÁC SUẤT",
-      "content": "Chủ đề này bao gồm các khái niệm về số gần đúng, sai số tuyệt đối, sai số tương đối và cách làm tròn số,  lí giải số liệu không chính xác. Ngoài ra, chủ đề còn đi sâu vào các số đặc trưng đo xu thế trung tâm (trung bình cộng, trung vị, tứ phân vị, mốt) và đo mức độ phân tán (khoảng biến thiên, khoảng tứ phân vị, phương sai, độ lệch chuẩn) cho mẫu số liệu không ghép nhóm, cùng ý nghĩa và vai trò của chúng trong thực tiễn, đồng thời nhận biết mối liên hệ với các môn học khác.",
+    "Bài 7. Các khái niệm mở đầu về Vectơ": {
+      "chapter": "VECTƠ",
+      "content": "Tìm hiểu các khái niệm cơ bản về vectơ, hai vectơ cùng phương, cùng hướng, bằng nhau và độ dài của vectơ.",
       "objectives": [
-        "Hiểu được khái niệm số gần đúng, sai số tuyệt đối.",
-        "Xác định được số gần đúng của một số với độ chính xác cho trước.",
-        "Xác định được sai số tương đối của số gần đúng.",
-        "Xác định được số quy tròn của số gần đúng với độ chính xác cho trước.",
-        "Biết sử dụng máy tính cầm tay để tính toán với các số gần đúng.",
-        "Phát hiện và lí giải được số liệu không chính xác dựa trên mối liên hệ toán học đơn giản giữa các số liệu đã được biểu diễn trong nhiều ví dụ.",
-        "Tính được số đặc trưng đo xu thế trung tâm cho mẫu số liệu không ghép nhóm: số trung bình cộng (hay số trung bình), trung vị (median), tứ phân vị (quartiles), mốt (mode).",
-        "Giải thích được ý nghĩa và vai trò của các số đặc trưng nói trên của mẫu số liệu trong thực tiễn.",
-        "Chỉ ra được những kết luận nhờ ý nghĩa của số đặc trưng nói trên của mẫu số liệu trong trường hợp đơn giản.",
-        "Tính được số đặc trưng đo mức độ phân tán cho mẫu số liệu không ghép nhóm: khoảng biến thiên, khoảng tứ phân vị, phương sai, độ lệch chuẩn.",
-        "Giải thích được ý nghĩa và vai trò của các số đặc trưng nói trên của mẫu số liệu trong thực tiễn.",
-        "Chỉ ra được những kết luận nhờ ý nghĩa của số đặc trưng nói trên của mẫu số liệu trong trường hợp đơn giản.",
-        "Nhận biết được mối liên hệ giữa thống kê với những kiến thức của các môn học trong Chương trình lớp 10 và trong thực tiễn."
+        "Nhận biết và phân biệt hai vectơ cùng phương, cùng hướng, ngược hướng, bằng nhau.",
+        "Tính độ dài của vectơ."
       ],
       "common_exercises": [
-        "Tính sai số tuyệt đối và sai số tương đối của số gần đúng, ví dụ: Giá trị thực là 50, giá trị gần đúng là 48.",
-        "Làm tròn số với độ chính xác cho trước, ví dụ: Làm tròn 3.14159 đến 3 chữ số thập phân.",
-        "Tính trung bình cộng, trung vị, mốt, tứ phân vị cho mẫu số liệu không ghép nhóm.",
-        "Tính khoảng biến thiên, phương sai, độ lệch chuẩn của mẫu số liệu.",
-        "Phân tích số liệu thống kê và đưa ra kết luận thực tiễn, ví dụ: So sánh độ lệch chuẩn của hai tập dữ liệu."
+        "Xác định các cặp vectơ bằng nhau, cùng phương.",
+        "Tính độ dài vectơ."
       ]
     },
-    "Chủ đề: Xác suất": {
-      "chapter": "THỐNG KÊ VÀ XÁC SUẤT",
-      "content": "Chủ đề này giới thiệu các khái niệm về xác suất cổ điển như phép thử ngẫu nhiên, không gian mẫu, biến cố, biến cố đối và định nghĩa cổ điển của xác suất, nguyên lí xác suất bé. Học sinh sẽ mô tả không gian mẫu, biến cố trong các thí nghiệm đơn giản, tính xác suất của biến cố bằng phương pháp tổ hợp hoặc sơ đồ hình cây, và mô tả các tính chất cơ bản của xác suất.",
+    "Bài 8. Tổng và hiệu của hai vectơ": {
+      "chapter": "VECTƠ",
+      "content": "Nghiên cứu phép cộng và phép trừ hai vectơ theo quy tắc ba điểm, quy tắc hình bình hành và ứng dụng để chứng minh các đẳng thức vectơ.",
       "objectives": [
-        "Nhận biết được một số khái niệm về xác suất cổ điển: phép thử ngẫu nhiên; không gian mẫu; biến cố (biến cố là tập con của không gian mẫu); biến cố đối; định nghĩa cổ điển của xác suất; nguyên lí xác suất bé.",
-        "Mô tả được không gian mẫu, biến cố trong một số thí nghiệm đơn giản (ví dụ: tung đồng xu hai lần, tung đồng xu ba lần, tung xúc xắc hai lần).",
-        "Tính được xác suất của biến cố trong một số bài toán đơn giản bằng phương pháp tổ hợp (trường hợp xác suất phân bố đều).",
-        "Tính được xác suất trong một số thí nghiệm lặp bằng cách sử dụng sơ đồ hình cây (ví dụ: tung xúc xắc hai lần, tính xác suất để tổng số chấm xuất hiện trong hai lần tung bằng 7).",
-        "Mô tả được các tính chất cơ bản của xác suất.",
-        "Tính được xác suất của biến cố đối."
+        "Thực hiện phép cộng, trừ hai vectơ bằng quy tắc ba điểm, quy tắc hình bình hành.",
+        "Vận dụng các tính chất của phép toán vectơ để rút gọn biểu thức, chứng minh đẳng thức vectơ."
       ],
       "common_exercises": [
-        "Lập không gian mẫu và tính xác suất biến cố, ví dụ: Tung 2 đồng xu, xác suất cả 2 mặt sấp.",
-        "Sử dụng sơ đồ hình cây để tính xác suất, ví dụ: Tung xúc xắc 2 lần, xác suất tổng bằng 7.",
-        "Tính xác suất biến cố đối, ví dụ: Xác suất ít nhất 1 mặt sấp khi tung 2 đồng xu.",
-        "Bài toán tổ hợp trong xác suất: Tính xác suất rút được 2 lá bài đỏ từ bộ bài 52 lá."
+        "Cộng, trừ vectơ bằng các quy tắc.",
+        "Rút gọn biểu thức và chứng minh đẳng thức vectơ."
       ]
     },
-    "Chuyên đề 10.1: Phương pháp quy nạp toán học. Nhị thức Newton": {
-      "chapter": "NỘI DUNG CHUYÊN ĐỀ LỚP 10",
-      "content": "Chuyên đề này giới thiệu phương pháp quy nạp toán học, bao gồm các bước chứng minh và cách vận dụng để giải quyết các vấn đề thực tiễn. Ngoài ra, chuyên đề còn tập trung vào khai triển nhị thức Newton với số mũ không quá 5, xác định các hệ số thông qua tam giác Pascal và hệ số của x^k trong khai triển đa thức.",
+    "Bài 9. Tích của một vectơ với một số": {
+      "chapter": "VECTƠ",
+      "content": "Nghiên cứu phép nhân một vectơ với một số, phân tích một vectơ theo hai vectơ không cùng phương và ứng dụng để chứng minh tính thẳng hàng.",
       "objectives": [
-        "Mô tả được các bước chứng minh tính đúng đắn của một mệnh đề toán học bằng phương pháp quy nạp.",
-        "Chứng minh được tính đúng đắn của một mệnh đề toán học bằng phương pháp quy nạp toán học.",
-        "Vận dụng được phương pháp quy nạp toán học để giải quyết một số vấn đề thực tiễn.",
-        "Khai triển được nhị thức Newton (a + b)^n bằng cách vận dụng tổ hợp.",
-        "Xác định được các hệ số trong nhị thức Newton thông qua tam giác Pascal.",
-        "Xác định được hệ số của x^k trong khai triển (ax + b)^n thành đa thức."
+        "Thực hiện phép nhân một vectơ với một số, xác định phương, hướng, độ dài của vectơ kết quả.",
+        "Phân tích một vectơ theo hai vectơ không cùng phương.",
+        "Vận dụng vectơ để chứng minh ba điểm thẳng hàng, chứng minh hai đường thẳng song song.",
+        "Vận dụng vectơ để xác định vị trí điểm thỏa mãn đẳng thức vectơ (trung điểm, trọng tâm,...)."
       ],
       "common_exercises": [
-        "Chứng minh bằng quy nạp toán học, ví dụ: 1 + 2 + ... + n = n(n+1)/2.",
-        "Khai triển nhị thức Newton, ví dụ: (x + 2)^4.",
-        "Tìm hệ số của x^k trong khai triển (2x + 3)^5.",
-        "Bài toán thực tiễn: Chứng minh số lượng hợp tử trong Sinh học bằng quy nạp."
+        "Phân tích một vectơ theo hai vectơ khác.",
+        "Chứng minh ba điểm thẳng hàng.",
+        "Tìm tọa độ điểm thỏa mãn đẳng thức vectơ."
       ]
     },
-    "Chuyên đề 10.2: Hệ phương trình bậc nhất ba ẩn": {
-      "chapter": "NỘI DUNG CHUYÊN ĐỀ LỚP 10",
-      "content": "Chuyên đề này đi sâu vào khái niệm nghiệm của hệ phương trình bậc nhất ba ẩn, cách giải bằng phương pháp Gauss và sử dụng máy tính cầm tay để tìm nghiệm. Học sinh sẽ vận dụng cách giải này để giải quyết các bài toán liên môn trong Vật lí (tính điện trở, cường độ dòng điện), Hoá học (cân bằng phản ứng), Sinh học (nguyên phân, giảm phân) và các vấn đề thực tiễn cuộc sống (lập kế hoạch sản xuất, mô hình cân bằng thị trường, phân bổ vốn đầu tư).",
+    "Bài 10. Vectơ trong mặt phẳng toạ độ": {
+      "chapter": "VECTƠ",
+      "content": "Nghiên cứu biểu diễn vectơ trong mặt phẳng tọa độ, thực hiện các phép toán vectơ thông qua tọa độ và ứng dụng.",
       "objectives": [
-        "Nhận biết được khái niệm nghiệm của hệ phương trình bậc nhất ba ẩn.",
-        "Giải được hệ phương trình bậc nhất ba ẩn bằng phương pháp Gauss.",
-        "Tìm được nghiệm hệ phương trình bậc nhất ba ẩn bằng máy tính cầm tay.",
-        "Vận dụng được cách giải hệ phương trình bậc nhất ba ẩn vào giải quyết một số bài toán Vật lí (tính điện trở, tính cường độ dòng điện trong dòng điện không đổi,...), Hoá học (cân bằng phản ứng,...), Sinh học (bài tập nguyên phân, giảm phân,...).",
-        "Vận dụng cách giải hệ phương trình bậc nhất ba ẩn để giải quyết một số vấn đề thực tiễn cuộc sống (ví dụ: bài toán lập kế hoạch sản xuất, mô hình cân bằng thị trường, phân bố vốn đầu tư,...)."
+        "Tìm tọa độ của vectơ khi biết tọa độ điểm đầu, điểm cuối.",
+        "Thực hiện các phép toán cộng, trừ vectơ, nhân vectơ với một số thông qua tọa độ.",
+        "Tính độ dài vectơ và khoảng cách giữa hai điểm khi biết tọa độ.",
+        "Vận dụng tọa độ vectơ để tìm tọa độ trung điểm của đoạn thẳng, trọng tâm của tam giác."
       ],
       "common_exercises": [
-        "Giải hệ phương trình bậc nhất ba ẩn bằng phương pháp Gauss, ví dụ: x + y + z = 6, 2x - y + z = 3, x + 2y - z = 0.",
-        "Sử dụng máy tính cầm tay để tìm nghiệm hệ phương trình ba ẩn.",
-        "Bài toán thực tiễn: Tính điện trở hoặc cân bằng phản ứng hoá học bằng hệ phương trình."
+        "Thực hiện các phép toán vectơ qua tọa độ.",
+        "Tính khoảng cách giữa hai điểm.",
+        "Tìm tọa độ trung điểm, trọng tâm."
       ]
     },
-    "Chuyên đề 10.3: Ba đường conic và ứng dụng": {
-      "chapter": "NỘI DUNG CHUYÊN ĐỀ LỚP 10",
-      "content": "Chuyên đề này giúp học sinh xác định các yếu tố đặc trưng của đường conic (đỉnh, tiêu điểm, tiêu cự, độ dài trục, tâm sai, đường chuẩn, bán kính qua tiêu) từ phương trình chính tắc. Học sinh cũng sẽ nhận biết đường conic như là giao của mặt phẳng với mặt nón và giải quyết các vấn đề thực tiễn gắn với ba đường conic, như giải thích hiện tượng trong Quang học hay xác định quỹ đạo chuyển động của các hành tinh.",
+    "Bài 11. Tích vô hướng của hai vectơ": {
+      "chapter": "VECTƠ",
+      "content": "Nghiên cứu về tích vô hướng của hai vectơ, biểu thức tọa độ của tích vô hướng và ứng dụng để xác định góc, tính vuông góc.",
       "objectives": [
-        "Xác định được các yếu tố đặc trưng của đường conic (đỉnh, tiêu điểm, tiêu cự, độ dài trục, tâm sai, đường chuẩn, bán kính qua tiêu) khi biết phương trình chính tắc của đường conic đó.",
-        "Nhận biết được đường conic như là giao của mặt phẳng với mặt nón.",
-        "Giải quyết được một số vấn đề thực tiễn gắn với ba đường conic (ví dụ: giải thích một số hiện tượng trong Quang học, xác định quỹ đạo chuyển động của các hành tinh trong hệ Mặt Trời,...)."
+        "Tính tích vô hướng của hai vectơ khi biết độ dài và góc giữa chúng.",
+        "Tính tích vô hướng của hai vectơ thông qua biểu thức tọa độ.",
+        "Ứng dụng tích vô hướng để xác định góc giữa hai vectơ và kiểm tra tính vuông góc.",
+        "Giải quyết các bài toán hình học phẳng (tính độ dài, tính góc, chứng minh tính chất) bằng phương pháp tọa độ."
       ],
       "common_exercises": [
-        "Xác định đỉnh, tiêu điểm, tiêu cự, tâm sai của Elip hoặc Parabol từ phương trình chính tắc.",
-        "Nhận diện đường conic từ phương trình, ví dụ: x²/9 + y²/4 = 1 là Elip.",
-        "Bài toán thực tiễn: Tính quỹ đạo hành tinh hoặc tiêu cự của gương parabol."
+        "Tính tích vô hướng của hai vectơ.",
+        "Xác định góc giữa hai vectơ.",
+        "Chứng minh hai vectơ vuông góc."
+      ]
+    },
+    "Bài 12. Số gần đúng và sai số": {
+      "chapter": "THỐNG KÊ",
+      "content": "Tìm hiểu về cách quy tròn số gần đúng và ước lượng sai số tuyệt đối, sai số tương đối trong các phép đo.",
+      "objectives": [
+        "Quy tròn số gần đúng với độ chính xác cho trước.",
+        "Ước lượng sai số tuyệt đối, sai số tương đối của một số gần đúng."
+      ],
+      "common_exercises": [
+        "Quy tròn số gần đúng.",
+        "Tính sai số tuyệt đối và tương đối."
+      ]
+    },
+    "Bài 13. Các số đặc trưng đo xu thế trung tâm": {
+      "chapter": "THỐNG KÊ",
+      "content": "Nghiên cứu các số đặc trưng đo xu thế trung tâm của mẫu số liệu không ghép nhóm như số trung bình, trung vị, mốt và tứ phân vị.",
+      "objectives": [
+        "Tính toán và giải thích ý nghĩa của số trung bình, trung vị, mốt.",
+        "Tính toán và giải thích ý nghĩa của tứ phân vị."
+      ],
+      "common_exercises": [
+        "Tính số trung bình, trung vị, mốt.",
+        "Tính và giải thích ý nghĩa tứ phân vị."
+      ]
+    },
+    "Bài 14. Các số đặc trưng đo độ phân tán": {
+      "chapter": "THỐNG KÊ",
+      "content": "Nghiên cứu các số đặc trưng đo độ phân tán của mẫu số liệu không ghép nhóm như khoảng biến thiên, phương sai và độ lệch chuẩn.",
+      "objectives": [
+        "Tính toán và giải thích ý nghĩa của khoảng biến thiên, khoảng tứ phân vị.",
+        "Tính toán và giải thích ý nghĩa của phương sai, độ lệch chuẩn.",
+        "Lựa chọn số đặc trưng phù hợp để mô tả xu thế trung tâm và độ phân tán của mẫu số liệu.",
+        "Phát hiện các giá trị bất thường trong mẫu số liệu và phân tích ảnh hưởng của chúng."
+      ],
+      "common_exercises": [
+        "Tính khoảng biến thiên, khoảng tứ phân vị.",
+        "Tính phương sai và độ lệch chuẩn.",
+        "Phân tích và phát hiện giá trị bất thường."
+      ]
+    },
+    "Bài 15. Hàm số": {
+      "chapter": "HÀM SỐ, ĐỒ THỊ VÀ ỨNG DỤNG",
+      "content": "Tìm hiểu các khái niệm cơ bản về hàm số như tập xác định, tập giá trị và sự biến thiên của hàm số.",
+      "objectives": [
+        "Tìm tập xác định, tập giá trị của hàm số.",
+        "Xác định khoảng đồng biến, nghịch biến của hàm số dựa vào đồ thị."
+      ],
+      "common_exercises": [
+        "Tìm tập xác định và tập giá trị của hàm số.",
+        "Xét tính đơn điệu của hàm số."
+      ]
+    },
+    "Bài 16. Hàm số bậc hai": {
+      "chapter": "HÀM SỐ, ĐỒ THỊ VÀ ỨNG DỤNG",
+      "content": "Nghiên cứu về hàm số bậc hai, cách lập bảng biến thiên, vẽ đồ thị parabol và ứng dụng trong các bài toán thực tế.",
+      "objectives": [
+        "Lập bảng biến thiên và vẽ đồ thị hàm số bậc hai (parabol).",
+        "Xác định đỉnh, trục đối xứng, giao điểm với các trục tọa độ của parabol.",
+        "Dựa vào đồ thị để biện luận số nghiệm của phương trình, bất phương trình liên quan đến hàm số bậc hai.",
+        "Tìm giá trị lớn nhất, giá trị nhỏ nhất của hàm số bậc hai trên một đoạn.",
+        "Mô hình hóa và giải quyết các bài toán thực tiễn gắn với hàm số bậc hai."
+      ],
+      "common_exercises": [
+        "Khảo sát và vẽ đồ thị hàm số bậc hai.",
+        "Tìm giá trị lớn nhất, nhỏ nhất của hàm số bậc hai.",
+        "Giải quyết bài toán thực tế bằng hàm số bậc hai."
+      ]
+    },
+    "Bài 17. Dấu của tam thức bậc hai": {
+      "chapter": "HÀM SỐ, ĐỒ THỊ VÀ ỨNG DỤNG",
+      "content": "Nghiên cứu về cách xét dấu của tam thức bậc hai và ứng dụng để giải bất phương trình bậc hai một ẩn.",
+      "objectives": [
+        "Xét dấu một tam thức bậc hai.",
+        "Giải bất phương trình bậc hai một ẩn.",
+        "Giải các bất phương trình dạng tích, thương của các tam thức bậc hai.",
+        "Tìm điều kiện của tham số để tam thức bậc hai không đổi dấu trên R."
+      ],
+      "common_exercises": [
+        "Xét dấu tam thức bậc hai.",
+        "Giải bất phương trình bậc hai.",
+        "Bài toán tham số liên quan đến dấu của tam thức bậc hai."
+      ]
+    },
+    "Bài 18. Phương trình quy về phương trình bậc hai": {
+      "chapter": "HÀM SỐ, ĐỒ THỊ VÀ ỨNG DỤNG",
+      "content": "Nghiên cứu các phương pháp giải phương trình chứa ẩn dưới dấu căn có thể quy về phương trình bậc hai.",
+      "objectives": [
+        "Giải phương trình chứa ẩn dưới dấu căn dạng √f(x) = g(x) và √f(x) = √g(x)."
+      ],
+      "common_exercises": [
+        "Giải phương trình dạng √f(x) = g(x).",
+        "Giải phương trình dạng √f(x) = √g(x)."
+      ]
+    },
+    "Bài 19. Phương trình đường thẳng": {
+      "chapter": "PHƯƠNG PHÁP TOẠ ĐỘ TRONG MẶT PHẲNG",
+      "content": "Nghiên cứu cách viết phương trình tham số và phương trình tổng quát của đường thẳng trong mặt phẳng tọa độ.",
+      "objectives": [
+        "Viết phương trình tham số, phương trình tổng quát của đường thẳng khi biết một điểm và một vectơ chỉ phương/pháp tuyến.",
+        "Viết phương trình đường thẳng đi qua hai điểm."
+      ],
+      "common_exercises": [
+        "Viết phương trình tham số và tổng quát của đường thẳng.",
+        "Viết phương trình đường thẳng đi qua hai điểm."
+      ]
+    },
+    "Bài 20. Vị trí tương đối giữa hai đường thẳng. Góc và khoảng cách": {
+      "chapter": "PHƯƠNG PHÁP TOẠ ĐỘ TRONG MẶT PHẲNG",
+      "content": "Nghiên cứu cách xét vị trí tương đối, tính góc giữa hai đường thẳng và khoảng cách từ một điểm đến một đường thẳng.",
+      "objectives": [
+        "Xét vị trí tương đối của hai đường thẳng.",
+        "Tính góc giữa hai đường thẳng.",
+        "Tính khoảng cách từ một điểm đến một đường thẳng."
+      ],
+      "common_exercises": [
+        "Xét vị trí tương đối của hai đường thẳng.",
+        "Tính góc và khoảng cách."
+      ]
+    },
+    "Bài 21. Đường tròn trong mặt phẳng toạ độ": {
+      "chapter": "PHƯƠNG PHÁP TOẠ ĐỘ TRONG MẶT PHẲNG",
+      "content": "Nghiên cứu về phương trình đường tròn và phương trình tiếp tuyến của đường tròn trong mặt phẳng tọa độ.",
+      "objectives": [
+        "Viết phương trình đường tròn khi biết tâm và bán kính.",
+        "Nhận dạng phương trình đường tròn, xác định tâm và bán kính.",
+        "Viết phương trình tiếp tuyến của đường tròn tại một điểm thuộc đường tròn."
+      ],
+      "common_exercises": [
+        "Viết phương trình đường tròn.",
+        "Xác định tâm và bán kính.",
+        "Viết phương trình tiếp tuyến."
+      ]
+    },
+    "Bài 22. Ba đường conic": {
+      "chapter": "PHƯƠNG PHÁP TOẠ ĐỘ TRONG MẶT PHẲNG",
+      "content": "Nghiên cứu về phương trình chính tắc và các yếu tố của ba đường conic: elip, hypebol và parabol.",
+      "objectives": [
+        "Nhận dạng và viết phương trình chính tắc của elip, hypebol, parabol.",
+        "Xác định các yếu tố của conic (tiêu điểm, đỉnh, trục, tâm sai, đường chuẩn...) từ phương trình chính tắc.",
+        "Viết phương trình chính tắc của conic khi biết một số yếu tố.",
+        "Giải quyết một số vấn đề thực tiễn gắn với ba đường conic."
+      ],
+      "common_exercises": [
+        "Viết phương trình chính tắc của elip, hypebol, parabol.",
+        "Xác định các yếu tố của đường conic.",
+        "Giải các bài toán thực tế liên quan đến conic."
+      ]
+    },
+    "Bài 23. Quy tắc đếm": {
+      "chapter": "ĐẠI SỐ TỔ HỢP",
+      "content": "Tìm hiểu về quy tắc cộng và quy tắc nhân, hai quy tắc cơ bản trong các bài toán đếm.",
+      "objectives": [
+        "Vận dụng quy tắc cộng và quy tắc nhân trong các bài toán đếm.",
+        "Sử dụng sơ đồ hình cây trong các bài toán đếm đơn giản."
+      ],
+      "common_exercises": [
+        "Áp dụng quy tắc cộng và nhân để giải toán đếm.",
+        "Sử dụng sơ đồ cây."
+      ]
+    },
+    "Bài 24. Hoán vị, chỉnh hợp và tổ hợp": {
+      "chapter": "ĐẠI SỐ TỔ HỢP",
+      "content": "Nghiên cứu các khái niệm hoán vị, chỉnh hợp, tổ hợp và ứng dụng trong các bài toán chọn và sắp xếp.",
+      "objectives": [
+        "Tính số hoán vị, chỉnh hợp, tổ hợp.",
+        "Phân biệt và vận dụng hoán vị, chỉnh hợp, tổ hợp trong các bài toán chọn và sắp xếp.",
+        "Giải các bài toán đếm phức tạp (lập số, chọn người, xếp đồ vật) có điều kiện."
+      ],
+      "common_exercises": [
+        "Phân biệt và áp dụng hoán vị, chỉnh hợp, tổ hợp.",
+        "Giải các bài toán đếm nâng cao."
+      ]
+    },
+    "Bài 25. Nhị thức Newton": {
+      "chapter": "ĐẠI SỐ TỔ HỢP",
+      "content": "Tìm hiểu công thức khai triển nhị thức Newton và ứng dụng để tìm hệ số của số hạng trong khai triển.",
+      "objectives": [
+        "Khai triển nhị thức Newton (a+b)^n với n=4, n=5.",
+        "Tìm hệ số của một số hạng hoặc số hạng không chứa x trong khai triển nhị thức Newton."
+      ],
+      "common_exercises": [
+        "Khai triển nhị thức Newton.",
+        "Tìm hệ số, số hạng trong khai triển."
+      ]
+    },
+    "Bài 26. Biến cố và định nghĩa cổ điển của xác suất": {
+      "chapter": "XÁC SUẤT",
+      "content": "Nghiên cứu các khái niệm cơ bản về xác suất như không gian mẫu, biến cố và định nghĩa cổ điển của xác suất.",
+      "objectives": [
+        "Mô tả không gian mẫu, biến cố trong các phép thử đơn giản.",
+        "Thực hiện các phép toán trên biến cố (hợp, giao, đối).",
+        "Nắm vững định nghĩa cổ điển của xác suất."
+      ],
+      "common_exercises": [
+        "Xác định không gian mẫu và biến cố.",
+        "Thực hiện các phép toán trên biến cố."
+      ]
+    },
+    "Bài 27. Thực hành tính xác suất theo định nghĩa cổ điển": {
+      "chapter": "XÁC SUẤT",
+      "content": "Vận dụng các quy tắc đếm và định nghĩa cổ điển để giải các bài toán tính xác suất trong thực tế.",
+      "objectives": [
+        "Tính xác suất của biến cố bằng định nghĩa cổ điển.",
+        "Vận dụng các quy tắc đếm (hoán vị, chỉnh hợp, tổ hợp) để tính số phần tử của không gian mẫu và biến cố.",
+        "Sử dụng sơ đồ hình cây để tính xác suất.",
+        "Vận dụng quy tắc tính xác suất của biến cố đối."
+      ],
+      "common_exercises": [
+        "Tính xác suất bằng định nghĩa cổ điển.",
+        "Sử dụng quy tắc đếm trong bài toán xác suất.",
+        "Tính xác suất của biến cố đối."
       ]
     }
   },
   "11": {
-    "Chủ đề: Hàm số lượng giác và phương trình lượng giác": {
-      "chapter": "ĐẠI SỐ VÀ MỘT SỐ YẾU TỐ GIẢI TÍCH",
-      "content": "Chủ đề này bao gồm các khái niệm cơ bản về góc lượng giác, số đo của góc lượng giác, đường tròn lượng giác, và giá trị lượng giác cùng các quan hệ đặc biệt của chúng. Học sinh sẽ học các phép biến đổi lượng giác cơ bản, nhận biết các khái niệm về hàm số chẵn, lẻ, tuần hoàn, định nghĩa và đặc trưng của các hàm số lượng giác y = sin x, y = cos x, y = tan x, y = cot x, và cách vẽ đồ thị. Cuối cùng, chủ đề tập trung vào công thức nghiệm của phương trình lượng giác cơ bản và các ứng dụng thực tiễn liên quan đến dao động điều hoà trong Vật lí.",
+    "Bài 1. Giá trị lượng giác của góc lượng giác": {
+      "chapter": "HÀM SỐ LƯỢNG GIÁC VÀ PHƯƠNG TRÌNH LƯỢNG GIÁC",
+      "content": "Nghiên cứu về góc lượng giác, đơn vị radian, đường tròn lượng giác và các giá trị lượng giác tương ứng.",
       "objectives": [
-        "Nhận biết được các khái niệm cơ bản về góc lượng giác: khái niệm góc lượng giác; số đo của góc lượng giác; hệ thức Chasles cho các góc lượng giác; đường tròn lượng giác.",
-        "Nhận biết được khái niệm giá trị lượng giác của một góc lượng giác.",
-        "Mô tả được bảng giá trị lượng giác của một số góc lượng giác thường gặp; hệ thức cơ bản giữa các giá trị lượng giác của một góc lượng giác; quan hệ giữa các giá trị lượng giác của các góc lượng giác có liên quan đặc biệt: bù nhau, phụ nhau, đối nhau, hơn kém nhau π.",
-        "Sử dụng được máy tính cầm tay để tính giá trị lượng giác của một góc lượng giác khi biết số đo của góc đó.",
-        "Mô tả được các phép biến đổi lượng giác cơ bản: công thức cộng; công thức góc nhân đôi; công thức biến đổi tích thành tổng và công thức biến đổi tổng thành tích.",
-        "Giải quyết được một số vấn đề thực tiễn gắn với giá trị lượng giác của góc lượng giác và các phép biến đổi lượng giác.",
-        "Nhận biết được các khái niệm về hàm số chẵn, hàm số lẻ, hàm số tuần hoàn.",
-        "Nhận biết được các đặc trưng hình học của đồ thị hàm số chẵn, hàm số lẻ, hàm số tuần hoàn.",
-        "Nhận biết được định nghĩa các hàm lượng giác y = sin x, y = cos x, y = tan x, y = cot x thông qua đường tròn lượng giác.",
-        "Mô tả được bảng giá trị của bốn hàm số lượng giác đó trên một chu kì.",
-        "Vẽ được đồ thị của các hàm số y = sin x, y = cos x, y = tan x, y = cot x.",
-        "Giải thích được: tập xác định; tập giá trị; tính chất chẵn, lẻ; tính tuần hoàn; chu kì; khoảng đồng biến, nghịch biến của các hàm số y = sin x, y = cos x, y = tan x, y = cot x dựa vào đồ thị.",
-        "Giải quyết được một số vấn đề thực tiễn gắn với hàm số lượng giác (ví dụ: một số bài toán có liên quan đến dao động điều hoà trong Vật lí,...).",
-        "Nhận biết được công thức nghiệm của phương trình lượng giác cơ bản: sin x = m; cos x = m; tan x = m; cot x = m bằng cách vận dụng đồ thị hàm số lượng giác tương ứng.",
-        "Tính được nghiệm gần đúng của phương trình lượng giác cơ bản bằng máy tính cầm tay.",
-        "Giải được phương trình lượng giác ở dạng vận dụng trực tiếp phương trình lượng giác cơ bản (ví dụ: giải phương trình lượng giác dạng sin 2x = sin 3x, sin x = cos 3x).",
-        "Giải quyết được một số vấn đề thực tiễn gắn với phương trình lượng giác (ví dụ: một số bài toán liên quan đến dao động điều hòa trong Vật lí,...)."
+        "Đổi số đo góc từ độ sang radian và ngược lại.",
+        "Tính độ dài cung tròn.",
+        "Biểu diễn góc lượng giác trên đường tròn lượng giác.",
+        "Tính các giá trị lượng giác của một góc lượng giác."
       ],
       "common_exercises": [
-        "Tính giá trị lượng giác của góc đặc biệt, ví dụ: sin 30°, tan 45°.",
-        "Chứng minh các hệ thức lượng giác, ví dụ: sin²x + cos²x = 1.",
-        "Biến đổi lượng giác, ví dụ: Chuyển cos x + sin x thành dạng A sin(x + φ).",
-        "Vẽ đồ thị các hàm số lượng giác y = sin x, y = cos x, y = tan x.",
-        "Giải phương trình lượng giác cơ bản, ví dụ: sin x = 0.5, cos x = -√3/2.",
-        "Giải phương trình lượng giác dạng sin 2x = cos x.",
-        "Bài toán thực tiễn: Tính chu kỳ dao động điều hòa từ phương trình y = A sin(ωx + φ)."
+        "Đổi đơn vị độ và radian.",
+        "Tính giá trị lượng giác của các góc đặc biệt."
       ]
     },
-    "Chủ đề: Dãy số. Cấp số cộng. Cấp số nhân": {
-      "chapter": "ĐẠI SỐ VÀ MỘT SỐ YẾU TỐ GIẢI TÍCH",
-      "content": "Chủ đề này giới thiệu về dãy số hữu hạn và vô hạn, các cách cho dãy số (liệt kê, công thức tổng quát, hệ thức truy hồi, mô tả) và tính chất (tăng, giảm, bị chặn). Học sinh sẽ học về cấp số cộng và cấp số nhân, bao gồm cách nhận biết, công thức số hạng tổng quát và tổng của n số hạng đầu tiên, cùng các ứng dụng thực tiễn trong Sinh học và Giáo dục dân số.",
+    "Bài 2. Công thức lượng giác": {
+      "chapter": "HÀM SỐ LƯỢNG GIÁC VÀ PHƯƠNG TRÌNH LƯỢNG GIÁC",
+      "content": "Tìm hiểu và vận dụng các công thức lượng giác cơ bản, công thức cộng, nhân đôi, hạ bậc và biến đổi tổng thành tích, tích thành tổng.",
       "objectives": [
-        "Nhận biết được dãy số hữu hạn, dãy số vô hạn.",
-        "Thể hiện được cách cho dãy số bằng liệt kê các số hạng; bằng công thức tổng quát; bằng hệ thức truy hồi; bằng cách mô tả.",
-        "Nhận biết được tính chất tăng, giảm, bị chặn của dãy số trong những trường hợp đơn giản.",
-        "Nhận biết được một dãy số là cấp số cộng.",
-        "Giải thích được công thức xác định số hạng tổng quát của cấp số cộng.",
-        "Tính được tổng của n số hạng đầu tiên của cấp số cộng.",
-        "Giải quyết được một số vấn đề thực tiễn gắn với cấp số cộng để giải một số bài toán liên quan đến thực tiễn (ví dụ: một số vấn đề trong Sinh học, trong Giáo dục dân số,...).",
-        "Nhận biết được một dãy số là cấp số nhân.",
-        "Giải thích được công thức xác định số hạng tổng quát của cấp số nhân.",
-        "Tính được tổng của n số hạng đầu tiên của cấp số nhân.",
-        "Giải quyết được một số vấn đề thực tiễn gắn với cấp số nhân để giải một số bài toán liên quan đến thực tiễn (ví dụ: một số vấn đề trong Sinh học, trong Giáo dục dân số,...)."
+        "Rút gọn biểu thức và chứng minh đẳng thức lượng giác sử dụng các công thức cơ bản.",
+        "Áp dụng công thức cộng để tính giá trị lượng giác của các góc đặc biệt.",
+        "Áp dụng công thức nhân đôi, hạ bậc.",
+        "Biến đổi biểu thức lượng giác từ dạng tích thành tổng và ngược lại."
       ],
       "common_exercises": [
-        "Xác định tính chất tăng, giảm, bị chặn của dãy số, ví dụ: a_n = 2n + 1.",
-        "Tìm số hạng tổng quát của cấp số cộng, ví dụ: 3, 7, 11, 15, ...",
-        "Tính tổng n số hạng đầu tiên của cấp số cộng, ví dụ: S = 2 + 5 + 8 + ... + (3n - 1).",
-        "Tìm số hạng tổng quát của cấp số nhân, ví dụ: 2, 6, 18, 54, ...",
-        "Tính tổng n số hạng đầu tiên của cấp số nhân, ví dụ: S = 3 + 6 + 12 + ... + 3*2^(n-1).",
-        "Bài toán thực tiễn: Tính số lượng vi khuẩn tăng theo cấp số nhân sau n giờ."
+        "Chứng minh đẳng thức lượng giác.",
+        "Rút gọn biểu thức lượng giác.",
+        "Biến đổi tổng thành tích và ngược lại."
       ]
     },
-    "Chủ đề: Một số yếu tố giải tích": {
-      "chapter": "ĐẠI SỐ VÀ MỘT SỐ YẾU TỐ GIẢI TÍCH",
-      "content": "Chủ đề này bao gồm khái niệm giới hạn của dãy số và hàm số, các phép toán giới hạn, tổng của cấp số nhân lùi vô hạn, cùng ứng dụng thực tiễn. Học sinh sẽ học về hàm số liên tục, lũy thừa với số mũ nguyên, hữu tỉ, thực, các tính chất và ứng dụng trong lãi suất, tăng trưởng. Ngoài ra, chủ đề còn đề cập đến khái niệm lôgarit, hàm số mũ và lôgarit, phương trình, bất phương trình mũ và lôgarit, cùng các ứng dụng trong Hoá học (độ pH) và Vật lí (độ rung chấn). Cuối cùng, chủ đề giới thiệu khái niệm đạo hàm, ý nghĩa hình học, các quy tắc tính đạo hàm cấp một và cấp hai, cùng các bài toán thực tiễn liên quan.",
+    "Bài 3. Hàm số lượng giác": {
+      "chapter": "HÀM SỐ LƯỢNG GIÁC VÀ PHƯƠNG TRÌNH LƯỢNG GIÁC",
+      "content": "Nghiên cứu các hàm số lượng giác y = sinx, y = cosx, y = tanx, y = cotx về tập xác định, tính tuần hoàn, sự biến thiên và đồ thị.",
       "objectives": [
-        "Nhận biết được khái niệm giới hạn của dãy số.",
-        "Giải thích được một số giới hạn cơ bản như: lim (1/n^k) = 0 (k ∈ ℕ*); lim q^n = 0 (|q| < 1); lim c = c với c là hằng số.",
-        "Vận dụng được các phép toán giới hạn dãy số để tìm giới hạn của một số dãy số đơn giản (ví dụ: lim (2n+1)/n; lim (4n^2+1)/n).",
-        "Tính được tổng của một cấp số nhân lùi vô hạn và vận dụng được kết quả đó để giải quyết một số tình huống thực tiễn giả định hoặc liên quan đến thực tiễn.",
-        "Nhận biết được khái niệm giới hạn hữu hạn của hàm số, giới hạn hữu hạn một phía của hàm số tại một điểm.",
-        "Nhận biết được khái niệm giới hạn hữu hạn của hàm số tại vô cực và mô tả được một số giới hạn cơ bản như: lim (c/x^k) = 0 (x→+∞), lim (c/x^k) = 0 (x→-∞) với c là hằng số và k là số nguyên dương.",
-        "Nhận biết được khái niệm giới hạn vô cực (một phía) của hàm số tại một điểm và hiểu được một số giới hạn cơ bản như: lim (1/(x-a)) = +∞ (x→a+); lim (1/(x-a)) = -∞ (x→a-).",
-        "Tính được một số giới hạn hàm số bằng cách vận dụng các phép toán trên giới hạn hàm số.",
-        "Giải quyết được một số vấn đề thực tiễn gắn với giới hạn hàm số.",
-        "Nhận dạng được hàm số liên tục tại một điểm, hoặc trên một khoảng, hoặc trên một đoạn.",
-        "Nhận dạng được tính liên tục của tổng, hiệu, tích, thương của hai hàm số liên tục.",
-        "Nhận biết được tính liên tục của một số hàm sơ cấp cơ bản (như hàm đa thức, hàm phân thức, hàm căn thức, hàm lượng giác) trên tập xác định của chúng.",
-        "Nhận biết được khái niệm lũy thừa với số mũ nguyên của một số thực khác 0; lũy thừa với số mũ hữu tỉ và lũy thừa với số mũ thực của một số thực dương.",
-        "Giải thích được các tính chất của phép tính lũy thừa với số mũ nguyên, lũy thừa với số mũ hữu tỉ và lũy thừa với số mũ thực.",
-        "Sử dụng được tính chất của phép tính lũy thừa trong tính toán các biểu thức số và rút gọn các biểu thức chứa biến (tính viết và tính nhẩm, tính nhanh một cách hợp lí).",
-        "Tính được giá trị biểu thức số có chứa phép tính lũy thừa bằng sử dụng máy tính cầm tay.",
-        "Giải quyết được một số vấn đề có liên quan đến môn học khác hoặc có liên quan đến thực tiễn gắn với phép tính lũy thừa (ví dụ: bài toán về lãi suất, sự tăng trưởng,...).",
-        "Nhận biết được khái niệm lôgarit cơ số a (a > 0, a ≠ 1) của một số thực dương.",
-        "Giải thích được các tính chất của phép tính lôgarit nhờ sử dụng định nghĩa hoặc các tính chất đã biết trước đó.",
-        "Sử dụng được tính chất của phép tính lôgarit trong tính toán các biểu thức số và rút gọn các biểu thức chứa biến (tính viết và tính nhẩm, tính nhanh một cách hợp lí).",
-        "Tính được giá trị (đúng hoặc gần đúng) của lôgarit bằng cách sử dụng máy tính cầm tay.",
-        "Giải quyết được một số vấn đề có liên quan đến môn học khác hoặc có liên quan đến thực tiễn gắn với phép tính lôgarit (ví dụ: bài toán liên quan đến độ pH trong Hoá học,...).",
-        "Nhận biết được hàm số mũ và hàm số lôgarit. Nêu được một số ví dụ thực tế về hàm số mũ, hàm số lôgarit.",
-        "Nhận dạng được đồ thị của các hàm số mũ, hàm số lôgarit.",
-        "Giải thích được các tính chất của hàm số mũ, hàm số lôgarit thông qua đồ thị của chúng.",
-        "Giải quyết được một số vấn đề có liên quan đến môn học khác hoặc có liên quan đến thực tiễn gắn với hàm số mũ và hàm số lôgarit (ví dụ: lãi suất, sự tăng trưởng,...).",
-        "Giải được phương trình, bất phương trình mũ, lôgarit ở dạng đơn giản (ví dụ 2^(x+1) = 1/4; 2^(x+1) = 2^(3x+5); log2(x + 1) = 3; log3(x +1) = log3(x^2 - 1)).",
-        "Giải quyết được một số vấn đề có liên quan đến môn học khác hoặc có liên quan đến thực tiễn gắn với phương trình, bất phương trình mũ và lôgarit (ví dụ: bài toán liên quan đến độ pH, độ rung chấn,...).",
-        "Nhận biết được một số bài toán dẫn đến khái niệm đạo hàm như: xác định vận tốc tức thời của một vật chuyển động không đều, xác định tốc độ thay đổi của nhiệt độ.",
-        "Nhận biết được định nghĩa đạo hàm. Tính được đạo hàm của một số hàm đơn giản bằng định nghĩa.",
-        "Nhận biết được ý nghĩa hình học của đạo hàm.",
-        "Thiết lập được phương trình tiếp tuyến của đồ thị hàm số tại một điểm thuộc đồ thị.",
-        "Nhận biết được số e thông qua bài toán mô hình hoá lãi suất ngân hàng.",
-        "Tính được đạo hàm của một số hàm số sơ cấp cơ bản (như hàm đa thức, hàm căn thức đơn giản, hàm số lượng giác, hàm số mũ, hàm số lôgarit).",
-        "Sử dụng được các công thức tính đạo hàm của tổng, hiệu, tích, thương của các hàm số và đạo hàm của hàm hợp.",
-        "Giải quyết được một số vấn đề có liên quan đến môn học khác hoặc có liên quan đến thực tiễn gắn với đạo hàm (ví dụ: xác định vận tốc tức thời của một vật chuyển động không đều,...).",
-        "Nhận biết được khái niệm đạo hàm cấp hai của một hàm số.",
-        "Tính được đạo hàm cấp hai của một số hàm số đơn giản.",
-        "Giải quyết được một số vấn đề có liên quan đến môn học khác hoặc có liên quan đến thực tiễn gắn với đạo hàm cấp hai (ví dụ: xác định gia tốc từ đồ thị vận tốc theo thời gian của một chuyển động không đều,...)."
+        "Tìm tập xác định, tập giá trị của các hàm số lượng giác.",
+        "Xét tính chẵn, lẻ, tuần hoàn và chu kì của các hàm số lượng giác.",
+        "Nhận dạng đồ thị và xác định các khoảng đồng biến, nghịch biến của các hàm số lượng giác."
       ],
       "common_exercises": [
-        "Tính giới hạn dãy số, ví dụ: lim (n→∞) (2n+1)/n.",
-        "Tính tổng cấp số nhân lùi vô hạn, ví dụ: S = 1 + 1/2 + 1/4 + ...",
-        "Tính giới hạn hàm số, ví dụ: lim (x→2) (x² - 4)/(x - 2).",
-        "Xác định tính liên tục của hàm số tại một điểm, ví dụ: f(x) = x² + 1 tại x = 1.",
-        "Rút gọn biểu thức lũy thừa, ví dụ: (2^3 * 2^(-2)) / 2^4.",
-        "Tính giá trị lôgarit, ví dụ: log2(8) hoặc log3(1/9).",
-        "Giải phương trình mũ, ví dụ: 2^(x+1) = 8.",
-        "Giải bất phương trình lôgarit, ví dụ: log2(x) > 1.",
-        "Tính đạo hàm bằng định nghĩa, ví dụ: f(x) = x² tại x = 1.",
-        "Tính đạo hàm cấp một và cấp hai, ví dụ: f(x) = x³ + 2x² - x.",
-        "Thiết lập phương trình tiếp tuyến, ví dụ: Tiếp tuyến của y = x² tại x = 2.",
-        "Bài toán thực tiễn: Tính vận tốc tức thời hoặc gia tốc từ hàm chuyển động."
+        "Tìm tập xác định, tập giá trị, chu kì của hàm số lượng giác.",
+        "Khảo sát và vẽ đồ thị hàm số lượng giác."
       ]
     },
-    "Chủ đề: Đường thẳng và mặt phẳng trong không gian": {
-      "chapter": "HÌNH HỌC VÀ ĐO LƯỜNG",
-      "content": "Chủ đề này bao gồm các quan hệ liên thuộc cơ bản giữa điểm, đường thẳng, mặt phẳng trong không gian, ba cách xác định mặt phẳng, cách xác định giao tuyến của hai mặt phẳng và giao điểm của đường thẳng và mặt phẳng. Học sinh cũng sẽ tìm hiểu về hình chóp, hình tứ diện và vận dụng kiến thức để mô tả các hình ảnh trong thực tiễn.",
+    "Bài 4. Phương trình lượng giác cơ bản": {
+      "chapter": "HÀM SỐ LƯỢNG GIÁC VÀ PHƯƠNG TRÌNH LƯỢNG GIÁC",
+      "content": "Nghiên cứu các phương pháp giải các phương trình lượng giác cơ bản và các phương trình có thể đưa về dạng cơ bản.",
       "objectives": [
-        "Nhận biết được các quan hệ liên thuộc cơ bản giữa điểm, đường thẳng, mặt phẳng trong không gian.",
-        "Mô tả được ba cách xác định mặt phẳng (qua ba điểm không thẳng hàng; qua một đường thẳng và một điểm không thuộc đường thẳng đó; qua hai đường thẳng cắt nhau).",
-        "Xác định được giao tuyến của hai mặt phẳng; giao điểm của đường thẳng và mặt phẳng.",
-        "Vận dụng được các tính chất về giao tuyến của hai mặt phẳng; giao điểm của đường thẳng và mặt phẳng vào giải bài tập.",
-        "Nhận biết được hình chóp, hình tứ diện.",
-        "Vận dụng được kiến thức về đường thẳng, mặt phẳng trong không gian để mô tả một số hình ảnh trong thực tiễn."
+        "Giải các phương trình lượng giác cơ bản: sinx = a, cosx = a, tanx = a, cotx = a.",
+        "Giải các phương trình lượng giác đưa về dạng cơ bản.",
+        "Tìm nghiệm của phương trình lượng giác trong một khoảng, đoạn cho trước."
       ],
       "common_exercises": [
-        "Xác định giao điểm của đường thẳng và mặt phẳng, ví dụ: Đường thẳng x = 1 + t, y = 2t, z = 3 - t cắt mặt phẳng x + y + z = 6.",
-        "Tìm giao tuyến của hai mặt phẳng, ví dụ: x + y - z = 1 và 2x - y + z = 3.",
-        "Chứng minh ba điểm không thẳng hàng hoặc xác định phương trình mặt phẳng qua ba điểm.",
-        "Bài toán thực tiễn: Xác định giao điểm của đường thẳng với mặt phẳng trong không gian."
+        "Giải các phương trình sinx=a, cosx=a, tanx=a, cotx=a.",
+        "Tìm nghiệm của phương trình trên một khoảng cho trước."
       ]
     },
-    "Chủ đề: Quan hệ song song trong không gian. Phép chiếu song song": {
-      "chapter": "HÌNH HỌC VÀ ĐO LƯỜNG",
-      "content": "Chủ đề này khám phá các vị trí tương đối của hai đường thẳng trong không gian (trùng nhau, song song, cắt nhau, chéo nhau), tính chất cơ bản của hai đường thẳng song song và vận dụng vào thực tiễn. Học sinh cũng sẽ tìm hiểu về đường thẳng song song với mặt phẳng, điều kiện và tính chất của mối quan hệ này. Ngoài ra, chủ đề bao gồm hai mặt phẳng song song, định lí Thalès trong không gian, hình lăng trụ và hình hộp, cùng khái niệm phép chiếu song song và cách vẽ hình biểu diễn của các hình khối đơn giản.",
+    "Bài 5. Dãy số": {
+      "chapter": "DÃY SỐ. CẤP SỐ CỘNG VÀ CẤP SỐ NHÂN",
+      "content": "Tìm hiểu các khái niệm về dãy số, cách cho dãy số, và các tính chất như tính tăng, giảm, bị chặn.",
       "objectives": [
-        "Nhận biết được vị trí tương đối của hai đường thẳng trong không gian: hai đường thẳng trùng nhau, song song, cắt nhau, chéo nhau trong không gian.",
-        "Giải thích được tính chất cơ bản về hai đường thẳng song song trong không gian.",
-        "Vận dụng được kiến thức về hai đường thẳng song song để mô tả một số hình ảnh trong thực tiễn.",
-        "Nhận biết được đường thẳng song song với mặt phẳng.",
-        "Giải thích được điều kiện để đường thẳng song song với mặt phẳng.",
-        "Giải thích được tính chất cơ bản về đường thẳng song song với mặt phẳng.",
-        "Vận dụng được kiến thức về đường thẳng song song với mặt phẳng để mô tả một số hình ảnh trong thực tiễn.",
-        "Nhận biết được hai mặt phẳng song song trong không gian.",
-        "Giải thích được điều kiện để hai mặt phẳng song song.",
-        "Giải thích được tính chất cơ bản về hai mặt phẳng song song.",
-        "Giải thích được định lí Thalès trong không gian.",
-        "Giải thích được tính chất cơ bản của lăng trụ và hình hộp.",
-        "Vận dụng được kiến thức về quan hệ song song để mô tả một số hình ảnh trong thực tiễn.",
-        "Nhận biết được khái niệm và các tính chất cơ bản về phép chiếu song song.",
-        "Xác định được ảnh của một điểm, một đoạn thẳng, một tam giác, một đường tròn qua một phép chiếu song song.",
-        "Vẽ được hình biểu diễn của một số hình khối đơn giản.",
-        "Sử dụng được kiến thức về phép chiếu song song để mô tả một số hình ảnh trong thực tiễn."
+        "Viết các số hạng đầu của dãy số cho bởi công thức tổng quát hoặc hệ thức truy hồi.",
+        "Dự đoán công thức số hạng tổng quát của dãy số.",
+        "Xét tính tăng, giảm, bị chặn của một dãy số."
       ],
       "common_exercises": [
-        "Xác định vị trí tương đối của hai đường thẳng trong không gian, ví dụ: Hai đường thẳng có song song hay chéo nhau.",
-        "Chứng minh đường thẳng song song với mặt phẳng, ví dụ: Đường thẳng x = t, y = 2t, z = 1 song song với mặt phẳng x + y - z = 0.",
-        "Áp dụng định lí Thalès trong không gian để tính tỷ lệ.",
-        "Xác định ảnh của một điểm qua phép chiếu song song.",
-        "Bài toán thực tiễn: Mô tả hình chiếu song song của một hình khối đơn giản."
+        "Tìm các số hạng của dãy số.",
+        "Xét tính đơn điệu và tính bị chặn của dãy số."
       ]
     },
-    "Chủ đề: Quan hệ vuông góc trong không gian. Phép chiếu vuông góc": {
-      "chapter": "HÌNH HỌC VÀ ĐO LƯỜNG",
-      "content": "Chủ đề này bao gồm khái niệm góc giữa hai đường thẳng, hai đường thẳng vuông góc trong không gian và cách chứng minh. Học sinh sẽ tìm hiểu về đường thẳng vuông góc với mặt phẳng, điều kiện, định lí ba đường vuông góc, mối liên hệ giữa tính song song và vuông góc. Ngoài ra, chủ đề còn đề cập đến phép chiếu vuông góc, cách xác định hình chiếu, công thức và cách tính thể tích hình chóp, lăng trụ, hình hộp. Các khái niệm về hai mặt phẳng vuông góc, hình lăng trụ đứng, hình hộp chữ nhật, hình chóp đều, khoảng cách và góc giữa đường thẳng/mặt phẳng trong không gian, hình chóp cụt đều và thể tích cũng được trình bày, cùng các ứng dụng thực tiễn.",
+    "Bài 6. Cấp số cộng": {
+      "chapter": "DÃY SỐ. CẤP SỐ CỘNG VÀ CẤP SỐ NHÂN",
+      "content": "Nghiên cứu về cấp số cộng, công thức số hạng tổng quát và công thức tính tổng n số hạng đầu.",
       "objectives": [
-        "Nhận biết được khái niệm góc giữa hai đường thẳng trong không gian.",
-        "Nhận biết được hai đường thẳng vuông góc trong không gian.",
-        "Chứng minh được hai đường thẳng vuông góc trong không gian trong một số trường hợp đơn giản.",
-        "Sử dụng được kiến thức về hai đường thẳng vuông góc để mô tả một số hình ảnh trong thực tiễn.",
-        "Nhận biết được đường thẳng vuông góc với mặt phẳng.",
-        "Xác định được điều kiện để đường thẳng vuông góc với mặt phẳng.",
-        "Giải thích được định lí ba đường vuông góc.",
-        "Giải thích được mối liên hệ giữa tính song song và tính vuông góc của đường thẳng và mặt phẳng.",
-        "Nhận biết được khái niệm phép chiếu vuông góc.",
-        "Xác định được hình chiếu vuông góc của một điểm, một đường thẳng, một tam giác.",
-        "Nhận biết được công thức tính thể tích của hình chóp, hình lăng trụ, hình hộp.",
-        "Tính được thể tích của hình chóp, hình lăng trụ, hình hộp trong những trường hợp đơn giản (ví dụ: nhận biết được đường cao và diện tích mặt đáy của hình chóp).",
-        "Vận dụng được kiến thức về đường thẳng vuông góc với mặt phẳng để mô tả một số hình ảnh trong thực tiễn.",
-        "Nhận biết được hai mặt phẳng vuông góc trong không gian.",
-        "Xác định được điều kiện để hai mặt phẳng vuông góc.",
-        "Giải thích được tính chất cơ bản về hai mặt phẳng vuông góc.",
-        "Giải thích được tính chất cơ bản của hình lăng trụ đứng, lăng trụ đều, hình hộp đứng, hình hộp chữ nhật, hình lập phương, hình chóp đều.",
-        "Vận dụng được kiến thức về hai mặt phẳng vuông góc để mô tả một số hình ảnh trong thực tiễn.",
-        "Xác định được khoảng cách từ một điểm đến một đường thẳng; khoảng cách từ một điểm đến một mặt phẳng; khoảng cách giữa hai đường thẳng song song; khoảng cách giữa đường thẳng và mặt phẳng song song; khoảng cách giữa hai mặt phẳng song song trong những trường hợp đơn giản.",
-        "Nhận biết được đường vuông góc chung của hai đường thẳng chéo nhau; tính được khoảng cách giữa hai đường thẳng chéo nhau trong những trường hợp đơn giản (ví dụ: có một đường thẳng vuông góc với mặt phẳng chứa đường thẳng còn lại).",
-        "Sử dụng được kiến thức về khoảng cách trong không gian để mô tả một số hình ảnh trong thực tiễn.",
-        "Nhận biết được khái niệm góc giữa đường thẳng và mặt phẳng.",
-        "Xác định và tính được góc giữa đường thẳng và mặt phẳng trong những trường hợp đơn giản (ví dụ: đã biết hình chiếu vuông góc của đường thẳng lên mặt phẳng).",
-        "Nhận biết được khái niệm góc nhị diện, góc phẳng nhị diện.",
-        "Xác định và tính được số đo góc nhị diện, góc phẳng nhị diện trong những trường hợp đơn giản (ví dụ: nhận biết được mặt phẳng vuông góc với cạnh nhị diện).",
-        "Sử dụng được kiến thức về góc giữa đường thẳng và mặt phẳng, góc nhị diện để mô tả một số hình ảnh trong thực tiễn.",
-        "Nhận biết được hình chóp cụt đều.",
-        "Tính được thể tích khối chóp cụt đều.",
-        "Vận dụng được kiến thức về hình chóp cụt đều để mô tả một số hình ảnh trong thực tiễn."
+        "Chứng minh một dãy số là cấp số cộng.",
+        "Tìm số hạng tổng quát, công sai của cấp số cộng.",
+        "Tính tổng n số hạng đầu của một cấp số cộng.",
+        "Giải quyết các bài toán thực tế liên quan đến cấp số cộng."
       ],
       "common_exercises": [
-        "Chứng minh hai đường thẳng vuông góc trong không gian, ví dụ: x = t, y = 2t, z = 1 và x = 1, y = -t/2, z = t.",
-        "Tính góc giữa đường thẳng và mặt phẳng hoặc giữa hai mặt phẳng.",
-        "Tính thể tích hình chóp, lăng trụ, hình hộp, ví dụ: Tính thể tích hình hộp chữ nhật có các cạnh 3, 4, 5.",
-        "Xác định hình chiếu vuông góc của một điểm lên mặt phẳng.",
-        "Tính khoảng cách từ một điểm đến mặt phẳng hoặc giữa hai đường thẳng chéo nhau.",
-        "Bài toán thực tiễn: Tính góc nhị diện hoặc thể tích khối chóp cụt đều."
+        "Tìm số hạng tổng quát và tổng n số hạng đầu của cấp số cộng.",
+        "Giải các bài toán thực tế về cấp số cộng."
       ]
     },
-    "Chủ đề: Thống kê": {
-      "chapter": "THỐNG KÊ VÀ XÁC SUẤT",
-      "content": "Chủ đề này tập trung vào các số đặc trưng của mẫu số liệu ghép nhóm đo xu thế trung tâm (trung bình cộng, trung vị, tứ phân vị, mốt) và đo mức độ phân tán (khoảng biến thiên, khoảng tứ phân vị, phương sai, độ lệch chuẩn). Học sinh sẽ tính toán, hiểu ý nghĩa và rút ra kết luận từ các số đặc trưng này trong thực tiễn, đồng thời nhận biết mối liên hệ với các môn học khác trong Chương trình lớp 11.",
+    "Bài 7. Cấp số nhân": {
+      "chapter": "DÃY SỐ. CẤP SỐ CỘNG VÀ CẤP SỐ NHÂN",
+      "content": "Nghiên cứu về cấp số nhân, công thức số hạng tổng quát và công thức tính tổng n số hạng đầu.",
       "objectives": [
-        "Tính được các số đặc trưng đo xu thế trung tâm cho mẫu số liệu ghép nhóm: số trung bình cộng (hay số trung bình), trung vị (median), tứ phân vị (quartiles), mốt (mode).",
-        "Hiểu được ý nghĩa và vai trò của các số đặc trưng nói trên của mẫu số liệu trong thực tiễn.",
-        "Rút ra được kết luận nhờ ý nghĩa của các số đặc trưng nói trên của mẫu số liệu trong trường hợp đơn giản.",
-        "Nhận biết được mối liên hệ giữa thống kê với những kiến thức của các môn học khác trong Chương trình lớp 11 và trong thực tiễn."
+        "Chứng minh một dãy số là cấp số nhân.",
+        "Tìm số hạng tổng quát, công bội của cấp số nhân.",
+        "Tính tổng n số hạng đầu của một cấp số nhân.",
+        "Giải quyết các bài toán thực tế liên quan đến cấp số nhân."
       ],
       "common_exercises": [
-        "Tính trung bình cộng, trung vị, mốt, tứ phân vị cho mẫu số liệu ghép nhóm.",
-        "Tính khoảng biến thiên, phương sai, độ lệch chuẩn cho mẫu số liệu ghép nhóm.",
-        "Phân tích và rút ra kết luận từ các số đặc trưng, ví dụ: So sánh trung bình và độ lệch chuẩn của hai tập dữ liệu."
+        "Tìm số hạng tổng quát và tổng n số hạng đầu của cấp số nhân.",
+        "Giải các bài toán thực tế về cấp số nhân."
       ]
     },
-    "Chủ đề: Xác suất": {
-      "chapter": "THỐNG KÊ VÀ XÁC SUẤT",
-      "content": "Chủ đề này giới thiệu các khái niệm về xác suất cổ điển như hợp và giao các biến cố, biến cố độc lập. Học sinh sẽ học các quy tắc tính xác suất của biến cố hợp bằng công thức cộng, và biến cố giao bằng công thức nhân (cho biến cố độc lập). Ngoài ra, chủ đề còn bao gồm cách tính xác suất của biến cố trong các bài toán đơn giản bằng phương pháp tổ hợp và sử dụng sơ đồ hình cây.",
+    "Bài 8. Mẫu số liệu ghép nhóm": {
+      "chapter": "THỐNG KÊ",
+      "content": "Tìm hiểu cách tổ chức và trình bày một mẫu số liệu dưới dạng bảng tần số ghép nhóm.",
       "objectives": [
-        "Nhận biết được một số khái niệm về xác suất cổ điển: hợp và giao các biến cố; biến cố độc lập.",
-        "Tính được xác suất của biến cố hợp bằng cách sử dụng công thức cộng.",
-        "Tính được xác suất của biến cố giao bằng cách sử dụng công thức nhân (cho trường hợp biến cố độc lập).",
-        "Tính được xác suất của biến cố trong một số bài toán đơn giản bằng phương pháp tổ hợp.",
-        "Tính được xác suất trong một số bài toán đơn giản bằng cách sử dụng sơ đồ hình cây."
+        "Lập bảng tần số ghép nhóm từ một mẫu số liệu.",
+        "Đọc và giải thích mẫu số liệu ghép nhóm."
       ],
       "common_exercises": [
-        "Tính xác suất biến cố hợp, ví dụ: P(A ∪ B) khi biết P(A), P(B), P(A ∩ B).",
-        "Tính xác suất biến cố giao, ví dụ: P(A ∩ B) khi A, B độc lập.",
-        "Sử dụng sơ đồ hình cây để tính xác suất, ví dụ: Tung xúc xắc 2 lần, xác suất ra tổng 8.",
-        "Bài toán tổ hợp: Tính xác suất rút được 3 lá bài cùng chất từ bộ bài 52 lá."
+        "Lập bảng tần số ghép nhóm.",
+        "Phân tích số liệu từ bảng tần số ghép nhóm."
       ]
     },
-    "Chuyên đề 11.1: Phép biến hình phẳng": {
-      "chapter": "NỘI DUNG CHUYÊN ĐỀ LỚP 11",
-      "content": "Chuyên đề này giới thiệu khái niệm phép dời hình, tính chất của phép đối xứng trục, đối xứng tâm, tịnh tiến và quay. Học sinh sẽ xác định được ảnh của điểm, đoạn thẳng, tam giác, đường tròn qua các phép dời hình này và vận dụng chúng trong đồ hoạ và các vấn đề thực tiễn. Ngoài ra, chuyên đề còn bao gồm khái niệm phép đồng dạng phối cảnh (phép vị tự), phép đồng dạng, tính chất của phép vị tự và cách xác định ảnh qua phép vị tự, cùng ứng dụng trong đồ hoạ và thực tiễn.",
+    "Bài 9. Các số đặc trưng đo xu thế trung tâm cho mẫu số liệu ghép nhóm": {
+      "chapter": "THỐNG KÊ",
+      "content": "Nghiên cứu cách tính và ý nghĩa của các số đặc trưng đo xu thế trung tâm như số trung bình, trung vị, mốt và tứ phân vị cho mẫu số liệu ghép nhóm.",
       "objectives": [
-        "Nhận biết được khái niệm phép dời hình.",
-        "Nhận biết được tính chất của phép đối xứng trục, phép đối xứng tâm, phép tịnh tiến và phép quay.",
-        "Xác định được ảnh của điểm, đoạn thẳng, tam giác, đường tròn qua phép đối xứng trục, phép đối xứng tâm, phép tịnh tiến và phép quay.",
-        "Vận dụng được các phép dời hình nói trên trong đồ hoạ và trong một số vấn đề thực tiễn (ví dụ: tạo các hoa văn, hình khối,...).",
-        "Nhận biết được khái niệm phép đồng dạng phối cảnh (phép vị tự), phép đồng dạng.",
-        "Nhận biết được tính chất của phép vị tự.",
-        "Xác định được ảnh của điểm, đoạn thẳng, tam giác, đường tròn qua phép vị tự.",
-        "Vận dụng được phép đồng dạng trong đồ hoạ và trong một số vấn đề thực tiễn (ví dụ: tạo các hoa văn, hình khối,...)."
+        "Tính số trung bình, trung vị, tứ phân vị, mốt cho mẫu số liệu ghép nhóm.",
+        "Giải thích ý nghĩa và vai trò của các số đặc trưng đo xu thế trung tâm."
       ],
       "common_exercises": [
-        "Xác định ảnh của một điểm qua phép đối xứng trục, ví dụ: Điểm (2,3) qua trục Ox.",
-        "Tìm ảnh của đoạn thẳng qua phép tịnh tiến hoặc phép quay.",
-        "Xác định ảnh của tam giác qua phép đồng dạng với tỷ số k.",
-        "Bài toán thực tiễn: Tạo hoa văn đối xứng hoặc đồng dạng trong đồ hoạ."
+        "Tính số trung bình, trung vị, mốt cho mẫu số liệu ghép nhóm.",
+        "So sánh các mẫu số liệu dựa trên các số đặc trưng."
       ]
     },
-    "Chuyên đề 11.2: Một số yếu tố vẽ kĩ thuật": {
-      "chapter": "NỘI DUNG CHUYÊN ĐỀ LỚP 11",
-      "content": "Chuyên đề này giới thiệu một số yếu tố và nguyên tắc cơ bản của vẽ kĩ thuật. Học sinh sẽ học cách nhận biết hình biểu diễn của một hình, khối, đọc thông tin từ các bản vẽ kĩ thuật đơn giản, và vẽ bản vẽ kĩ thuật đơn giản có gắn với phép chiếu song song và phép chiếu vuông góc.",
+    "Bài 10. Đường thẳng và mặt phẳng trong không gian": {
+      "chapter": "QUAN HỆ SONG SONG TRONG KHÔNG GIAN",
+      "content": "Nghiên cứu các vị trí tương đối của điểm, đường thẳng, mặt phẳng trong không gian và cách xác định giao tuyến, giao điểm.",
       "objectives": [
-        "Nhận biết được hình biểu diễn của một hình, khối.",
-        "Nhận biết được một số nguyên tắc cơ bản của vẽ kĩ thuật.",
-        "Đọc được thông tin từ một số bản vẽ kĩ thuật đơn giản.",
-        "Vẽ được bản vẽ kĩ thuật đơn giản (gắn với phép chiếu song song và phép chiếu vuông góc)."
+        "Xác định giao tuyến của hai mặt phẳng.",
+        "Xác định giao điểm của đường thẳng và mặt phẳng."
       ],
       "common_exercises": [
-        "Vẽ hình chiếu song song của một hình khối đơn giản, ví dụ: Hình hộp chữ nhật.",
-        "Đọc thông tin từ bản vẽ kĩ thuật, ví dụ: Xác định kích thước từ bản vẽ.",
-        "Vẽ hình chiếu vuông góc của một tam giác hoặc hình tròn."
+        "Tìm giao tuyến của hai mặt phẳng.",
+        "Tìm giao điểm của đường thẳng và mặt phẳng."
       ]
     },
-    "Chuyên đề 11.3: Làm quen với một vài yếu tố của Lí thuyết đồ thị": {
-      "chapter": "NỘI DUNG CHUYÊN ĐỀ LỚP 11",
-      "content": "Chuyên đề này giới thiệu các bài toán về tìm đường đi trong những mô hình xuất phát từ thực tiễn, giúp học sinh làm quen với khái niệm đồ thị, đường đi Euler, đường đi Hamilton và thuật toán tìm đường đi tối ưu trong những trường hợp đơn giản. Học sinh sẽ sử dụng kiến thức này để giải quyết các tình huống thực tiễn như xác định đường đi hoặc đường đi ngắn nhất.",
+    "Bài 11. Hai đường thẳng song song": {
+      "chapter": "QUAN HỆ SONG SONG TRONG KHÔNG GIAN",
+      "content": "Nghiên cứu về vị trí tương đối của hai đường thẳng trong không gian, đặc biệt là quan hệ song song và chéo nhau.",
       "objectives": [
-        "Nhận biết được khái niệm đồ thị.",
-        "Nhận biết được đường đi Euler, đường đi Hamilton từ đồ thị.",
-        "Nhận biết được thuật toán về tìm đường đi tối ưu trong những trường hợp đơn giản.",
-        "Sử dụng kiến thức về đồ thị để giải quyết một số tình huống liên quan đến thực tiễn (ví dụ: xác định đường đi, xác định đường đi ngắn nhất,...)."
+        "Chứng minh hai đường thẳng song song.",
+        "Vận dụng định lí về ba giao tuyến."
       ],
       "common_exercises": [
-        "Xác định đường đi Euler trong một đồ thị đơn giản.",
-        "Tìm đường đi Hamilton trong đồ thị, ví dụ: Đồ thị 5 đỉnh đầy đủ K5.",
-        "Áp dụng thuật toán tìm đường đi ngắn nhất (Dijkstra hoặc đơn giản hóa).",
-        "Bài toán thực tiễn: Tìm đường đi ngắn nhất giữa các thành phố trên đồ thị."
+        "Chứng minh hai đường thẳng song song.",
+        "Sử dụng định lí về ba giao tuyến để giải toán."
+      ]
+    },
+    "Bài 12. Đường thẳng và mặt phẳng song song": {
+      "chapter": "QUAN HỆ SONG SONG TRONG KHÔNG GIAN",
+      "content": "Nghiên cứu về điều kiện để đường thẳng song song với mặt phẳng và các tính chất liên quan.",
+      "objectives": [
+        "Chứng minh đường thẳng song song với mặt phẳng.",
+        "Xác định thiết diện của hình chóp, hình lăng trụ khi cắt bởi một mặt phẳng song song với một đường thẳng."
+      ],
+      "common_exercises": [
+        "Chứng minh đường thẳng song song với mặt phẳng.",
+        "Tìm thiết diện song song với một đường thẳng."
+      ]
+    },
+    "Bài 13. Hai mặt phẳng song song": {
+      "chapter": "QUAN HỆ SONG SONG TRONG KHÔNG GIAN",
+      "content": "Nghiên cứu về điều kiện để hai mặt phẳng song song, các tính chất và ứng dụng của chúng, bao gồm cả định lí Thalès trong không gian.",
+      "objectives": [
+        "Chứng minh hai mặt phẳng song song.",
+        "Vận dụng định lí Thalès trong không gian.",
+        "Xác định thiết diện của hình chóp, hình lăng trụ khi cắt bởi một mặt phẳng song song với một mặt phẳng khác."
+      ],
+      "common_exercises": [
+        "Chứng minh hai mặt phẳng song song.",
+        "Tìm thiết diện song song với một mặt phẳng.",
+        "Áp dụng định lí Thalès trong không gian."
+      ]
+    },
+    "Bài 14. Phép chiếu song song": {
+      "chapter": "QUAN HỆ SONG SONG TRONG KHÔNG GIAN",
+      "content": "Tìm hiểu về phép chiếu song song, các tính chất và cách vẽ hình biểu diễn của các hình không gian.",
+      "objectives": [
+        "Xác định ảnh của một điểm, một hình qua phép chiếu song song.",
+        "Vẽ hình biểu diễn của một số hình không gian."
+      ],
+      "common_exercises": [
+        "Tìm ảnh của hình qua phép chiếu song song.",
+        "Vẽ hình biểu diễn của hình chóp, lăng trụ."
+      ]
+    },
+    "Bài 15. Giới hạn của dãy số": {
+      "chapter": "GIỚI HẠN. HÀM SỐ LIÊN TỤC",
+      "content": "Nghiên cứu về khái niệm giới hạn của dãy số, các quy tắc tính giới hạn và tổng của cấp số nhân lùi vô hạn.",
+      "objectives": [
+        "Tính giới hạn của dãy số (dạng đa thức, phân thức, chứa căn).",
+        "Tính tổng của cấp số nhân lùi vô hạn."
+      ],
+      "common_exercises": [
+        "Tính giới hạn của dãy số.",
+        "Tính tổng của cấp số nhân lùi vô hạn."
+      ]
+    },
+    "Bài 16. Giới hạn của hàm số": {
+      "chapter": "GIỚI HẠN. HÀM SỐ LIÊN TỤC",
+      "content": "Nghiên cứu về khái niệm giới hạn của hàm số tại một điểm, tại vô cực và các quy tắc, phương pháp tính giới hạn, đặc biệt là cách khử các dạng vô định.",
+      "objectives": [
+        "Tính giới hạn của hàm số tại một điểm, tại vô cực.",
+        "Khử các dạng vô định 0/0, ∞/∞, ∞ - ∞."
+      ],
+      "common_exercises": [
+        "Tính giới hạn của hàm số.",
+        "Khử các dạng vô định để tính giới hạn."
+      ]
+    },
+    "Bài 17. Hàm số liên tục": {
+      "chapter": "GIỚI HẠN. HÀM SỐ LIÊN TỤC",
+      "content": "Tìm hiểu về khái niệm hàm số liên tục tại một điểm, trên một khoảng và ứng dụng để chứng minh sự tồn tại nghiệm của phương trình.",
+      "objectives": [
+        "Xét tính liên tục của hàm số tại một điểm, trên một khoảng.",
+        "Chứng minh phương trình f(x) = 0 có nghiệm trong một khoảng."
+      ],
+      "common_exercises": [
+        "Xét tính liên tục của hàm số.",
+        "Chứng minh phương trình có nghiệm."
+      ]
+    },
+    "Bài 18. Luỹ thừa với số mũ thực": {
+      "chapter": "HÀM SỐ MŨ VÀ HÀM SỐ LÔGARIT",
+      "content": "Nghiên cứu về lũy thừa với số mũ nguyên, hữu tỉ và thực, cùng các tính chất của chúng.",
+      "objectives": [
+        "Rút gọn biểu thức chứa lũy thừa.",
+        "So sánh các lũy thừa."
+      ],
+      "common_exercises": [
+        "Rút gọn và tính giá trị biểu thức lũy thừa.",
+        "So sánh các lũy thừa."
+      ]
+    },
+    "Bài 19. Lôgarit": {
+      "chapter": "HÀM SỐ MŨ VÀ HÀM SỐ LÔGARIT",
+      "content": "Nghiên cứu về khái niệm logarit, các tính chất và quy tắc tính logarit, bao gồm cả công thức đổi cơ số.",
+      "objectives": [
+        "Rút gọn biểu thức chứa logarit.",
+        "So sánh các logarit."
+      ],
+      "common_exercises": [
+        "Rút gọn và tính giá trị biểu thức logarit.",
+        "So sánh các logarit."
+      ]
+    },
+    "Bài 20. Hàm số mũ và hàm số lôgarit": {
+      "chapter": "HÀM SỐ MŨ VÀ HÀM SỐ LÔGARIT",
+      "content": "Nghiên cứu về tập xác định, tính chất và đồ thị của hàm số mũ và hàm số logarit.",
+      "objectives": [
+        "Tìm tập xác định của hàm số mũ, hàm số logarit.",
+        "Khảo sát và vẽ đồ thị hàm số mũ, hàm số logarit."
+      ],
+      "common_exercises": [
+        "Tìm tập xác định của hàm số mũ và logarit.",
+        "Vẽ đồ thị và nhận dạng đồ thị của hàm số mũ, logarit."
+      ]
+    },
+    "Bài 21. Phương trình, bất phương trình mũ và lôgarit": {
+      "chapter": "HÀM SỐ MŨ VÀ HÀM SỐ LÔGARIT",
+      "content": "Tìm hiểu các phương pháp giải phương trình và bất phương trình mũ, logarit như đưa về cùng cơ số, đặt ẩn phụ, logarit hóa.",
+      "objectives": [
+        "Giải phương trình, bất phương trình mũ và logarit bằng cách đưa về cùng cơ số, đặt ẩn phụ, logarit hóa."
+      ],
+      "common_exercises": [
+        "Giải phương trình mũ, logarit.",
+        "Giải bất phương trình mũ, logarit."
+      ]
+    },
+    "Bài 22. Hai đường thẳng vuông góc": {
+      "chapter": "QUAN HỆ VUÔNG GÓC TRONG KHÔNG GIAN",
+      "content": "Nghiên cứu về góc giữa hai đường thẳng trong không gian và điều kiện để hai đường thẳng vuông góc.",
+      "objectives": [
+        "Tính góc giữa hai đường thẳng.",
+        "Chứng minh hai đường thẳng vuông góc."
+      ],
+      "common_exercises": [
+        "Tính góc giữa hai đường thẳng trong hình chóp, lăng trụ.",
+        "Chứng minh hai đường thẳng vuông góc."
+      ]
+    },
+    "Bài 23. Đường thẳng vuông góc với mặt phẳng": {
+      "chapter": "QUAN HỆ VUÔNG GÓC TRONG KHÔNG GIAN",
+      "content": "Nghiên cứu về điều kiện để đường thẳng vuông góc với mặt phẳng và các tính chất liên quan đến quan hệ vuông góc và song song.",
+      "objectives": [
+        "Chứng minh đường thẳng vuông góc với mặt phẳng.",
+        "Vận dụng các tính chất về quan hệ song song và vuông góc của đường thẳng và mặt phẳng."
+      ],
+      "common_exercises": [
+        "Chứng minh đường thẳng vuông góc với mặt phẳng.",
+        "Chứng minh các quan hệ vuông góc khác dựa vào tính chất."
+      ]
+    },
+    "Bài 24. Phép chiếu vuông góc. Góc giữa đường thẳng và mặt phẳng": {
+      "chapter": "QUAN HỆ VUÔNG GÓC TRONG KHÔNG GIAN",
+      "content": "Tìm hiểu về phép chiếu vuông góc, định lí ba đường vuông góc và cách xác định, tính góc giữa đường thẳng và mặt phẳng.",
+      "objectives": [
+        "Xác định hình chiếu vuông góc của điểm, đường thẳng, tam giác.",
+        "Vận dụng định lí ba đường vuông góc.",
+        "Tính góc giữa đường thẳng và mặt phẳng."
+      ],
+      "common_exercises": [
+        "Xác định hình chiếu vuông góc.",
+        "Tính góc giữa đường thẳng và mặt phẳng."
+      ]
+    },
+    "Bài 25. Hai mặt phẳng vuông góc": {
+      "chapter": "QUAN HỆ VUÔNG GÓC TRONG KHÔNG GIAN",
+      "content": "Nghiên cứu về góc giữa hai mặt phẳng (góc nhị diện) và điều kiện để hai mặt phẳng vuông góc.",
+      "objectives": [
+        "Chứng minh hai mặt phẳng vuông góc.",
+        "Tính góc giữa hai mặt phẳng (góc nhị diện)."
+      ],
+      "common_exercises": [
+        "Tính góc giữa hai mặt phẳng.",
+        "Chứng minh hai mặt phẳng vuông góc."
+      ]
+    },
+    "Bài 26. Khoảng cách": {
+      "chapter": "QUAN HỆ VUÔNG GÓC TRONG KHÔNG GIAN",
+      "content": "Nghiên cứu các phương pháp tính khoảng cách trong không gian: từ điểm đến đường thẳng/mặt phẳng, giữa hai đường thẳng/mặt phẳng song song, và giữa hai đường thẳng chéo nhau.",
+      "objectives": [
+        "Tính khoảng cách từ một điểm đến một đường thẳng, một mặt phẳng.",
+        "Tính khoảng cách giữa hai đường thẳng song song, hai mặt phẳng song song.",
+        "Tính khoảng cách giữa hai đường thẳng chéo nhau."
+      ],
+      "common_exercises": [
+        "Tính khoảng cách từ điểm đến mặt phẳng.",
+        "Tính khoảng cách giữa hai đường thẳng chéo nhau."
+      ]
+    },
+    "Bài 27. Thể tích": {
+      "chapter": "QUAN HỆ VUÔNG GÓC TRONG KHÔNG GIAN",
+      "content": "Tìm hiểu các công thức tính thể tích của các khối đa diện quen thuộc như khối chóp, khối lăng trụ, khối hộp.",
+      "objectives": [
+        "Tính thể tích khối chóp, khối lăng trụ, khối hộp.",
+        "Tính thể tích khối chóp cụt đều."
+      ],
+      "common_exercises": [
+        "Tính thể tích khối chóp.",
+        "Tính thể tích khối lăng trụ."
+      ]
+    },
+    "Bài 28. Biến cố hợp, biến cố giao, biến cố độc lập": {
+      "chapter": "CÁC QUY TẮC TÍNH XÁC SUẤT",
+      "content": "Nghiên cứu về các phép toán trên biến cố (hợp, giao) và khái niệm hai biến cố độc lập.",
+      "objectives": [
+        "Nhận biết và mô tả biến cố hợp, biến cố giao, biến cố độc lập."
+      ],
+      "common_exercises": [
+        "Mô tả các biến cố hợp, giao, đối.",
+        "Kiểm tra tính độc lập của hai biến cố."
+      ]
+    },
+    "Bài 29. Công thức cộng xác suất": {
+      "chapter": "CÁC QUY TẮC TÍNH XÁC SUẤT",
+      "content": "Nghiên cứu và áp dụng công thức cộng xác suất cho hai biến cố xung khắc và hai biến cố bất kì.",
+      "objectives": [
+        "Áp dụng công thức cộng xác suất cho hai biến cố xung khắc và hai biến cố bất kì."
+      ],
+      "common_exercises": [
+        "Áp dụng công thức cộng xác suất để giải toán."
+      ]
+    },
+    "Bài 30. Công thức nhân xác suất cho hai biến cố độc lập": {
+      "chapter": "CÁC QUY TẮC TÍNH XÁC SUẤT",
+      "content": "Nghiên cứu và áp dụng công thức nhân xác suất cho hai biến cố độc lập để giải các bài toán xác suất tổng hợp.",
+      "objectives": [
+        "Áp dụng công thức nhân xác suất cho hai biến cố độc lập.",
+        "Giải các bài toán xác suất tổng hợp sử dụng kết hợp các quy tắc."
+      ],
+      "common_exercises": [
+        "Áp dụng công thức nhân xác suất để giải toán.",
+        "Giải các bài toán xác suất kết hợp quy tắc cộng và nhân."
+      ]
+    },
+    "Bài 31. Định nghĩa và ý nghĩa của đạo hàm": {
+      "chapter": "ĐẠO HÀM",
+      "content": "Tìm hiểu định nghĩa đạo hàm tại một điểm, ý nghĩa hình học (hệ số góc tiếp tuyến) và ý nghĩa vật lí (vận tốc tức thời).",
+      "objectives": [
+        "Tính đạo hàm của hàm số bằng định nghĩa.",
+        "Viết phương trình tiếp tuyến của đồ thị hàm số tại một điểm.",
+        "Giải các bài toán về vận tốc tức thời."
+      ],
+      "common_exercises": [
+        "Tính đạo hàm bằng định nghĩa.",
+        "Viết phương trình tiếp tuyến.",
+        "Tính vận tốc tức thời."
+      ]
+    },
+    "Bài 32. Các quy tắc tính đạo hàm": {
+      "chapter": "ĐẠO HÀM",
+      "content": "Nghiên cứu các quy tắc tính đạo hàm của tổng, hiệu, tích, thương, hàm hợp và đạo hàm của các hàm số sơ cấp cơ bản.",
+      "objectives": [
+        "Áp dụng các quy tắc tính đạo hàm (tổng, hiệu, tích, thương, hàm hợp).",
+        "Tính đạo hàm của các hàm số lượng giác, mũ, logarit."
+      ],
+      "common_exercises": [
+        "Tính đạo hàm bằng các quy tắc.",
+        "Tính đạo hàm của hàm hợp."
+      ]
+    },
+    "Bài 33. Đạo hàm cấp hai": {
+      "chapter": "ĐẠO HÀM",
+      "content": "Tìm hiểu về khái niệm đạo hàm cấp hai và ý nghĩa vật lí của nó (gia tốc tức thời).",
+      "objectives": [
+        "Tính đạo hàm cấp hai của một số hàm số đơn giản.",
+        "Giải các bài toán về gia tốc tức thời."
+      ],
+      "common_exercises": [
+        "Tính đạo hàm cấp hai.",
+        "Tính gia tốc tức thời."
       ]
     }
   },
   "12": {
-    "Chủ đề: Ứng dụng đạo hàm để khảo sát và vẽ đồ thị của hàm số": {
-      "chapter": "MỘT SỐ YẾU TỐ GIẢI TÍCH",
-      "content": "Chủ đề này tập trung vào ứng dụng đạo hàm để khảo sát và vẽ đồ thị của hàm số. Học sinh sẽ học về tính đơn điệu (đồng biến, nghịch biến), điểm cực trị, giá trị cực trị của hàm số thông qua dấu đạo hàm cấp một và bảng biến thiên. Chủ đề còn bao gồm cách xác định giá trị lớn nhất, nhỏ nhất, hình ảnh hình học của các đường tiệm cận, sơ đồ tổng quát khảo sát và vẽ đồ thị các hàm số đa thức bậc ba và phân thức hữu tỉ, cùng tính đối xứng của đồ thị. Cuối cùng là vận dụng đạo hàm để giải quyết các vấn đề thực tiễn.",
+    "Bài 1. Tính đơn điệu và cực trị của hàm số": {
+      "chapter": "ỨNG DỤNG ĐẠO HÀM ĐỂ KHẢO SÁT VÀ VẼ ĐỒ THỊ HÀM SỐ",
+      "content": "Nghiên cứu ứng dụng của đạo hàm để xét tính đồng biến, nghịch biến và tìm các điểm cực trị của hàm số.",
       "objectives": [
-        "Nhận biết được tính đồng biến, nghịch biến của một hàm số trên một khoảng dựa vào dấu của đạo hàm cấp một của nó.",
-        "Thể hiện được tính đồng biến, nghịch biến của hàm số trong bảng biến thiên.",
-        "Nhận biết được tính đơn điệu, điểm cực trị, giá trị cực trị của hàm số thông qua bảng biến thiên hoặc thông qua hình ảnh hình học của đồ thị hàm số.",
-        "Nhận biết được giá trị lớn nhất, giá trị nhỏ nhất của hàm số trên một tập xác định cho trước.",
-        "Xác định được giá trị lớn nhất, giá trị nhỏ nhất của hàm số bằng đạo hàm trong những trường hợp đơn giản.",
-        "Nhận biết được hình ảnh hình học của đường tiệm cận ngang, đường tiệm cận đứng, đường tiệm cận xiên của đồ thị hàm số.",
-        "Mô tả được sơ đồ tổng quát để khảo sát hàm số (tìm tập xác định, xét chiều biến thiên, tìm cực trị, tìm tiệm cận, lập bảng biến thiên, vẽ đồ thị).",
-        "Khảo sát được tập xác định, chiều biến thiên, cực trị, tiệm cận, bảng biến thiên và vẽ đồ thị của các hàm số: y = ax³ + bx² + cx + d (a ≠ 0); y = (ax + b)/(cx + d) (c ≠ 0, ad − bc ≠ 0); y = (ax² + bx + c)/(mx + n) (a ≠ 0, m ≠ 0 và đa thức tử không chia hết cho đa thức mẫu).",
-        "Nhận biết được tính đối xứng (trục đối xứng, tâm đối xứng) của đồ thị các hàm số trên.",
-        "Vận dụng được đạo hàm và khảo sát hàm số để giải quyết một số vấn đề liên quan đến thực tiễn."
+        "Xét tính đồng biến, nghịch biến của hàm số trên một khoảng dựa vào dấu của đạo hàm.",
+        "Tìm các điểm cực đại, cực tiểu và giá trị cực đại, cực tiểu của hàm số.",
+        "Tìm điều kiện của tham số để hàm số đơn điệu trên một khoảng cho trước.",
+        "Tìm điều kiện của tham số để hàm số đạt cực trị tại một điểm cho trước hoặc có số điểm cực trị xác định."
       ],
       "common_exercises": [
-        "Khảo sát và vẽ đồ thị hàm số bậc ba, ví dụ: y = x³ - 3x + 2.",
-        "Tìm cực trị của hàm số, ví dụ: y = x² - 4x + 3.",
-        "Xác định tiệm cận ngang, đứng, xiên của hàm phân thức, ví dụ: y = (2x + 1)/(x - 1).",
-        "Tìm giá trị lớn nhất/nhỏ nhất của hàm số trên một đoạn, ví dụ: y = x³ - 6x² + 9x trên [0,4].",
-        "Xác định tính đối xứng của đồ thị, ví dụ: y = x³ hoặc y = x²/(x² - 1).",
-        "Bài toán thực tiễn: Tối ưu hóa diện tích hoặc chi phí bằng đạo hàm."
+        "Xét tính đơn điệu của hàm số.",
+        "Tìm cực trị của hàm số.",
+        "Giải bài toán tham số liên quan đến tính đơn điệu và cực trị."
       ]
     },
-    "Chủ đề: Nguyên hàm. Tích phân": {
-      "chapter": "MỘT SỐ YẾU TỐ GIẢI TÍCH",
-      "content": "Chủ đề này giới thiệu khái niệm nguyên hàm của một hàm số, tính chất cơ bản và cách xác định nguyên hàm của một số hàm sơ cấp. Học sinh sẽ học về định nghĩa và các tính chất của tích phân, cách tính tích phân trong những trường hợp đơn giản, và ứng dụng của tích phân để tính diện tích hình phẳng, thể tích hình khối, cùng các bài toán thực tiễn liên quan.",
+    "Bài 2. Giá trị lớn nhất và giá trị nhỏ nhất của hàm số": {
+      "chapter": "ỨNG DỤNG ĐẠO HÀM ĐỂ KHẢO SÁT VÀ VẼ ĐỒ THỊ HÀM SỐ",
+      "content": "Tìm hiểu phương pháp tìm giá trị lớn nhất và giá trị nhỏ nhất của một hàm số trên một đoạn hoặc một khoảng.",
       "objectives": [
-        "Nhận biết được khái niệm nguyên hàm của một hàm số.",
-        "Giải thích được tính chất cơ bản của nguyên hàm.",
-        "Xác định được nguyên hàm của một số hàm số sơ cấp như: y = x^α (α ≠ −1); y = 1/x; y = sin x; y = cos x; y = 1/cos²x; y = 1/sin²x; y = a^x; y = e^x.",
-        "Tính được nguyên hàm trong những trường hợp đơn giản.",
-        "Nhận biết được định nghĩa và các tính chất của tích phân.",
-        "Tính được tích phân trong những trường hợp đơn giản.",
-        "Sử dụng được tích phân để tính diện tích của một số hình phẳng, thể tích của một số hình khối.",
-        "Vận dụng được tích phân để giải một số bài toán có liên quan đến thực tiễn."
+        "Tìm giá trị lớn nhất, giá trị nhỏ nhất của hàm số trên một đoạn.",
+        "Tìm giá trị lớn nhất, giá trị nhỏ nhất của hàm số trên một khoảng."
       ],
       "common_exercises": [
-        "Tìm nguyên hàm của hàm số, ví dụ: ∫(2x + 3)dx, ∫sin x dx.",
-        "Tính tích phân xác định, ví dụ: ∫(0,1) x² dx.",
-        "Tính diện tích hình phẳng giới hạn bởi đồ thị, ví dụ: Diện tích dưới y = x² từ x = 0 đến x = 1.",
-        "Tính thể tích khối tròn xoay, ví dụ: Thể tích khối tròn xoay quanh trục Ox của y = x² từ x = 0 đến x = 1.",
-        "Bài toán thực tiễn: Tính công làm bởi lực biến thiên sử dụng tích phân."
+        "Tìm GTLN, GTNN của hàm số trên đoạn.",
+        "Tìm GTLN, GTNN của hàm số trên khoảng."
       ]
     },
-    "Chủ đề: Phương pháp toạ độ trong không gian": {
-      "chapter": "HÌNH HỌC VÀ ĐO LƯỜNG",
-      "content": "Chủ đề này bao gồm khái niệm vectơ và các phép toán vectơ trong không gian ba chiều, toạ độ của vectơ và biểu thức toạ độ của các phép toán vectơ, cùng các ứng dụng thực tiễn. Học sinh sẽ học về phương trình tổng quát của mặt phẳng, cách thiết lập phương trình, điều kiện song song/vuông góc giữa hai mặt phẳng, và tính khoảng cách từ điểm đến mặt phẳng. Ngoài ra, chủ đề còn đề cập đến phương trình đường thẳng trong không gian, cách thiết lập phương trình, điều kiện vị trí tương đối giữa hai đường thẳng (chéo nhau, cắt nhau, song song, vuông góc), công thức tính góc giữa đường thẳng/mặt phẳng, và phương trình mặt cầu, cùng các ứng dụng thực tiễn.",
+    "Bài 3. Đường tiệm cận của đồ thị hàm số": {
+      "chapter": "ỨNG DỤNG ĐẠO HÀM ĐỂ KHẢO SÁT VÀ VẼ ĐỒ THỊ HÀM SỐ",
+      "content": "Nghiên cứu về các loại đường tiệm cận (đứng, ngang, xiên) của đồ thị hàm số và cách tìm chúng.",
       "objectives": [
-        "Nhận biết được vectơ và các phép toán vectơ trong không gian (tổng và hiệu của hai vectơ, tích của một số với một vectơ, tích vô hướng của hai vectơ).",
-        "Nhận biết được toạ độ của một vectơ đối với hệ trục toạ độ.",
-        "Xác định được độ dài của một vectơ khi biết toạ độ hai đầu mút của nó và biểu thức toạ độ của các phép toán vectơ.",
-        "Xác định được biểu thức toạ độ của các phép toán vectơ.",
-        "Vận dụng được toạ độ của vectơ để giải một số bài toán có liên quan đến thực tiễn.",
-        "Nhận biết được phương trình tổng quát của mặt phẳng.",
-        "Thiết lập được phương trình tổng quát của mặt phẳng trong hệ trục toạ độ Oxyz theo một trong ba cách cơ bản: qua một điểm và biết vectơ pháp tuyến; qua một điểm và biết cặp vectơ chỉ phương (suy ra vectơ pháp tuyến nhờ vào việc tìm vectơ vuông góc với cặp vectơ chỉ phương); qua ba điểm không thẳng hàng.",
-        "Thiết lập được điều kiện để hai mặt phẳng song song, vuông góc với nhau.",
-        "Tính được khoảng cách từ một điểm đến một mặt phẳng bằng phương pháp toạ độ.",
-        "Vận dụng được kiến thức về phương trình mặt phẳng để giải một số bài toán liên quan đến thực tiễn.",
-        "Nhận biết được phương trình chính tắc, phương trình tham số, vectơ chỉ phương của đường thẳng trong không gian.",
-        "Thiết lập được phương trình của đường thẳng trong hệ trục toạ độ theo một trong hai cách cơ bản: qua một điểm và biết một vectơ chỉ phương, qua hai điểm.",
-        "Xác định được điều kiện để hai đường thẳng chéo nhau, cắt nhau, song song hoặc vuông góc với nhau.",
-        "Thiết lập được công thức tính góc giữa hai đường thẳng, giữa đường thẳng và mặt phẳng, giữa hai mặt phẳng.",
-        "Vận dụng được kiến thức về phương trình đường thẳng trong không gian để giải một số bài toán liên quan đến thực tiễn.",
-        "Nhận biết được phương trình mặt cầu.",
-        "Xác định được tâm, bán kính của mặt cầu khi biết phương trình của nó.",
-        "Thiết lập được phương trình của mặt cầu khi biết tâm và bán kính.",
-        "Vận dụng được kiến thức về phương trình mặt cầu để giải một số bài toán liên quan đến thực tiễn."
+        "Tìm tiệm cận đứng, tiệm cận ngang của đồ thị hàm số.",
+        "Tìm tiệm cận xiên của đồ thị hàm số."
       ],
       "common_exercises": [
-        "Tính độ dài vectơ hoặc thực hiện phép toán vectơ trong không gian, ví dụ: Tính tổng hai vectơ u(1,2,3) và v(2,-1,0).",
-        "Thiết lập phương trình mặt phẳng qua ba điểm hoặc qua một điểm với vectơ pháp tuyến.",
-        "Xác định điều kiện song song hoặc vuông góc giữa hai mặt phẳng, ví dụ: x + 2y - z = 1 và 2x - y + 3z = 4.",
-        "Tính khoảng cách từ một điểm đến mặt phẳng, ví dụ: Điểm (1,2,3) đến mặt phẳng x + y + z = 0.",
-        "Thiết lập phương trình đường thẳng trong không gian qua hai điểm hoặc một điểm với vectơ chỉ phương.",
-        "Xác định vị trí tương đối của hai đường thẳng trong không gian (chéo nhau, cắt nhau, song song, vuông góc).",
-        "Tính góc giữa hai đường thẳng hoặc giữa đường thẳng và mặt phẳng.",
-        "Thiết lập phương trình mặt cầu khi biết tâm và bán kính, ví dụ: Tâm (1,0,1), bán kính 2.",
-        "Bài toán thực tiễn: Tính khoảng cách hoặc góc trong các bài toán liên quan đến vị trí vật thể trong không gian."
+        "Tìm tiệm cận đứng, ngang của đồ thị hàm số.",
+        "Tìm tiệm cận xiên của đồ thị hàm số."
       ]
     },
-    "Chủ đề: Thống kê": {
-      "chapter": "THỐNG KÊ VÀ XÁC SUẤT",
-      "content": "Chủ đề này tập trung vào các số đặc trưng đo mức độ phân tán cho mẫu số liệu ghép nhóm (khoảng biến thiên, khoảng tứ phân vị, phương sai, độ lệch chuẩn). Học sinh sẽ tính toán, hiểu ý nghĩa và rút ra kết luận từ các số đặc trưng này trong thực tiễn, đồng thời nhận biết mối liên hệ với các môn học khác trong Chương trình lớp 12.",
+    "Bài 4. Khảo sát sự biến thiên và vẽ đồ thị của hàm số": {
+      "chapter": "ỨNG DỤNG ĐẠO HÀM ĐỂ KHẢO SÁT VÀ VẼ ĐỒ THỊ HÀM SỐ",
+      "content": "Tổng hợp các kiến thức về đạo hàm để khảo sát sự biến thiên và vẽ đồ thị của các hàm số đa thức và phân thức.",
       "objectives": [
-        "Tính được các số đặc trưng đo mức độ phân tán cho mẫu số liệu ghép nhóm: khoảng biến thiên, khoảng tứ phân vị, phương sai, độ lệch chuẩn.",
-        "Giải thích được ý nghĩa và vai trò của các số đặc trưng nói trên của mẫu số liệu trong thực tiễn.",
-        "Chỉ ra được những kết luận nhờ ý nghĩa của các số đặc trưng nói trên của mẫu số liệu trong trường hợp đơn giản.",
-        "Nhận biết được mối liên hệ giữa thống kê với những kiến thức của các môn học khác trong Chương trình lớp 12 và trong thực tiễn."
+        "Thực hiện đầy đủ các bước khảo sát sự biến thiên và vẽ đồ thị của hàm số bậc ba, bậc bốn trùng phương, phân thức hữu tỉ.",
+        "Dựa vào đồ thị hoặc bảng biến thiên để biện luận số nghiệm của phương trình f(x) = m."
       ],
       "common_exercises": [
-        "Tính khoảng biến thiên, khoảng tứ phân vị, phương sai, độ lệch chuẩn cho mẫu số liệu ghép nhóm.",
-        "Phân tích ý nghĩa của các số đặc trưng, ví dụ: So sánh độ lệch chuẩn của hai tập dữ liệu ghép nhóm.",
-        "Rút ra kết luận từ các số đặc trưng, ví dụ: Đánh giá mức độ phân tán của dữ liệu doanh thu."
+        "Khảo sát và vẽ đồ thị hàm số bậc ba, bậc bốn, phân thức.",
+        "Biện luận số nghiệm của phương trình bằng đồ thị."
       ]
     },
-    "Chủ đề: Xác suất": {
-      "chapter": "THỐNG KÊ VÀ XÁC SUẤT",
-      "content": "Chủ đề này bao gồm khái niệm xác suất có điều kiện, ý nghĩa của nó trong thực tiễn, và các quy tắc tính xác suất như công thức xác suất toàn phần và công thức Bayes. Học sinh sẽ học cách sử dụng các công thức này và sơ đồ hình cây để tính toán xác suất có điều kiện trong các bài toán thực tiễn liên quan đến thống kê.",
+    "Bài 5. Ứng dụng đạo hàm để giải quyết một số vấn đề liên quan đến thực tiễn": {
+      "chapter": "ỨNG DỤNG ĐẠO HÀM ĐỂ KHẢO SÁT VÀ VẼ ĐỒ THỊ HÀM SỐ",
+      "content": "Vận dụng đạo hàm và các kiến thức liên quan để giải quyết các bài toán tối ưu hóa trong các lĩnh vực thực tế.",
       "objectives": [
-        "Nhận biết được khái niệm về xác suất có điều kiện.",
-        "Giải thích được ý nghĩa của xác suất có điều kiện trong những tình huống thực tiễn quen thuộc.",
-        "Mô tả được công thức xác suất toàn phần, công thức Bayes thông qua bảng dữ liệu thống kê 2x2 và sơ đồ hình cây.",
-        "Sử dụng được công thức Bayes để tính xác suất có điều kiện và vận dụng vào một số bài toán thực tiễn.",
-        "Sử dụng được sơ đồ hình cây để tính xác suất có điều kiện trong một số bài toán thực tiễn liên quan tới thống kê."
+        "Giải các bài toán về tốc độ thay đổi của một đại lượng.",
+        "Giải các bài toán tối ưu hóa trong thực tế (tối đa hóa lợi nhuận, thể tích; tối thiểu hóa chi phí, diện tích)."
       ],
       "common_exercises": [
-        "Tính xác suất có điều kiện, ví dụ: P(A|B) khi biết P(A), P(B), P(A ∩ B).",
-        "Áp dụng công thức Bayes, ví dụ: Tính xác suất một người mắc bệnh khi xét nghiệm dương tính.",
-        "Sử dụng công thức xác suất toàn phần, ví dụ: Tính xác suất qua các nhánh của sơ đồ hình cây.",
-        "Bài toán thực tiễn: Tính xác suất sự kiện dựa trên dữ liệu thống kê, ví dụ: Xác suất mưa khi trời nhiều mây."
+        "Giải bài toán tối ưu hóa trong hình học.",
+        "Giải bài toán tối ưu hóa trong kinh tế, vật lý."
       ]
     },
-    "Chuyên đề 12.1: Biến ngẫu nhiên rời rạc. Các số đặc trưng của biến ngẫu nhiên rời rạc": {
-      "chapter": "NỘI DUNG CHUYÊN ĐỀ LỚP 12",
-      "content": "Chuyên đề này đi sâu vào khái niệm biến ngẫu nhiên rời rạc, phân bố xác suất của nó, kỳ vọng, phương sai và độ lệch chuẩn. Học sinh sẽ học cách lập, đọc bảng phân bố xác suất và tính toán các số đặc trưng này, giải thích ý nghĩa thực tiễn của chúng để giải quyết các bài toán như tìm phương án năng suất cao hoặc rủi ro thấp. Ngoài ra, chuyên đề còn giới thiệu khái niệm phép thử lặp, công thức Bernoulli và phân bố nhị thức, cùng ứng dụng trong thực tiễn.",
+    "Bài 6. Vecto trong không gian": {
+      "chapter": "VECTƠ VÀ HỆ TRỤC TOẠ ĐỘ TRONG KHÔNG GIAN",
+      "content": "Nghiên cứu các phép toán vectơ trong không gian và các quy tắc hình học liên quan.",
       "objectives": [
-        "Nhận biết được khái niệm biến ngẫu nhiên rời rạc; phân bố xác suất của biến ngẫu nhiên rời rạc; kỳ vọng, phương sai, độ lệch chuẩn của biến ngẫu nhiên rời rạc.",
-        "Lập và đọc được bảng phân bố xác suất của biến ngẫu nhiên rời rạc với một số ít giá trị.",
-        "Tính được kỳ vọng, phương sai và độ lệch chuẩn của biến ngẫu nhiên rời rạc.",
-        "Giải thích được ý nghĩa thực tiễn của các số đặc trưng của biến ngẫu nhiên rời rạc.",
-        "Vận dụng được kiến thức về xác suất, các số đặc trưng của biến ngẫu nhiên rời rạc để giải quyết một số bài toán thực tiễn (ví dụ: tìm phương án cho năng suất cao, tìm phương án để rủi ro là ít nhất,...).",
-        "Nhận biết được khái niệm về phép thử lặp và công thức Bernoulli.",
-        "Nhận biết được khái niệm phân bố nhị thức. Nhận biết được ý nghĩa của phân bố nhị thức.",
-        "Vận dụng phân bố nhị thức để giải một số bài toán liên quan đến thực tiễn."
+        "Thực hiện các phép toán cộng, trừ vectơ, nhân vectơ với một số trong không gian.",
+        "Chứng minh các đẳng thức vectơ, các tính chất hình học bằng phương pháp vectơ (quy tắc hình hộp, trung điểm, trọng tâm)."
       ],
       "common_exercises": [
-        "Lập bảng phân bố xác suất của biến ngẫu nhiên rời rạc, ví dụ: Số mặt sấp khi tung 3 đồng xu.",
-        "Tính kỳ vọng, phương sai, độ lệch chuẩn của biến ngẫu nhiên rời rạc.",
-        "Áp dụng công thức Bernoulli, ví dụ: Tính xác suất đúng 3/5 câu hỏi trắc nghiệm.",
-        "Bài toán thực tiễn: Tính kỳ vọng số sản phẩm lỗi trong lô hàng."
+        "Chứng minh đẳng thức vectơ trong không gian.",
+        "Chứng minh các tính chất hình học bằng vectơ."
       ]
     },
-    "Chuyên đề 12.2: Ứng dụng toán học để giải quyết một số bài toán tối ưu": {
-      "chapter": "NỘI DUNG CHUYÊN ĐỀ LỚP 12",
-      "content": "Chuyên đề này tập trung vào việc vận dụng hệ bất phương trình bậc nhất để giải quyết các bài toán quy hoạch tuyến tính. Học sinh cũng sẽ áp dụng kiến thức về đạo hàm để giải quyết các bài toán tối ưu xuất hiện trong thực tiễn, đặc biệt trong kinh tế, như tối ưu hoá khoảng cách, thời gian, chi phí sản xuất, hay lợi nhuận.",
+    "Bài 7. Hệ trục toạ độ trong không gian": {
+      "chapter": "VECTƠ VÀ HỆ TRỤC TOẠ ĐỘ TRONG KHÔNG GIAN",
+      "content": "Tìm hiểu về hệ trục tọa độ Oxyz và cách xác định tọa độ của điểm, vectơ trong không gian.",
       "objectives": [
-        "Vận dụng được các kiến thức về hệ bất phương trình bậc nhất để giải quyết một số bài toán quy hoạch tuyến tính.",
-        "Vận dụng được các kiến thức về đạo hàm để giải quyết một số bài toán tối ưu xuất hiện trong thực tiễn (ví dụ: bài toán tối ưu liên quan đến khoảng cách, thời gian,...).",
-        "Vận dụng được các kiến thức về đạo hàm để giải quyết một số bài toán tối ưu trong kinh tế (ví dụ: bài toán tối ưu hoá chi phí sản xuất, bài toán tối ưu hoá lợi nhuận,...)."
+        "Xác định tọa độ của điểm, vectơ trong không gian Oxyz.",
+        "Tìm tọa độ điểm thỏa mãn điều kiện hình học cho trước."
       ],
       "common_exercises": [
-        "Giải bài toán quy hoạch tuyến tính, ví dụ: Tối ưu F = 3x + 4y với ràng buộc x + y ≤ 5, x ≥ 0, y ≥ 0.",
-        "Tối ưu hóa bằng đạo hàm, ví dụ: Tìm kích thước hộp tối ưu để chứa thể tích lớn nhất.",
-        "Bài toán thực tiễn: Tối ưu chi phí sản xuất hoặc lợi nhuận dựa trên hàm chi phí."
+        "Xác định tọa độ điểm, vectơ trong không gian.",
+        "Tìm tọa độ điểm thỏa mãn điều kiện."
       ]
     },
-    "Chuyên đề 12.3: Ứng dụng toán học trong một số vấn đề liên quan đến tài chính": {
-      "chapter": "NỘI DUNG CHUYÊN ĐỀ LỚP 12",
-      "content": "Chuyên đề này khám phá ứng dụng toán học trong các vấn đề liên quan đến tài chính. Học sinh sẽ tìm hiểu về tiền tệ, thiết lập kế hoạch tài chính cá nhân dài hạn, nhận biết các vấn đề về lãi suất và vay nợ của các tổ chức tín dụng. Đặc biệt, chuyên đề tập trung vào cách tính lãi suất tiền gửi tiết kiệm, lãi suất thẻ tín dụng, phí giao dịch, và hiểu kết quả của việc trả nợ đúng hạn. Học sinh cũng sẽ vận dụng kiến thức về tỉ số, tỉ số phần trăm, lũy thừa, lôgarit, đạo hàm để giải quyết các vấn đề về lãi suất, vay nợ và đầu tư, đồng thời giải thích sự biến động giá trị đầu tư dưới tác động của lạm phát.",
+    "Bài 8. Biểu thức toạ độ của các phép toán vecto": {
+      "chapter": "VECTƠ VÀ HỆ TRỤC TOẠ ĐỘ TRONG KHÔNG GIAN",
+      "content": "Nghiên cứu cách thực hiện các phép toán vectơ, tính tích vô hướng, tích có hướng thông qua tọa độ và các ứng dụng của chúng.",
       "objectives": [
-        "Nhận biết được một số vấn đề về tiền tệ.",
-        "Thiết lập được kế hoạch tài chính cá nhân cho các nhu cầu dài hạn như giáo dục hoặc sống tự lập.",
-        "Nhận biết được một số vấn đề về lãi suất và vay nợ của các tổ chức tín dụng (như ngân hàng, quỹ tín dụng,...).",
-        "Tính được lãi suất được hưởng qua tiền tiết kiệm và các giá trị thực chất có tính đến lạm phát.",
-        "Tính được lãi suất cần trả cho thẻ tín dụng, phí sử dụng thẻ (bao gồm các giao dịch).",
-        "Nhận biết được kết quả của việc trả các khoản tiền nợ đúng thời hạn, bao gồm hồ sơ tín dụng và giá trị tín dụng.",
-        "Vận dụng được kiến thức toán học (như các kiến thức về tỉ số, tỉ số phần trăm, phép tính lũy thừa và lôgarit) trong việc giải quyết một số vấn đề về lãi suất và vay nợ của các tổ chức tín dụng (như ngân hàng, quỹ tín dụng,...).",
-        "Nhận biết được một số vấn đề về đầu tư.",
-        "Vận dụng được kiến thức toán học (như các kiến thức về tỉ số, tỉ số phần trăm, đạo hàm, cách tìm giá trị cực trị của biểu thức) trong việc giải quyết một số vấn đề về đầu tư.",
-        "Giải thích được rằng các khoản đầu tư có thể tăng giá trị, và cũng như tiền, có thể giảm giá trị nếu lạm phát vượt tỉ lệ lãi suất."
+        "Thực hiện các phép toán vectơ thông qua tọa độ.",
+        "Tính độ dài đoạn thẳng, khoảng cách giữa hai điểm.",
+        "Tính tích vô hướng, tích có hướng của hai vectơ.",
+        "Ứng dụng tích có hướng để tính diện tích tam giác, thể tích khối hộp, khối tứ diện.",
+        "Kiểm tra sự đồng phẳng của ba vectơ, sự đồng phẳng của bốn điểm."
       ],
       "common_exercises": [
-        "Tính lãi suất đơn hoặc lãi suất kép cho tiền gửi tiết kiệm, ví dụ: 10 triệu với lãi suất 5%/năm trong 3 năm.",
-        "Tính lãi suất thẻ tín dụng hoặc phí giao dịch, ví dụ: Tính lãi suất 2%/tháng cho khoản vay 5 triệu.",
-        "Xác định giá trị thực của khoản đầu tư khi có lạm phát, ví dụ: Đầu tư 100 triệu với lãi 6%, lạm phát 4%.",
-        "Bài toán thực tiễn: Lập kế hoạch tài chính cá nhân dựa trên lãi suất và lạm phát."
+        "Tính tích vô hướng và tích có hướng.",
+        "Ứng dụng tích có hướng để tính diện tích, thể tích.",
+        "Kiểm tra sự đồng phẳng."
+      ]
+    },
+    "Bài 9. Khoảng biến thiên và khoảng tứ phân vị": {
+      "chapter": "THỐNG KÊ",
+      "content": "Nghiên cứu cách tính và ý nghĩa của khoảng biến thiên và khoảng tứ phân vị cho mẫu số liệu ghép nhóm.",
+      "objectives": [
+        "Tính khoảng biến thiên, khoảng tứ phân vị cho mẫu số liệu ghép nhóm."
+      ],
+      "common_exercises": [
+        "Tính khoảng biến thiên và khoảng tứ phân vị.",
+        "Phân tích ý nghĩa của các số đặc trưng đo độ phân tán."
+      ]
+    },
+    "Bài 10. Phương sai và độ lệch chuẩn": {
+      "chapter": "THỐNG KÊ",
+      "content": "Nghiên cứu cách tính và ý nghĩa của phương sai và độ lệch chuẩn cho mẫu số liệu ghép nhóm để so sánh mức độ phân tán.",
+      "objectives": [
+        "Tính phương sai, độ lệch chuẩn cho mẫu số liệu ghép nhóm.",
+        "So sánh mức độ phân tán của hai hay nhiều mẫu số liệu ghép nhóm."
+      ],
+      "common_exercises": [
+        "Tính phương sai và độ lệch chuẩn.",
+        "So sánh độ phân tán của các mẫu số liệu."
+      ]
+    },
+    "Bài 11. Nguyên hàm": {
+      "chapter": "NGUYÊN HÀM - TÍCH PHÂN VÀ ỨNG DỤNG",
+      "content": "Tìm hiểu về khái niệm nguyên hàm và các phương pháp tìm nguyên hàm của một hàm số.",
+      "objectives": [
+        "Tìm nguyên hàm của hàm số bằng cách sử dụng bảng nguyên hàm cơ bản và các tính chất.",
+        "Tìm một nguyên hàm của hàm số thỏa mãn điều kiện ban đầu."
+      ],
+      "common_exercises": [
+        "Tìm nguyên hàm bằng bảng và tính chất.",
+        "Tìm nguyên hàm thỏa mãn điều kiện cho trước."
+      ]
+    },
+    "Bài 12. Tích phân": {
+      "chapter": "NGUYÊN HÀM - TÍCH PHÂN VÀ ỨNG DỤNG",
+      "content": "Nghiên cứu về định nghĩa, tính chất của tích phân và các phương pháp tính tích phân như đổi biến số, tích phân từng phần.",
+      "objectives": [
+        "Tính tích phân bằng định nghĩa (công thức Newton-Leibniz).",
+        "Vận dụng các tính chất của tích phân để tính toán.",
+        "Tính tích phân bằng phương pháp đổi biến số.",
+        "Tính tích phân bằng phương pháp tích phân từng phần."
+      ],
+      "common_exercises": [
+        "Tính tích phân bằng phương pháp đổi biến số.",
+        "Tính tích phân bằng phương pháp từng phần."
+      ]
+    },
+    "Bài 13. Ứng dụng hình học của tích phân": {
+      "chapter": "NGUYÊN HÀM - TÍCH PHÂN VÀ ỨNG DỤNG",
+      "content": "Vận dụng tích phân để tính diện tích hình phẳng và thể tích của vật thể, khối tròn xoay.",
+      "objectives": [
+        "Tính diện tích hình phẳng giới hạn bởi một đồ thị hàm số và trục hoành.",
+        "Tính diện tích hình phẳng giới hạn bởi hai đồ thị hàm số.",
+        "Tính thể tích khối tròn xoay khi quay hình phẳng giới hạn bởi một đồ thị, trục Ox quanh trục Ox.",
+        "Tính thể tích vật thể khi biết diện tích mặt cắt ngang."
+      ],
+      "common_exercises": [
+        "Tính diện tích hình phẳng.",
+        "Tính thể tích khối tròn xoay."
+      ]
+    },
+    "Bài 14. Phương trình mặt phẳng": {
+      "chapter": "PHƯƠNG PHÁP TỌA ĐỘ TRONG KHÔNG GIAN",
+      "content": "Nghiên cứu cách viết phương trình mặt phẳng trong không gian, xét vị trí tương đối và tính khoảng cách.",
+      "objectives": [
+        "Viết phương trình mặt phẳng khi biết một điểm và một vectơ pháp tuyến.",
+        "Viết phương trình mặt phẳng đi qua ba điểm không thẳng hàng.",
+        "Viết phương trình mặt phẳng trung trực của một đoạn thẳng.",
+        "Xét vị trí tương đối giữa hai mặt phẳng.",
+        "Tính khoảng cách từ một điểm đến một mặt phẳng."
+      ],
+      "common_exercises": [
+        "Viết phương trình mặt phẳng.",
+        "Tính khoảng cách từ điểm đến mặt phẳng."
+      ]
+    },
+    "Bài 15. Phương trình đường thẳng trong không gian": {
+      "chapter": "PHƯƠNG PHÁP TỌA ĐỘ TRONG KHÔNG GIAN",
+      "content": "Nghiên cứu cách viết phương trình tham số, chính tắc của đường thẳng và xét vị trí tương đối giữa hai đường thẳng trong không gian.",
+      "objectives": [
+        "Viết phương trình tham số, chính tắc của đường thẳng.",
+        "Xét vị trí tương đối giữa hai đường thẳng.",
+        "Viết phương trình đường thẳng đi qua một điểm và vuông góc với một mặt phẳng."
+      ],
+      "common_exercises": [
+        "Viết phương trình đường thẳng.",
+        "Xét vị trí tương đối của hai đường thẳng."
+      ]
+    },
+    "Bài 16. Công thức tính góc trong không gian": {
+      "chapter": "PHƯƠNG PHÁP TỌA ĐỘ TRONG KHÔNG GIAN",
+      "content": "Nghiên cứu các công thức tính góc giữa hai đường thẳng, giữa đường thẳng và mặt phẳng, và giữa hai mặt phẳng bằng phương pháp tọa độ.",
+      "objectives": [
+        "Tính góc giữa hai đường thẳng.",
+        "Tính góc giữa đường thẳng và mặt phẳng.",
+        "Tính góc giữa hai mặt phẳng."
+      ],
+      "common_exercises": [
+        "Tính góc giữa đường thẳng và mặt phẳng.",
+        "Tính góc giữa hai mặt phẳng."
+      ]
+    },
+    "Bài 17. Phương trình mặt cầu": {
+      "chapter": "PHƯƠNG PHÁP TỌA ĐỘ TRONG KHÔNG GIAN",
+      "content": "Nghiên cứu về phương trình mặt cầu và xét vị trí tương đối của mặt cầu với điểm, đường thẳng, mặt phẳng.",
+      "objectives": [
+        "Viết phương trình mặt cầu khi biết tâm và bán kính.",
+        "Xác định tâm và bán kính của mặt cầu từ phương trình.",
+        "Xét vị trí tương đối của điểm, đường thẳng, mặt phẳng với mặt cầu."
+      ],
+      "common_exercises": [
+        "Viết phương trình mặt cầu.",
+        "Xét vị trí tương đối của mặt cầu và mặt phẳng."
+      ]
+    },
+    "Bài 18. Xác suất có điều kiện": {
+      "chapter": "XÁC SUẤT CÓ ĐIỀU KIỆN",
+      "content": "Tìm hiểu về khái niệm xác suất có điều kiện và công thức nhân xác suất cho hai biến cố bất kì.",
+      "objectives": [
+        "Tính xác suất có điều kiện của một biến cố.",
+        "Áp dụng công thức nhân xác suất cho hai biến cố bất kì.",
+        "Phân tích và giải các bài toán xác suất từ bảng dữ liệu thống kê 2x2."
+      ],
+      "common_exercises": [
+        "Tính xác suất có điều kiện.",
+        "Sử dụng công thức nhân xác suất."
+      ]
+    },
+    "Bài 19. Công thức xác suất toàn phần và công thức Bayes": {
+      "chapter": "XÁC SUẤT CÓ ĐIỀU KIỆN",
+      "content": "Nghiên cứu và vận dụng công thức xác suất toàn phần và công thức Bayes để giải quyết các bài toán xác suất phức tạp.",
+      "objectives": [
+        "Vận dụng công thức xác suất toàn phần để tính xác suất của một biến cố.",
+        "Vận dụng công thức Bayes để cập nhật xác suất của một giả thuyết khi có thông tin mới."
+      ],
+      "common_exercises": [
+        "Sử dụng công thức xác suất toàn phần.",
+        "Sử dụng công thức Bayes."
       ]
     }
   }

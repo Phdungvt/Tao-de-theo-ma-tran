@@ -54,7 +54,7 @@
             font-weight: 600;
             border-radius: 8px;
         }
-        .btn-outline-secondary, .btn-outline-danger, .btn-outline-primary {
+        .btn-outline-secondary, .btn-outline-danger, .btn-outline-primary, .btn-outline-info {
             border-radius: 8px;
         }
         .exam-result {
@@ -113,7 +113,6 @@
             padding-left: 15px;
             margin-bottom: 15px;
         }
-        .structure-item p { margin-bottom: 0.25rem; }
         .nav-tabs .nav-link.active {
             font-weight: bold;
             color: var(--primary-color);
@@ -209,9 +208,20 @@
                         <div class="col-md-6">
                             <label for="subjectSelect" class="form-label">Chọn Môn học</label>
                             <select class="form-select" id="subjectSelect">
-                                <option value="toan" selected>Toán học</option>
-                                <option value="ly">Vật lí</option>
-                                <option value="su">Lịch sử</option>
+                                <option value="Toan" selected>Toán học</option>
+                                <option value="Li">Vật lí</option>
+                                <option value="Hoa">Hóa học</option>
+                                <option value="Sinh">Sinh học</option>
+                                <option value="KHTN">Khoa học tự nhiên</option>
+                                <option value="Su">Lịch sử (THPT: 10,11,12)</option>
+                                <option value="Su_c2">Lịch sử (THCS: 6,7,8,9)</option>
+                                <option value="Dia">Địa lí (THPT: 10,11,12)</option>
+                                <option value="Dia_c2">Địa lí (THCS: 6,7,8,9)</option>
+                                <option value="GDCD">Giáo dục Công dân</option>
+                                <option value="GDKTPL">GDKT & PL</option>
+                                <option value="Tin">Tin học</option>
+                                <option value="CNCN">Công nghệ công nghiệp</option>
+                                <option value="CNNN">Công nghệ nông nghiệp</option>
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -226,26 +236,28 @@
                                 <option selected disabled>-- Chọn lớp trước --</option>
                             </select>
                         </div>
+                        
+                        <!-- NEW objectives management section -->
                         <div class="col-md-12" id="objectivesContainer" style="display: none;">
-                            <label for="objectivesCheckboxContainer" class="form-label">Chọn Yêu cầu cần đạt</label>
-                            <div id="objectivesCheckboxContainer">
-                                <!-- Objectives will be dynamically inserted here -->
-                            </div>
-                            
-                            <div class="mt-3 p-3 bg-light border rounded-2">
-                                <label for="customObjectivesTextarea" class="form-label">Thêm yêu cầu cần đạt mới (hoặc để AI gợi ý)</label>
-                                <textarea class="form-control" id="customObjectivesTextarea" rows="4" placeholder="Nhập mỗi yêu cầu trên một dòng..."></textarea>
-                                <div class="mt-2">
-                                    <button class="btn btn-sm btn-outline-primary" id="saveCustomObjectivesBtn">
-                                        <i class="bi bi-save"></i> Thêm yêu cầu
-                                    </button>
+                             <div class="p-3 bg-light border rounded-2">
+                                <label for="newObjectiveInput" class="form-label">Thêm yêu cầu cần đạt mới (hoặc để AI gợi ý)</label>
+                                <div class="input-group mb-2">
+                                    <input type="text" class="form-control" id="newObjectiveInput" placeholder="Nhập một yêu cầu cần đạt...">
+                                    <button class="btn btn-outline-primary" type="button" id="addObjectiveBtn">Thêm</button>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <p class="text-muted small mb-0">Chọn các yêu cầu để thêm vào cấu trúc đề thi:</p>
                                     <button class="btn btn-sm btn-outline-success" id="suggestObjectivesBtn">
-                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="suggestObjectivesSpinner"></span>
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                         ✨ Gợi ý Yêu cầu
                                     </button>
                                 </div>
-                            </div>
+                                <div id="objectivesCheckboxContainer">
+                                    <!-- Objectives will be dynamically rendered here -->
+                                </div>
+                             </div>
                         </div>
+
                         <div class="col-md-6">
                             <label for="questionNum" class="form-label">Số câu hỏi</label>
                             <input type="number" class="form-control" id="questionNum" min="1" max="50" value="4">
@@ -277,11 +289,19 @@
 
                 <!-- Card for knowledge sources -->
                 <div class="card p-4 mb-4">
-                    <h3 class="mb-4"><i class="bi bi-book"></i> Nguồn kiến thức</h3>
-                    <div class="form-check form-switch mb-3">
-                        <input class="form-check-input" type="checkbox" role="switch" id="useTextbook" checked>
-                        <label class="form-check-label" for="useTextbook">Sử dụng dữ liệu Sách giáo khoa (mặc định là môn đã chọn)</label>
+                    <h3 class="mb-4"><i class="bi bi-book"></i> Nguồn Kiến thức</h3>
+                     <p class="text-muted small">Đây là nơi cung cấp thêm kiến thức tham khảo để ra đề sát với yêu cầu thực tế, tránh lang mang.</p>
+                    
+                    <div class="mb-2">
+                         <label for="fileUploadInput" class="btn btn-outline-primary w-100">
+                            <i class="bi bi-upload"></i> Thêm tài liệu cho AI tham khảo
+                         </label>
+                         <input class="form-control d-none" type="file" id="fileUploadInput" multiple accept="image/*,.pdf,.tex,.doc,.docx,.txt">
                     </div>
+                    <div id="fileUploadList" class="mb-3">
+                        <!-- List of uploaded files will appear here -->
+                    </div>
+
                     <div>
                         <label for="webLinks" class="form-label">Nguồn kiến thức bổ sung (URL)</label>
                         <textarea class="form-control" id="webLinks" rows="3" placeholder="Dán các link web vào đây, mỗi link một dòng..."></textarea>
@@ -295,9 +315,9 @@
                     <div class="mb-3">
                         <label for="formatSelect" class="form-label">Định dạng công thức toán học</label>
                         <select class="form-select" id="formatSelect">
-                            <option value="normal" selected>Văn bản thường (Normal)</option>
-                            <option value="mathtype">Tương thích MathType (MathType compatible)</option>
-                            <option value="latex">LaTeX</option>
+                            <option value="normal" selected>Văn bản thường</option>
+                            <option value="mathtype">Mathype</option>
+                            <option value="latex">Latex</option>
                         </select>
                         <small class="form-text text-muted">Chọn định dạng cho các công thức toán học trong đề thi.</small>
                     </div>
@@ -322,11 +342,15 @@
                 <div class="card p-4 mb-4">
                     <h3 class="mb-4"><i class="bi bi-tools"></i> Quản lý dữ liệu</h3>
                      <p class="text-muted">Các thay đổi của bạn với "Yêu cầu cần đạt" sẽ được lưu tự động trên trình duyệt này. Sử dụng các nút dưới đây để quản lý dữ liệu môn học.</p>
-                    <div class="d-grid gap-2 d-md-flex">
+                    <div class="d-grid gap-2 d-md-flex justify-content-start">
                         <button id="exportDataFileBtn" class="btn btn-outline-secondary">
                             <i class="bi bi-download"></i> Sao lưu dữ liệu ra tệp
                         </button>
-                         <button id="resetDataBtn" class="btn btn-outline-danger">
+                        <label for="importDataFileInput" class="btn btn-outline-info">
+                             <i class="bi bi-upload"></i> Nạp dữ liệu từ tệp
+                        </label>
+                        <input type="file" id="importDataFileInput" class="d-none" accept=".json">
+                         <button id="resetDataBtn" class="btn btn-outline-danger ms-md-auto">
                             <i class="bi bi-arrow-counterclockwise"></i> Reset về dữ liệu gốc
                         </button>
                     </div>
