@@ -11,7 +11,7 @@ import { getTikzSnippetsForQuery } from './tikz-snippets.ts';
 // --- Global State ---
 let examStructure = [];
 let currentApiKey = '';
-let currentSubject = 'toan';
+let currentSubject = 'Toan';
 let generatedQuestions = [];
 let examData = {};
 let fullResponseText = '';
