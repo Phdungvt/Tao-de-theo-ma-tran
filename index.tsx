@@ -4,20 +4,18 @@
 */
 declare var bootstrap: any;
 declare var MathJax: any;
-declare var docx: any; // For docx library
-declare var saveAs: any; // For FileSaver.js
 
-import { GoogleGenAI, GenerateContentResponse, Type } from "@google/genai";
+import { GoogleGenAI } from "@google/genai";
 import { getTikzSnippetsForQuery } from './tikz-snippets.ts';
 
 // --- Global State ---
-let examStructure: any[] = [];
+let examStructure = [];
 let currentApiKey = '';
-let currentSubject = 'Toan';
-let generatedQuestions: any[] = [];
-let examData: { [key: string]: any } = {};
+let currentSubject = 'toan';
+let generatedQuestions = [];
+let examData = {};
 let fullResponseText = '';
-let ai: GoogleGenAI; // GoogleGenAI instance
+let ai; // GoogleGenAI instance
 let uploadedFiles: File[] = [];
 
 
@@ -34,6 +32,7 @@ const structureContainer = document.getElementById('structureContainer') as HTML
 const structureList = document.getElementById('structureList') as HTMLElement;
 const generateFinalExamBtn = document.getElementById('generateFinalExamBtn') as HTMLButtonElement;
 const generateText = document.getElementById('generateText') as HTMLElement;
+const generateSpinner = document.getElementById('generateSpinner') as HTMLElement;
 const resultSection = document.getElementById('resultSection') as HTMLElement;
 const examAndAnswerContent = document.getElementById('examAndAnswerContent') as HTMLElement;
 const examMatrixContent = document.getElementById('examMatrixContent') as HTMLElement;
@@ -43,12 +42,13 @@ const exportDocxBtn = document.getElementById('exportDocxBtn') as HTMLAnchorElem
 const exportTexBtn = document.getElementById('exportTexBtn') as HTMLAnchorElement;
 const newExamBtn = document.getElementById('newExamBtn') as HTMLButtonElement;
 const messageBox = document.getElementById('messageBox') as HTMLElement;
-const webLinks = document.getElementById('webLinks') as HTMLTextAreaElement;
+const webLinks = document.getElementById('webLinks') as HTMLElement;
 const apiKeyInput = document.getElementById('apiKeyInput') as HTMLInputElement;
 const rememberApiKey = document.getElementById('rememberApiKey') as HTMLInputElement;
 const saveApiKeyBtn = document.getElementById('saveApiKeyBtn') as HTMLButtonElement;
 const apiKeyMessage = document.getElementById('apiKeyMessage') as HTMLElement;
 const saveApiKeyText = document.getElementById('saveApiKeyText') as HTMLElement;
+const apiKeySpinner = document.getElementById('apiKeySpinner') as HTMLElement;
 const apiKeyModalEl = document.getElementById('apiKeyModal') as HTMLElement;
 const apiKeyModal = apiKeyModalEl ? new bootstrap.Modal(apiKeyModalEl) : null;
 const exportDataFileBtn = document.getElementById('exportDataFileBtn') as HTMLButtonElement;
@@ -59,16 +59,14 @@ const generateExplanationsBtn = document.getElementById('generateExplanationsBtn
 const explanationsContainer = document.getElementById('explanationsContainer') as HTMLElement;
 const examTitleInput = document.getElementById('examTitleInput') as HTMLInputElement;
 const suggestTitleBtn = document.getElementById('suggestTitleBtn') as HTMLButtonElement;
+const suggestTitleSpinner = document.getElementById('suggestTitleSpinner') as HTMLElement;
 const resetDataBtn = document.getElementById('resetDataBtn') as HTMLButtonElement;
 const fileUploadInput = document.getElementById('fileUploadInput') as HTMLInputElement;
 const fileUploadList = document.getElementById('fileUploadList') as HTMLElement;
-const questionNumInput = document.getElementById('questionNum') as HTMLInputElement;
-const difficultySelect = document.getElementById('difficultySelect') as HTMLSelectElement;
-const typeSelect = document.getElementById('typeSelect') as HTMLSelectElement;
 
 
 // --- UTILITY FUNCTIONS ---
-function showAlert(message: string, type = 'info', duration = 5000) {
+function showAlert(message, type = 'info', duration = 5000) {
     if (!messageBox) return;
     const wrapper = document.createElement('div');
     wrapper.innerHTML = `
@@ -86,24 +84,22 @@ function showAlert(message: string, type = 'info', duration = 5000) {
 }
 
 function setLoadingState(button: HTMLButtonElement, isLoading: boolean) {
-    if (!button) return;
     button.disabled = isLoading;
-    const spinner = button.querySelector('.spinner-border, .loading-spinner');
 
     if (isLoading) {
         button.classList.add('is-loading');
-        if (spinner) (spinner as HTMLElement).style.display = 'inline-block';
     } else {
         button.classList.remove('is-loading');
-        if (spinner) (spinner as HTMLElement).style.display = 'none';
     }
 
+    // Handle text changes for specific buttons
     if (button === saveApiKeyBtn) {
         saveApiKeyText.textContent = isLoading ? 'Đang kiểm tra...' : 'Lưu và Kiểm tra';
     } else if (button === generateFinalExamBtn) {
         generateText.textContent = isLoading ? 'Đang tạo...' : 'Tạo đề thi, Ma trận & Đặc tả';
     }
 }
+
 
 // --- INITIALIZATION ---
 window.addEventListener('DOMContentLoaded', async () => {
@@ -113,10 +109,9 @@ window.addEventListener('DOMContentLoaded', async () => {
     renderStructure();
 });
 
-async function loadSubjectData(subject: string) {
+async function loadSubjectData(subject) {
     currentSubject = subject;
-    // Use a versioned key to force refresh if data structure changes
-    const localStorageKey = `examData_v4_${subject}`;
+    const localStorageKey = `examData_${subject}`;
 
     try {
         const savedData = localStorage.getItem(localStorageKey);
@@ -136,16 +131,15 @@ async function loadSubjectData(subject: string) {
         populateGradeSelect();
         resetLessonAndObjectives();
     } catch (e) {
-        showAlert(`Lỗi nghiêm trọng: Không thể tải tệp dữ liệu \`${subject}.json\`. Vui lòng đảm bảo tệp này tồn tại và có định dạng JSON hợp lệ.`, 'danger');
+        showAlert(`Lỗi nghiêm trọng: Không thể tải tệp dữ liệu \`${subject}.json\`. Vui lòng đảm bảo tệp này tồn tại.`, 'danger');
         console.error("Fetch error:", e);
         if (gradeSelect) gradeSelect.disabled = true;
     }
 }
 
-
 function saveDataToLocalStorage() {
     if (!currentSubject) return;
-    const localStorageKey = `examData_v4_${currentSubject}`;
+    const localStorageKey = `examData_${currentSubject}`;
     try {
         localStorage.setItem(localStorageKey, JSON.stringify(examData));
     } catch (e) {
@@ -170,19 +164,11 @@ function loadSavedApiKey() {
         rememberApiKey.checked = true;
         currentApiKey = savedApiKey;
         ai = new GoogleGenAI({ apiKey: currentApiKey });
-    } else {
-        apiKeyModal?.show();
     }
 }
 
 function populateGradeSelect() {
-    if (!gradeSelect) return;
     gradeSelect.innerHTML = '<option selected disabled>-- Chọn lớp --</option>';
-    if (!examData || Object.keys(examData).length === 0) {
-         showAlert(`Dữ liệu cho môn ${currentSubject} trống hoặc không hợp lệ.`, 'warning');
-         gradeSelect.disabled = true;
-         return;
-    }
     for (const grade in examData) {
         const option = document.createElement('option');
         option.value = grade;
@@ -190,8 +176,6 @@ function populateGradeSelect() {
         gradeSelect.appendChild(option);
     }
     gradeSelect.disabled = false;
-    // Reset subsequent dropdowns
-    handleGradeChange();
 }
 
 function setupEventListeners() {
@@ -202,8 +186,8 @@ function setupEventListeners() {
     generateFinalExamBtn?.addEventListener('click', handleGenerateExam);
     newExamBtn?.addEventListener('click', handleNewExam);
     copyBtn?.addEventListener('click', handleCopyContent);
-    exportDocxBtn?.addEventListener('click', (e) => { e.preventDefault(); handleExportToDocx(); });
-    exportTexBtn?.addEventListener('click', (e) => { e.preventDefault(); handleExportToTex(); });
+    exportDocxBtn?.addEventListener('click', handleExportToDocx);
+    exportTexBtn?.addEventListener('click', handleExportToTex);
     saveApiKeyBtn?.addEventListener('click', handleSaveApiKey);
     addObjectiveBtn?.addEventListener('click', handleAddObjective);
     newObjectiveInput?.addEventListener('keydown', (e) => {
@@ -220,482 +204,6 @@ function setupEventListeners() {
     suggestTitleBtn?.addEventListener('click', handleSuggestTitle);
     fileUploadInput?.addEventListener('change', handleFileUpload);
 }
-
-// --- Event Handlers ---
-
-async function handleSubjectChange() {
-    if (!subjectSelect) return;
-    const newSubject = subjectSelect.value;
-    if (newSubject !== currentSubject) {
-        // Reset state for the new subject
-        examStructure = [];
-        generatedQuestions = [];
-        fullResponseText = '';
-        if (explanationsContainer) {
-            explanationsContainer.innerHTML = '';
-            explanationsContainer.style.display = 'none';
-        }
-        if (resultSection) {
-            resultSection.style.display = 'none';
-        }
-        if (examTitleInput) {
-            examTitleInput.value = '';
-        }
-        uploadedFiles = [];
-        renderUploadedFiles();
-        await loadSubjectData(newSubject);
-        renderStructure();
-    }
-}
-
-function handleGradeChange() {
-    if (!gradeSelect || !lessonSelect) return;
-    const selectedGrade = gradeSelect.value;
-
-    lessonSelect.innerHTML = '<option selected disabled>-- Chọn bài học --</option>';
-    resetLessonAndObjectives(); // Hide objectives
-
-    if (selectedGrade && examData[selectedGrade]) {
-        for (const lesson in examData[selectedGrade]) {
-            const option = document.createElement('option');
-            option.value = lesson;
-            option.textContent = lesson;
-            lessonSelect.appendChild(option);
-        }
-        lessonSelect.disabled = false;
-    } else {
-        lessonSelect.disabled = true;
-    }
-    handleLessonChange();
-}
-
-function handleLessonChange() {
-    if (!gradeSelect || !lessonSelect || !objectivesContainer || !objectivesCheckboxContainer) return;
-    const selectedGrade = gradeSelect.value;
-    const selectedLesson = lessonSelect.value;
-
-    if (selectedGrade && selectedLesson && examData[selectedGrade]?.[selectedLesson]?.objectives) {
-        objectivesContainer.style.display = 'block';
-        renderObjectives();
-    } else {
-        objectivesContainer.style.display = 'none';
-        objectivesCheckboxContainer.innerHTML = '';
-    }
-}
-
-function handleAddExamPart() {
-    const selectedObjectives = Array.from(objectivesCheckboxContainer.querySelectorAll<HTMLInputElement>('input[type="checkbox"]:checked'))
-        .map(cb => cb.value);
-
-    if (!gradeSelect.value || !lessonSelect.value || selectedObjectives.length === 0) {
-        showAlert('Vui lòng chọn Lớp, Bài học và ít nhất một Yêu cầu cần đạt.', 'warning');
-        return;
-    }
-
-    const newPart = {
-        id: Date.now(),
-        grade: gradeSelect.value,
-        lesson: lessonSelect.value,
-        numQuestions: parseInt(questionNumInput.value, 10) || 1,
-        difficulty: difficultySelect.value,
-        type: typeSelect.value,
-        objectives: selectedObjectives,
-    };
-
-    examStructure.push(newPart);
-    renderStructure();
-    showAlert(`Đã thêm ${newPart.numQuestions} câu về "${newPart.lesson}" vào cấu trúc đề.`, 'success');
-}
-
-async function handleGenerateExam() {
-    if (!ai) {
-        showAlert('Vui lòng nhập và lưu API Key hợp lệ trước khi tạo đề.', 'danger');
-        apiKeyModal?.show();
-        return;
-    }
-    if (examStructure.length === 0) {
-        showAlert('Vui lòng thêm ít nhất một phần vào cấu trúc đề thi.', 'warning');
-        return;
-    }
-
-    setLoadingState(generateFinalExamBtn, true);
-    resultSection.style.display = 'none';
-    if (explanationsContainer) explanationsContainer.innerHTML = '';
-    
-    // Clear previous results
-    examAndAnswerContent.innerHTML = '<div class="text-center"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div><p class="mt-2">AI đang tư duy, vui lòng chờ trong giây lát...</p></div>';
-    examMatrixContent.innerHTML = '';
-    examSpecContent.innerHTML = '';
-    
-    try {
-        const fileParts = await Promise.all(uploadedFiles.map(async (file) => {
-             const base64Data = (await readFileAsBase64(file)).split(',')[1];
-             return {
-                 inlineData: {
-                     mimeType: file.type,
-                     data: base64Data,
-                 },
-             };
-         }));
-        
-        let prompt = `Bạn là một trợ lý AI chuyên tạo đề kiểm tra cho giáo viên Việt Nam. Dựa vào cấu trúc dưới đây, hãy tạo ra một đề kiểm tra hoàn chỉnh, bao gồm câu hỏi và đáp án chi tiết.
-        
-        **Thông tin đề thi:**
-        - Tên đề thi: ${examTitleInput.value || "Đề kiểm tra"}
-        - Môn học: ${subjectSelect.options[subjectSelect.selectedIndex].text}
-        - Định dạng công thức toán học: ${formatSelect.value}
-        
-        **Cấu trúc chi tiết:**
-        ${examStructure.map(part => `- ${part.numQuestions} câu hỏi loại "${part.type}" về bài "${part.lesson}", mức độ "${part.difficulty}", yêu cầu: ${part.objectives.join(', ')}`).join('\n')}
-
-        **Yêu cầu đầu ra:**
-        1.  Trình bày rõ ràng, phân cách giữa câu hỏi, các lựa chọn (nếu có), và đáp án.
-        2.  Sử dụng Tiếng Việt có dấu, tuân thủ đúng ngữ pháp và thuật ngữ chuyên ngành.
-        3.  Với câu hỏi trắc nghiệm, đáp án phải có dạng "Câu 1: A", "Câu 2: B",...
-        4.  Với câu hỏi tự luận, đáp án cần có thang điểm gợi ý.
-        5.  Nếu môn học là Toán, Vật lí, Hóa học, hãy sử dụng định dạng công thức đã chọn ở trên.
-        6.  Tuyệt đối KHÔNG được tạo Ma trận đề thi và Bảng đặc tả, chỉ tạo đề và đáp án.
-        7.  Nội dung câu hỏi nên tham khảo từ các tài liệu được cung cấp (nếu có).
-        `;
-
-        if (webLinks.value.trim()) {
-            prompt += `\n**Nguồn tham khảo bổ sung từ web:**\n${webLinks.value.trim()}`;
-        }
-        
-        const contents: any[] = [{ text: prompt }];
-        if (fileParts.length > 0) {
-             contents.push(...fileParts);
-        }
-
-        const stream = await ai.models.generateContentStream({
-            model: 'gemini-2.5-flash',
-            contents: { parts: contents },
-        });
-
-        fullResponseText = '';
-        resultSection.style.display = 'block'; // Show the section to display streaming text
-        examAndAnswerContent.innerHTML = ''; // Clear spinner
-        let buffer = '';
-
-        for await (const chunk of stream) {
-            const chunkText = chunk.text;
-            if (chunkText) {
-                buffer += chunkText;
-                fullResponseText += chunkText; // Append to full response
-                // Simple markdown-like rendering for streaming
-                let html = buffer.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                                 .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                                 .replace(/\n/g, '<br>');
-                examAndAnswerContent.innerHTML = `<pre><code>${html}</code></pre>`;
-                resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
-        displayExamResult(fullResponseText); // Final render after stream ends
-
-    } catch (error) {
-        console.error("Error generating exam:", error);
-        showAlert('Có lỗi xảy ra khi tạo đề. Vui lòng kiểm tra API Key và thử lại.', 'danger');
-        examAndAnswerContent.innerHTML = '<p class="text-danger">Đã xảy ra lỗi. Vui lòng thử lại.</p>';
-    } finally {
-        setLoadingState(generateFinalExamBtn, false);
-    }
-}
-
-
-function handleNewExam() {
-    examStructure = [];
-    renderStructure();
-    resultSection.style.display = 'none';
-    examTitleInput.value = '';
-    uploadedFiles = [];
-    renderUploadedFiles();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    showAlert('Đã tạo phiên làm việc mới. Mời bạn xây dựng cấu trúc đề thi.', 'info');
-}
-
-function handleCopyContent() {
-    const activeTabContent = document.querySelector('.tab-pane.fade.show.active .rendered-table, .tab-pane.fade.show.active #examAndAnswerContent');
-    if (activeTabContent) {
-        // Create a temporary textarea to preserve formatting
-        const textArea = document.createElement("textarea");
-        textArea.value = (activeTabContent as HTMLElement).innerText;
-        document.body.appendChild(textArea);
-        textArea.select();
-        try {
-            document.execCommand('copy');
-            showAlert('Đã sao chép nội dung vào clipboard!', 'success');
-        } catch (err) {
-            showAlert('Lỗi khi sao chép!', 'danger');
-        }
-        document.body.removeChild(textArea);
-    }
-}
-
-function handleExportToDocx() {
-    const activeTab = document.querySelector('.tab-pane.fade.show.active');
-    if (!activeTab) return;
-
-    const title = examTitleInput.value || "Đề kiểm tra";
-    const content = activeTab.querySelector('#examAndAnswerContent')?.textContent || '';
-
-    // Simplified approach: just save the text content
-    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-    saveAs(blob, `${title}.docx`);
-     showAlert('Tệp .docx chỉ chứa nội dung thuần túy của đề thi và đáp án.', 'info');
-}
-
-function handleExportToTex() {
-     const activeTab = document.querySelector('.tab-pane.fade.show.active');
-    if (!activeTab) return;
-    const title = examTitleInput.value || "de-kiem-tra";
-    const content = activeTab.querySelector('#examAndAnswerContent')?.textContent || '';
-
-    // Just save the raw content
-    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-    saveAs(blob, `${title.replace(/\s/g, '-')}.tex`);
-    showAlert('Tệp .tex chỉ chứa nội dung thuần túy của đề thi và đáp án.', 'info');
-}
-
-async function handleSaveApiKey() {
-    const apiKey = apiKeyInput.value.trim();
-    if (!apiKey) {
-        apiKeyMessage.textContent = 'Vui lòng nhập API Key.';
-        apiKeyMessage.className = 'text-danger';
-        return;
-    }
-
-    setLoadingState(saveApiKeyBtn, true);
-
-    try {
-        const testAi = new GoogleGenAI({ apiKey });
-        // Perform a simple test call to validate the key
-        await testAi.models.generateContent({model: 'gemini-2.5-flash', contents: {parts: [{text: 'test'}]}});
-
-        currentApiKey = apiKey;
-        ai = testAi; // Use the new, validated instance
-        apiKeyMessage.textContent = 'API Key hợp lệ và đã được lưu!';
-        apiKeyMessage.className = 'text-success';
-
-        if (rememberApiKey.checked) {
-            localStorage.setItem('geminiApiKey', apiKey);
-        } else {
-            localStorage.removeItem('geminiApiKey');
-        }
-
-        setTimeout(() => apiKeyModal?.hide(), 1500);
-    } catch (error) {
-        console.error("API Key check failed:", error);
-        apiKeyMessage.textContent = 'API Key không hợp lệ. Vui lòng kiểm tra lại.';
-        apiKeyMessage.className = 'text-danger';
-    } finally {
-        setLoadingState(saveApiKeyBtn, false);
-    }
-}
-
-function handleAddObjective() {
-    const objectiveText = newObjectiveInput.value.trim();
-    if (!objectiveText) return;
-
-    const grade = gradeSelect.value;
-    const lesson = lessonSelect.value;
-
-    if (grade && lesson && examData[grade]?.[lesson]) {
-        if (!examData[grade][lesson].objectives) {
-            examData[grade][lesson].objectives = [];
-        }
-        examData[grade][lesson].objectives.push(objectiveText);
-        saveDataToLocalStorage();
-        renderObjectives(); // Re-render with the new objective
-        newObjectiveInput.value = '';
-        showAlert('Đã thêm yêu cầu mới và lưu vào bộ nhớ trình duyệt.', 'success');
-    } else {
-        showAlert('Vui lòng chọn lớp và bài học trước khi thêm yêu cầu.', 'warning');
-    }
-}
-
-
-function handleExportDataFile() {
-    if (!currentSubject) return;
-    const dataStr = JSON.stringify(examData, null, 2);
-    const blob = new Blob([dataStr], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${currentSubject}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
-    showAlert(`Đã xuất dữ liệu cho môn ${currentSubject}.`, 'success');
-}
-
-function handleImportDataFile(event: Event) {
-    const target = event.target as HTMLInputElement;
-    const file = target.files?.[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-        try {
-            const importedData = JSON.parse(e.target?.result as string);
-            const fileName = file.name.replace('.json', '');
-            
-            // Check if the imported subject matches the current subject
-            if (fileName !== currentSubject) {
-                 if (!confirm(`Tệp bạn nhập là của môn "${fileName}", khác với môn "${currentSubject}" đang chọn. Bạn có muốn chuyển sang môn "${fileName}" và nạp dữ liệu không?`)) {
-                    target.value = ''; // Reset input
-                    return;
-                }
-                subjectSelect.value = fileName;
-                await handleSubjectChange();
-            }
-
-            examData = importedData;
-            saveDataToLocalStorage();
-            populateGradeSelect(); // Reload UI with new data
-            showAlert(`Đã nạp thành công dữ liệu từ tệp ${file.name}.`, 'success');
-        } catch (error) {
-            showAlert('Tệp dữ liệu không hợp lệ. Vui lòng kiểm tra lại.', 'danger');
-        } finally {
-            target.value = ''; // Reset input
-        }
-    };
-    reader.readAsText(file);
-}
-
-function handleResetData() {
-    if (confirm(`Bạn có chắc muốn xoá tất cả các thay đổi và quay về dữ liệu gốc cho môn ${currentSubject}? Hành động này không thể hoàn tác.`)) {
-        localStorage.removeItem(`examData_v4_${currentSubject}`);
-        loadSubjectData(currentSubject).then(() => {
-            showAlert(`Đã reset dữ liệu cho môn ${currentSubject} về trạng thái gốc.`, 'success');
-        });
-    }
-}
-
-async function handleSuggestObjectives() {
-     if (!ai) {
-        showAlert('Vui lòng nhập API Key hợp lệ.', 'warning');
-        apiKeyModal?.show();
-        return;
-    }
-    const grade = gradeSelect.value;
-    const lesson = lessonSelect.value;
-    if (!grade || !lesson) {
-        showAlert('Vui lòng chọn lớp và bài học trước.', 'warning');
-        return;
-    }
-
-    setLoadingState(suggestObjectivesBtn, true);
-    try {
-        const lessonContent = examData[grade]?.[lesson]?.content || '';
-        const prompt = `Dựa trên nội dung bài học "${lesson}" lớp ${grade} sau đây: "${lessonContent}", hãy gợi ý 5 yêu cầu cần đạt (learning objectives) quan trọng nhất cho học sinh. Trả lời dưới dạng một danh sách JSON, mỗi yêu cầu là một chuỗi. Ví dụ: ["Yêu cầu 1", "Yêu cầu 2", ...]. Chỉ trả về JSON.`;
-
-        const response = await ai.models.generateContent({
-             model: "gemini-2.5-flash",
-             contents: prompt,
-             config: { responseMimeType: "application/json" }
-        });
-
-        const suggested = JSON.parse(response.text.trim());
-        if (Array.isArray(suggested)) {
-            suggested.forEach(obj => {
-                if (typeof obj === 'string' && !examData[grade][lesson].objectives.includes(obj)) {
-                    examData[grade][lesson].objectives.push(obj);
-                }
-            });
-            saveDataToLocalStorage();
-            renderObjectives();
-            showAlert('Đã thêm các yêu cầu được gợi ý.', 'success');
-        }
-    } catch (error) {
-        console.error("Error suggesting objectives:", error);
-        showAlert('Không thể gợi ý yêu cầu vào lúc này.', 'danger');
-    } finally {
-        setLoadingState(suggestObjectivesBtn, false);
-    }
-}
-
-async function handleGenerateExplanations() {
-    if (!ai || !fullResponseText) {
-        showAlert('Vui lòng tạo đề thi trước khi yêu cầu giải thích.', 'warning');
-        return;
-    }
-
-    setLoadingState(generateExplanationsBtn, true);
-    explanationsContainer.style.display = 'block';
-    explanationsContainer.innerHTML = '<div class="text-center"><div class="spinner-border text-success" role="status"></div><p class="mt-2">Đang tạo giải thích...</p></div>';
-
-    try {
-        const prompt = `Dựa vào đề thi và đáp án sau đây, hãy viết lời giải thích chi tiết, rõ ràng, và dễ hiểu cho từng câu hỏi.
-        
-        --- ĐỀ THI VÀ ĐÁP ÁN ---
-        ${fullResponseText}
-        --- KẾT THÚC ĐỀ THI ---
-        
-        Yêu cầu:
-        - Với câu trắc nghiệm: Giải thích tại sao đáp án đúng là đúng, và tại sao các đáp án còn lại là sai.
-        - Với câu tự luận: Trình bày các bước giải chi tiết.
-        - Giữ nguyên số thứ tự câu hỏi.
-        `;
-
-         const stream = await ai.models.generateContentStream({
-            model: 'gemini-2.5-flash',
-            contents: { parts: [{text: prompt}] },
-        });
-
-        let explanationText = '';
-        explanationsContainer.innerHTML = '';
-        for await (const chunk of stream) {
-            const chunkText = chunk.text;
-            if (chunkText) {
-                explanationText += chunkText;
-                let html = explanationText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-                explanationsContainer.innerHTML = `<div class="explanation-section">${html}</div>`;
-                explanationsContainer.scrollIntoView({ behavior: 'smooth', block: 'end' });
-            }
-        }
-         if (MathJax) {
-            MathJax.typesetPromise([explanationsContainer]).catch(console.error);
-        }
-
-    } catch (error) {
-        console.error("Error generating explanations:", error);
-        showAlert('Không thể tạo giải thích.', 'danger');
-        explanationsContainer.innerHTML = '<p class="text-danger">Lỗi!</p>';
-    } finally {
-        setLoadingState(generateExplanationsBtn, false);
-    }
-}
-
-async function handleSuggestTitle() {
-    if (!ai || examStructure.length === 0) {
-        showAlert('Vui lòng thêm ít nhất một phần vào cấu trúc đề và có API Key hợp lệ.', 'warning');
-        return;
-    }
-
-    setLoadingState(suggestTitleBtn, true);
-    try {
-        const lessons = [...new Set(examStructure.map(p => p.lesson))].join(', ');
-        const totalQuestions = examStructure.reduce((sum, p) => sum + p.numQuestions, 0);
-        const prompt = `Gợi ý một tên đề thi ngắn gọn và phù hợp dựa trên các thông tin sau:
-        - Môn học: ${subjectSelect.options[subjectSelect.selectedIndex].text}
-        - Lớp: ${examStructure[0].grade}
-        - Các bài học chính: ${lessons}
-        - Tổng số câu: ${totalQuestions}
-        Chỉ trả về một chuỗi duy nhất là tên đề thi được gợi ý. Ví dụ: "Đề kiểm tra 15 phút - Chương I: Động học".`;
-
-        const response = await ai.models.generateContent({ model: "gemini-2.5-flash", contents: prompt});
-        const suggestedTitle = response.text.trim().replace(/"/g, ''); // Remove quotes
-        if (suggestedTitle) {
-            examTitleInput.value = suggestedTitle;
-        }
-
-    } catch (error) {
-        console.error("Error suggesting title:", error);
-        showAlert('Không thể gợi ý tên đề thi.', 'danger');
-    } finally {
-        setLoadingState(suggestTitleBtn, false);
-    }
-}
-
 
 // --- File Upload Handlers ---
 function readFileAsBase64(file: File): Promise<string> {
@@ -736,13 +244,12 @@ function removeUploadedFile(indexToRemove: number) {
 }
 
 function renderUploadedFiles() {
-    if(!fileUploadList) return;
     fileUploadList.innerHTML = '';
     if (uploadedFiles.length === 0) return;
 
     uploadedFiles.forEach((file, index) => {
         const fileItem = document.createElement('div');
-        fileItem.className = 'd-flex align-items-center bg-light p-2 rounded mb-2';
+        fileItem.className = 'uploaded-file-item';
         const fileIcon = document.createElement('i');
         fileIcon.className = 'bi me-2';
         if (file.type.startsWith('image/')) {
@@ -755,7 +262,7 @@ function renderUploadedFiles() {
             fileIcon.classList.add('bi-file-earmark-text');
         }
         const fileNameSpan = document.createElement('span');
-        fileNameSpan.className = 'file-name me-auto text-truncate';
+        fileNameSpan.className = 'file-name';
         fileNameSpan.textContent = file.name;
         const removeBtn = document.createElement('button');
         removeBtn.className = 'btn btn-sm btn-outline-danger btn-remove-file';
@@ -775,6 +282,7 @@ function renderStructure() {
 
     if (examStructure.length === 0) {
         structureContainer.style.display = 'none';
+        structureList.innerHTML = '<li><p class="text-center text-muted small p-3">Cấu trúc đề thi sẽ hiện ở đây sau khi bạn thêm các phần.</p></li>';
         generateFinalExamBtn.disabled = true;
         return;
     }
@@ -805,86 +313,6 @@ function renderStructure() {
         structureList.appendChild(li);
     });
 }
-
-function renderObjectives() {
-    if (!objectivesCheckboxContainer) return;
-    const grade = gradeSelect.value;
-    const lesson = lessonSelect.value;
-    const objectives = examData[grade]?.[lesson]?.objectives || [];
-    objectivesCheckboxContainer.innerHTML = '';
-
-    if (objectives.length === 0) {
-        objectivesCheckboxContainer.innerHTML = '<p class="text-muted small p-2">Chưa có yêu cầu nào cho bài học này. Bạn có thể thêm mới.</p>';
-        return;
-    }
-
-    objectives.forEach((obj, index) => {
-        const div = document.createElement('div');
-        div.className = 'objective-item d-flex align-items-center justify-content-between';
-        div.innerHTML = `
-            <div class="form-check flex-grow-1">
-                <input class="form-check-input" type="checkbox" value="${obj.replace(/"/g, '&quot;')}" id="obj-${index}">
-                <label class="form-check-label" for="obj-${index}">${obj}</label>
-            </div>
-            <div class="btn-group btn-group-sm ms-2">
-                <button class="btn btn-edit" title="Sửa"><i class="bi bi-pencil"></i></button>
-                <button class="btn btn-delete" title="Xóa"><i class="bi bi-trash"></i></button>
-            </div>
-        `;
-        objectivesCheckboxContainer.appendChild(div);
-        
-        // Event listeners for edit/delete
-        const editBtn = div.querySelector('.btn-edit');
-        const deleteBtn = div.querySelector('.btn-delete');
-
-        editBtn?.addEventListener('click', () => handleEditObjective(index, div));
-        deleteBtn?.addEventListener('click', () => handleDeleteObjective(index));
-    });
-}
-
-function handleEditObjective(index: number, itemElement: HTMLElement) {
-    const grade = gradeSelect.value;
-    const lesson = lessonSelect.value;
-    const currentText = examData[grade][lesson].objectives[index];
-    
-    itemElement.innerHTML = `
-        <input type="text" class="form-control form-control-sm editing-input" value="${currentText.replace(/"/g, '&quot;')}">
-        <div class="btn-group btn-group-sm ms-2">
-            <button class="btn btn-save-edit" title="Lưu"><i class="bi bi-check-lg"></i></button>
-        </div>
-    `;
-
-    const input = itemElement.querySelector('.editing-input') as HTMLInputElement;
-    input.focus();
-    const saveBtn = itemElement.querySelector('.btn-save-edit');
-
-    const saveChanges = () => {
-        const newText = input.value.trim();
-        if (newText && newText !== currentText) {
-            examData[grade][lesson].objectives[index] = newText;
-            saveDataToLocalStorage();
-        }
-        renderObjectives(); // Re-render the list
-    };
-    
-    saveBtn?.addEventListener('click', saveChanges);
-    input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') saveChanges();
-        if (e.key === 'Escape') renderObjectives();
-    });
-}
-
-function handleDeleteObjective(index: number) {
-     if (confirm('Bạn có chắc muốn xóa yêu cầu này?')) {
-        const grade = gradeSelect.value;
-        const lesson = lessonSelect.value;
-        examData[grade][lesson].objectives.splice(index, 1);
-        saveDataToLocalStorage();
-        renderObjectives();
-        showAlert('Đã xóa yêu cầu.', 'info');
-    }
-}
-
 
 function renderMatrixTable() {
     if (!examMatrixContent) return;
@@ -1023,7 +451,7 @@ function renderSpecTable() {
                 rowHtml += `<td class="text-left" rowspan=${lessonsInChapter.length}>${chapterName}</td>`;
             }
             rowHtml += `<td class="text-left">${item.lesson}</td>`;
-            rowHtml += `<td class="text-left">${item.objectives.map((o: string) => `<span>- ${o.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</span>`).join('<br>')}</td>`;
+            rowHtml += `<td class="text-left">${item.objectives.map(o => `<span>- ${o.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</span>`).join('<br>')}</td>`;
             
             let nb = (item.difficulty === 'nhận biết') ? `<b>${item.numQuestions}</b><br><i>(${item.type})</i>` : '';
             let th = (item.difficulty === 'thông hiểu') ? `<b>${item.numQuestions}</b><br><i>(${item.type})</i>` : '';
@@ -1049,7 +477,7 @@ function displayExamResult(fullResponseText: string) {
     renderSpecTable();
 
     if (MathJax) {
-        MathJax.typesetPromise([examAndAnswerContent, examMatrixContent, examSpecContent]).catch((err: Error) =>
+        MathJax.typesetPromise([examAndAnswerContent, examMatrixContent, examSpecContent]).catch((err) =>
             console.error('MathJax typesetting error:', err)
         );
     }
@@ -1059,4 +487,774 @@ function displayExamResult(fullResponseText: string) {
     exportDocxBtn.classList.remove('disabled');
     exportTexBtn.classList.remove('disabled');
     generateExplanationsBtn.disabled = false;
+}
+
+// --- Event Handlers ---
+
+async function handleSaveApiKey() {
+    const apiKey = apiKeyInput.value.trim();
+    if (!apiKey) {
+        apiKeyMessage.textContent = 'Vui lòng nhập API Key.';
+        apiKeyMessage.className = 'text-danger';
+        return;
+    }
+
+    setLoadingState(saveApiKeyBtn, true);
+
+    try {
+        const testAi = new GoogleGenAI({ apiKey });
+        // Make a simple test call to validate the key
+        await testAi.models.generateContent({ model: 'gemini-2.5-flash', contents: 'test' });
+
+        currentApiKey = apiKey;
+        ai = testAi;
+
+        if (rememberApiKey.checked) {
+            localStorage.setItem('geminiApiKey', apiKey);
+        } else {
+            localStorage.removeItem('geminiApiKey');
+        }
+
+        apiKeyMessage.textContent = 'Lưu API Key thành công!';
+        apiKeyMessage.className = 'text-success';
+        showAlert('API Key hợp lệ và đã được lưu.', 'success');
+
+        setTimeout(() => {
+            apiKeyModal?.hide();
+            apiKeyMessage.textContent = '';
+        }, 1500);
+
+    } catch (error) {
+        apiKeyMessage.textContent = 'API Key không hợp lệ hoặc đã xảy ra lỗi. Vui lòng kiểm tra lại.';
+        apiKeyMessage.className = 'text-danger';
+        console.error("API Key validation failed:", error);
+    } finally {
+        setLoadingState(saveApiKeyBtn, false);
+    }
+}
+
+function handleNewExam() {
+    if (confirm('Bạn có chắc chắn muốn tạo đề thi mới không? Tất cả cấu trúc và kết quả hiện tại sẽ bị xóa.')) {
+        examStructure = [];
+        generatedQuestions = [];
+        fullResponseText = '';
+        renderStructure();
+        resultSection.style.display = 'none';
+        examAndAnswerContent.innerHTML = '';
+        examMatrixContent.innerHTML = '';
+        examSpecContent.innerHTML = '';
+        explanationsContainer.innerHTML = '';
+        examTitleInput.value = '';
+        uploadedFiles = [];
+        renderUploadedFiles();
+        showAlert('Đã xóa cấu trúc cũ. Sẵn sàng cho đề thi mới!', 'info');
+    }
+}
+
+function handleCopyContent() {
+    const activeTabPane = document.querySelector('#resultTabsContent .tab-pane.active');
+    if (!activeTabPane) {
+        showAlert('Không có nội dung để sao chép.', 'warning');
+        return;
+    }
+    
+    // Check if it's a table or preformatted text
+    const table = activeTabPane.querySelector('table');
+    const pre = activeTabPane.querySelector('pre');
+    let contentToCopy = '';
+
+    if (table) {
+        contentToCopy = table.innerText;
+    } else if (pre) {
+        contentToCopy = pre.innerText;
+    } else {
+        showAlert('Không tìm thấy nội dung có thể sao chép trong tab này.', 'warning');
+        return;
+    }
+
+    navigator.clipboard.writeText(contentToCopy).then(() => {
+        showAlert('Đã sao chép nội dung vào clipboard!', 'success');
+    }).catch(err => {
+        showAlert('Lỗi khi sao chép: ' + err, 'danger');
+        console.error('Copy failed', err);
+    });
+}
+
+function handleExportToDocx(event) {
+    event.preventDefault();
+    const activeTabPane = document.querySelector('#resultTabsContent .tab-pane.active');
+     if (!activeTabPane) {
+        showAlert('Không có nội dung để xuất tệp.', 'warning');
+        return;
+    }
+    
+    let contentHtml = activeTabPane.innerHTML;
+    
+    const htmlContent = `
+        <!DOCTYPE html>
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head><meta charset='utf-8'><title>Export HTML To Doc</title>
+        <style> 
+            body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; }
+            pre { white-space: pre-wrap; word-wrap: break-word; font-family: 'Times New Roman', Times, serif; font-size: 12pt; } 
+            table { border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle; }
+            th { background-color: #f2f2f2; }
+           .text-left { text-align: left; }
+        </style>
+        </head>
+        <body>${contentHtml}</body>
+        </html>`;
+
+    const blob = new Blob(['\ufeff', htmlContent], {
+        type: 'application/msword'
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'DeThi.doc';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+}
+
+function handleExportToTex(event) {
+    event.preventDefault();
+    const activeTabPane = document.querySelector('#resultTabsContent .tab-pane.active pre');
+    if (!activeTabPane || !activeTabPane.textContent?.trim()) {
+        showAlert('Chỉ có thể xuất nội dung từ tab "Đề thi & Đáp án" sang .tex.', 'warning');
+        return;
+    }
+
+    const content = activeTabPane.textContent;
+    const examTitle = examTitleInput.value.trim() || 'ĐỀ KIỂM TRA';
+    
+    // A comprehensive preamble to support TikZ, tkz-euclide, tkz-tab, and pandoc compilation
+    const fullTexDocument = `
+\\documentclass[12pt,a4paper]{article}
+\\usepackage[utf8]{inputenc}
+\\usepackage[vietnamese]{babel}
+\\usepackage{amsmath}
+\\usepackage{amssymb}
+\\usepackage{graphicx}
+\\usepackage{geometry}
+\\geometry{a4paper, margin=2cm}
+
+% --- TikZ and related packages for diagrams and tables ---
+\\usepackage{tikz}
+\\usepackage{tkz-euclide}
+\\usepackage{tkz-tab}
+\\usetikzlibrary{calc,intersections,through,backgrounds,patterns,arrows.meta,quotes}
+
+% --- PGFPlots for advanced function graphing ---
+\\usepackage{pgfplots}
+\\pgfplotsset{compat=1.18} % Use a recent compatibility level
+
+\\title{${examTitle.replace(/([&%$#_{}])/g, '\\$1')}}
+\\author{AG-AI Exam Generator}
+\\date{\\today}
+
+\\begin{document}
+
+\\begin{center}
+    \\Large\\bfseries ${examTitle.replace(/([&%$#_{}])/g, '\\$1')}
+\\end{center}
+\\vspace{1em}
+
+${content}
+
+\\end{document}
+    `;
+
+    const blob = new Blob([fullTexDocument], { type: 'application/x-tex;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'DeThi.tex';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+}
+
+
+async function handleSubjectChange() {
+    const selectedSubject = subjectSelect.value;
+    await loadSubjectData(selectedSubject);
+}
+
+async function handleResetData() {
+    if (confirm(`Bạn có chắc chắn muốn xóa tất cả các thay đổi đã lưu cho môn ${currentSubject} và quay về dữ liệu gốc không?`)) {
+        const localStorageKey = `examData_${currentSubject}`;
+        localStorage.removeItem(localStorageKey);
+        showAlert(`Đã reset dữ liệu môn ${currentSubject} về trạng thái gốc.`, 'info');
+        await loadSubjectData(currentSubject);
+    }
+}
+
+function handleExportDataFile() {
+    try {
+        const fileContent = JSON.stringify(examData, null, 4);
+        const blob = new Blob([fileContent], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${currentSubject}_backup.json`;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }, 0);
+        showAlert(`Đã sao lưu thành công tệp \`${currentSubject}_backup.json\`!`, 'success');
+    } catch (e) {
+        showAlert('Không thể sao lưu tệp dữ liệu. Lỗi: ' + e.message, 'danger');
+        console.error(e);
+    }
+}
+
+function handleImportDataFile(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const file = target.files?.[0];
+
+    if (!file) {
+        return;
+    }
+
+    if (!file.name.endsWith('.json') && file.type !== 'application/json') {
+        showAlert('Vui lòng chọn một tệp .json hợp lệ.', 'warning');
+        target.value = '';
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+        try {
+            const text = e.target?.result as string;
+            if (!text) throw new Error("Tệp rỗng.");
+            
+            const importedData = JSON.parse(text);
+
+            const grades = Object.keys(importedData);
+            const firstGrade = grades[0];
+            const firstLesson = Object.keys(importedData[firstGrade])[0];
+
+            if (grades.length === 0 || typeof importedData[firstGrade] !== 'object' || !('chapter' in importedData[firstGrade][firstLesson])) {
+                throw new Error("Tệp không có cấu trúc dữ liệu hợp lệ.");
+            }
+            
+            examData = importedData;
+            saveDataToLocalStorage();
+
+            populateGradeSelect();
+            resetLessonAndObjectives();
+            
+            showAlert(`Đã nạp thành công dữ liệu cho môn ${subjectSelect.options[subjectSelect.selectedIndex].text}!`, 'success');
+
+        } catch (error) {
+            console.error("Error importing data file:", error);
+            showAlert(`Lỗi khi nạp tệp: ${error.message}. Vui lòng kiểm tra lại tệp.`, 'danger');
+        } finally {
+            target.value = '';
+        }
+    };
+
+    reader.onerror = () => {
+         showAlert('Không thể đọc được tệp. Vui lòng thử lại.', 'danger');
+         target.value = '';
+    };
+
+    reader.readAsText(file);
+}
+
+
+function handleGradeChange() {
+    const selectedGrade = gradeSelect.value;
+    const lessons = examData[selectedGrade] || {};
+    lessonSelect.innerHTML = '<option selected disabled>-- Chọn bài học --</option>';
+    objectivesContainer.style.display = 'none';
+    for (const lessonName in lessons) {
+        const option = document.createElement('option');
+        option.value = lessonName;
+        option.textContent = lessonName;
+        lessonSelect.appendChild(option);
+    }
+    lessonSelect.disabled = false;
+}
+
+function handleLessonChange() {
+    objectivesContainer.style.display = 'block';
+    renderObjectives();
+}
+
+// --- Objectives CRUD ---
+
+function renderObjectives() {
+    const selectedGrade = gradeSelect.value;
+    const selectedLesson = lessonSelect.value;
+
+    if (!selectedGrade || gradeSelect.selectedIndex === 0 || !selectedLesson || lessonSelect.selectedIndex === 0) {
+        objectivesCheckboxContainer.innerHTML = '<p class="text-muted text-center small p-3">Chọn lớp và bài học để xem các yêu cầu.</p>';
+        return;
+    }
+
+    const objectivesArray = examData[selectedGrade]?.[selectedLesson]?.objectives || [];
+    objectivesCheckboxContainer.innerHTML = '';
+
+    if (objectivesArray.length === 0) {
+        objectivesCheckboxContainer.innerHTML = '<p class="text-muted text-center small p-3">Chưa có yêu cầu nào. Thêm mới hoặc để AI gợi ý.</p>';
+        return;
+    }
+
+    objectivesArray.forEach((objectiveText, index) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'objective-item d-flex justify-content-between align-items-center';
+        itemDiv.dataset.index = index.toString();
+
+        itemDiv.innerHTML = `
+            <div class="form-check flex-grow-1 me-2">
+                <input class="form-check-input" type="checkbox" value="" id="objective-${index}">
+                <label class="form-check-label" for="objective-${index}">
+                    ${objectiveText.replace(/</g, "&lt;").replace(/>/g, "&gt;")}
+                </label>
+            </div>
+            <div class="btn-group" role="group">
+                <button class="btn btn-sm btn-outline-secondary btn-edit" title="Sửa"><i class="bi bi-pencil"></i></button>
+                <button class="btn btn-sm btn-outline-danger btn-delete" title="Xóa"><i class="bi bi-trash"></i></button>
+            </div>
+        `;
+
+        itemDiv.querySelector('.btn-edit').addEventListener('click', () => handleEditObjective(index));
+        itemDiv.querySelector('.btn-delete').addEventListener('click', () => handleDeleteObjective(index));
+        objectivesCheckboxContainer.appendChild(itemDiv);
+    });
+}
+
+function handleAddObjective() {
+    const text = newObjectiveInput.value.trim();
+    if (!text) return;
+
+    const selectedGrade = gradeSelect.value;
+    const selectedLesson = lessonSelect.value;
+    if (!selectedGrade || gradeSelect.selectedIndex === 0 || !selectedLesson || lessonSelect.selectedIndex === 0) {
+        showAlert('Vui lòng chọn Lớp và Bài học trước khi thêm yêu cầu.', 'warning');
+        return;
+    }
+
+    if (!examData[selectedGrade][selectedLesson].objectives) {
+        examData[selectedGrade][selectedLesson].objectives = [];
+    }
+    examData[selectedGrade][selectedLesson].objectives.push(text);
+
+    saveDataToLocalStorage();
+    renderObjectives();
+    newObjectiveInput.value = '';
+    newObjectiveInput.focus();
+}
+
+function handleDeleteObjective(index) {
+    const selectedGrade = gradeSelect.value;
+    const selectedLesson = lessonSelect.value;
+    examData[selectedGrade][selectedLesson].objectives.splice(index, 1);
+    saveDataToLocalStorage();
+    renderObjectives();
+}
+
+function handleEditObjective(index) {
+    const itemDiv = objectivesCheckboxContainer.querySelector(`.objective-item[data-index='${index}']`);
+    if (!itemDiv) return;
+
+    const currentText = examData[gradeSelect.value][lessonSelect.value].objectives[index];
+
+    itemDiv.innerHTML = `
+        <div class="input-group">
+            <input type="text" class="form-control editing-input" value="${currentText.replace(/"/g, "&quot;")}">
+            <button class="btn btn-outline-success btn-save-edit" title="Lưu"><i class="bi bi-check-lg"></i></button>
+        </div>
+    `;
+
+    const inputEl = itemDiv.querySelector('.editing-input') as HTMLInputElement;
+    inputEl.focus();
+    inputEl.select();
+
+    const saveChanges = () => {
+        const newText = inputEl.value.trim();
+        if (newText) {
+            examData[gradeSelect.value][lessonSelect.value].objectives[index] = newText;
+            saveDataToLocalStorage();
+        }
+        renderObjectives();
+    };
+
+    inputEl.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') saveChanges();
+        else if (e.key === 'Escape') renderObjectives();
+    });
+
+    itemDiv.querySelector('.btn-save-edit').addEventListener('click', saveChanges);
+}
+
+
+function handleAddExamPart() {
+    const grade = gradeSelect.value;
+    const lesson = lessonSelect.value;
+    const numQuestions = (document.getElementById('questionNum') as HTMLInputElement).value;
+    const difficulty = (document.getElementById('difficultySelect') as HTMLSelectElement).value;
+    const type = (document.getElementById('typeSelect') as HTMLSelectElement).value;
+
+    if (!grade || gradeSelect.selectedIndex === 0 || !lesson || lessonSelect.selectedIndex === 0) {
+        showAlert('Vui lòng chọn đầy đủ Lớp và Bài học.', 'warning');
+        return;
+    }
+
+    const checkedCheckboxes = objectivesCheckboxContainer.querySelectorAll<HTMLInputElement>('.form-check-input:checked');
+    const objectivesForPart = Array.from(checkedCheckboxes).map(cb => {
+        const label = cb.closest('.form-check').querySelector('.form-check-label');
+        return label ? label.textContent.trim() : '';
+    }).filter(Boolean);
+
+    if (objectivesForPart.length === 0) {
+        showAlert('Vui lòng chọn ít nhất một yêu cầu cần đạt để thêm vào cấu trúc.', 'warning');
+        return;
+    }
+
+    const selection = {
+        id: Date.now(),
+        grade,
+        lesson,
+        numQuestions,
+        difficulty,
+        type,
+        objectives: objectivesForPart
+    };
+
+    examStructure.push(selection);
+    renderStructure();
+    showAlert(`Đã thêm phần "${lesson}" vào cấu trúc đề thi.`, 'success');
+
+    // Uncheck boxes after adding
+    checkedCheckboxes.forEach(cb => cb.checked = false);
+}
+
+// --- AI FEATURE HANDLERS ---
+async function handleSuggestTitle() {
+    if (examStructure.length === 0) {
+        showAlert('Vui lòng xây dựng cấu trúc đề thi trước.', 'warning');
+        return;
+    }
+    if (!ai) {
+        showAlert('Vui lòng cấu hình API Key.', 'warning');
+        apiKeyModal?.show();
+        return;
+    }
+
+    setLoadingState(suggestTitleBtn, true);
+
+    try {
+        const structureSummary = examStructure.map(part => `Chủ đề ${part.lesson} (Lớp ${part.grade})`).join(', ');
+        const prompt = `
+        Dựa trên cấu trúc đề thi bao gồm các chủ đề: ${structureSummary}, hãy gợi ý 5 tiêu đề (title) hấp dẫn và phù hợp cho bài kiểm tra này. 
+        Mỗi tiêu đề trên một dòng. Không thêm bất cứ thứ gì khác.
+        Ví dụ:
+        Đề kiểm tra giữa kì I - Môn Toán Lớp 10
+        Đề kiểm tra 45 phút - Hình học & Đại số Lớp 10
+        `;
+
+        const response = await ai.models.generateContent({ model: 'gemini-2.5-flash', contents: prompt });
+        const titles = response.text.split('\n').filter(Boolean);
+
+        if (titles.length > 0) {
+            examTitleInput.value = titles[0].trim();
+            showAlert('Đã gợi ý tiêu đề.', 'success');
+        } else {
+            showAlert('Không thể tạo được gợi ý. Vui lòng thử lại.', 'warning');
+        }
+
+    } catch (error) {
+        showAlert(`Lỗi khi gợi ý tiêu đề: ${error.message}`, 'danger');
+    } finally {
+        setLoadingState(suggestTitleBtn, false);
+    }
+}
+
+async function handleSuggestObjectives() {
+    const grade = gradeSelect.value;
+    const lesson = lessonSelect.value;
+    const subjectName = subjectSelect.options[subjectSelect.selectedIndex].text;
+
+    if (!grade || gradeSelect.selectedIndex === 0 || !lesson || lessonSelect.selectedIndex === 0) {
+        showAlert('Vui lòng chọn Lớp và Bài học để nhận gợi ý.', 'warning');
+        return;
+    }
+    if (!ai) {
+        showAlert('Vui lòng cấu hình API Key.', 'warning');
+        apiKeyModal?.show();
+        return;
+    }
+
+    setLoadingState(suggestObjectivesBtn, true);
+
+    try {
+        const prompt = `
+        Hãy đóng vai một chuyên gia giáo dục. Dựa vào chương trình giáo dục phổ thông môn ${subjectName}, 
+        hãy liệt kê 5-7 "yêu cầu cần đạt" (learning objectives) quan trọng nhất cho bài học "${lesson}" của lớp ${grade}. 
+        Mỗi yêu cầu cần rõ ràng, có thể đo lường được. CHỈ trả về danh sách các yêu cầu, mỗi yêu cầu trên một dòng, không có đánh số hay gạch đầu dòng, không có chữ "Yêu cầu:".
+        `;
+
+        const response = await ai.models.generateContent({ model: 'gemini-2.5-flash', contents: prompt });
+        const suggested = response.text.split('\n').map(s => s.trim().replace(/^-/, '').trim()).filter(Boolean);
+
+        if (!examData[grade][lesson].objectives) {
+            examData[grade][lesson].objectives = [];
+        }
+
+        const existingObjectives = new Set(examData[grade][lesson].objectives.map(o => o.toLowerCase()));
+        let addedCount = 0;
+        suggested.forEach(obj => {
+            if (!existingObjectives.has(obj.toLowerCase())) {
+                examData[grade][lesson].objectives.push(obj);
+                addedCount++;
+            }
+        });
+
+        if (addedCount > 0) {
+            saveDataToLocalStorage();
+            renderObjectives();
+            showAlert(`Đã thêm ${addedCount} gợi ý yêu cầu cần đạt mới.`, 'success');
+        } else {
+            showAlert(`Không có yêu cầu mới nào được tìm thấy.`, 'info');
+        }
+
+
+    } catch (error) {
+        showAlert(`Lỗi khi gợi ý: ${error.message}`, 'danger');
+        console.error(error);
+    } finally {
+        setLoadingState(suggestObjectivesBtn, false);
+    }
+}
+
+async function handleGenerateExplanations() {
+    if (!fullResponseText || !ai) {
+        showAlert('Vui lòng tạo đề thi trước khi yêu cầu lời giải chi tiết.', 'warning');
+        return;
+    }
+
+    setLoadingState(generateExplanationsBtn, true);
+    explanationsContainer.innerHTML = '<div class="text-center p-3"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div><p class="mt-2">Đang tạo lời giải chi tiết...</p></div>';
+    explanationsContainer.style.display = 'block';
+
+    try {
+        const examText = examAndAnswerContent.innerText;
+        const prompt = `
+        Dựa vào Đề thi và Đáp án sau đây, hãy cung cấp lời giải thích chi tiết, từng bước cho TẤT CẢ các câu hỏi. 
+        Trình bày rõ ràng, dễ hiểu cho học sinh, sử dụng định dạng Markdown để làm nổi bật các công thức toán học và các bước quan trọng.
+        
+        --- BẮT ĐẦU ĐỀ THI ---
+        ${examText}
+        --- KẾT THÚC ĐỀ THI ---
+        `;
+
+        const responseStream = await ai.models.generateContentStream({ model: 'gemini-2.5-flash', contents: prompt });
+
+        explanationsContainer.innerHTML = '';
+        let buffer = '';
+        for await (const chunk of responseStream) {
+            buffer += chunk.text;
+            explanationsContainer.innerHTML = `<pre>${buffer.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</pre>`;
+        }
+
+        showAlert('Đã tạo xong lời giải chi tiết.', 'success');
+
+    } catch (error) {
+        showAlert(`Lỗi khi tạo lời giải: ${error.message}`, 'danger');
+        explanationsContainer.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
+    } finally {
+        setLoadingState(generateExplanationsBtn, false);
+    }
+}
+
+
+// --- Exam Generation ---
+
+async function handleGenerateExam() {
+    if (examStructure.length === 0) {
+        showAlert('Cấu trúc đề thi đang trống. Vui lòng thêm ít nhất một phần.', 'danger');
+        return;
+    }
+
+    if (!currentApiKey || !ai) {
+        showAlert('Vui lòng nhập API Key trước khi tạo đề thi.', 'warning');
+        apiKeyModal?.show();
+        return;
+    }
+
+    setLoadingState(generateFinalExamBtn, true);
+
+    try {
+        fullResponseText = await generateFullResponse();
+        if (fullResponseText) {
+            displayExamResult(fullResponseText);
+            resultSection.style.display = 'block';
+            setTimeout(() => resultSection.scrollIntoView({ behavior: 'smooth' }), 100);
+            showAlert('Đã tạo thành công Đề thi!', 'success');
+        } else {
+            throw new Error("Phản hồi từ AI trống.");
+        }
+    } catch (error) {
+        showAlert(`Lỗi tạo đề thi: ${error.message}`, 'danger');
+        console.error(error);
+    } finally {
+        setLoadingState(generateFinalExamBtn, false);
+    }
+}
+
+async function generateFullResponse(): Promise<string> {
+    const format = formatSelect.value;
+
+    const BASE_INSTRUCTION = `CHÚ Ý: chỉ tạo các câu hỏi đúng các phần mà mình yêu cầu, nếu không yêu cầu thì không tự tạo thêm. Chỉ cần tạo đề thi và đáp án, không cần tạo ma trận hay bản đặc tả.`;
+
+    const NORMAL_SYSTEM_PROMPT = `
+BẠN LÀ MỘT CHUYÊN GIA SOẠN THẢO ĐỀ THI TOÁN HỌC. ${BASE_INSTRUCTION}
+HÃY TUÂN THỦ NGHIÊM NGẶT CÁC QUY TẮC VÀ LÀM THEO CÁC VÍ DỤ MẪU SAU ĐÂY CHO TỪNG LOẠI CÂU HỎI:
+**1. TRẮC NGHIỆM (A, B, C, D):**
+- Luôn có 4 lựa chọn A, B, C, D.
+- Ví dụ:
+Câu 1 (NB): Trong các câu sau, câu nào không phải là mệnh đề?
+A. 1 + 1 = 2.
+B. Hình thoi có bốn cạnh bằng nhau.
+C. Hãy đóng cửa sổ lại!
+D. Số pi là một số vô tỉ.
+
+**2. ĐÚNG/SAI:**
+- Luôn cung cấp một đoạn văn bản, hình ảnh hoặc dữ kiện làm ngữ cảnh chung (Tư liệu).
+- Dưới ngữ cảnh đó, đưa ra 4 nhận định (a, b, c, d). Học sinh sẽ phải xác định mỗi nhận định là Đúng hay Sai. Có thể có nhiều ý đúng hoặc sai.
+- Ví dụ:
+Câu 1. Trong mặt phẳng Oxy, cho điểm A(2;3), đường thẳng d có phương trình 3x - y + 2 = 0 và đường tròn (C) có phương trình (x-1)² + (y-2)²=9.
+a) Tâm và bán kính đường tròn (C) là I(1;2), R = 3.
+b) Một vector pháp tuyến của đường thẳng d là n̄ = (1;3).
+c) Phương trình đường thẳng đi qua A và song song với d là 3x - y - 3 = 0.
+d) Đường thẳng d cắt đường tròn (C) tại hai điểm.
+
+**3. TRẢ LỜI NGẮN:**
+- Câu hỏi yêu cầu học sinh tính toán và điền một con số cụ thể vào chỗ trống hoặc trả lời bằng một giá trị số duy nhất.
+- Ví dụ:
+Câu 1. Cho hàm số f(x) = x² - 2mx + m + 2. Có bao nhiêu giá trị nguyên của m để f(x) ≥ 0 với mọi x ∈ ℝ?
+Câu 2. Tính số đo của góc giữa hai đường thẳng d₁: 2x - y + 3 = 0 và d₂: x + 3y - 1 = 0 (kết quả làm tròn đến hàng phần chục).
+
+**4. TỰ LUẬN:**
+- Câu hỏi yêu cầu trình bày lời giải chi tiết.
+- Ví dụ:
+Câu 1 (VD): Cho ba điểm A(1;2), B(-2;1) và C(4;-2) trong mặt phẳng tọa độ Oxy. Tìm tọa độ trực tâm H của tam giác ABC.
+`;
+
+    const LATEX_SYSTEM_PROMPT = `
+BẠN LÀ MỘT CHUYÊN GIA SOẠN THẢO ĐỀ THI TOÁN HỌC BẰNG LATEX. ${BASE_INSTRUCTION}
+CHỈ TẠO NỘI DUNG BÊN TRONG MÔI TRƯỜNG DOCUMENT, KHÔNG BAO GỒM \\documentclass, \\usepackage, hay \\begin{document}.
+QUY TẮC ĐỊNH DẠNG TUYỆT ĐỐI: Sau mỗi dòng câu hỏi và mỗi dòng đáp án (A, B, C, D, a, b, c, d) PHẢI có lệnh xuống dòng \\\\.
+HÃY TUÂN THỦ NGHIÊM NGẶT CÁC QUY TẮC VÀ LÀM THEO CÁC VÍ DỤ MẪU SAU ĐÂY CHO TỪNG LOẠI CÂU HỎI:
+**1. TRẮC NGHIỆM (A, B, C, D):**
+- Ví dụ:
+Câu 1 (NB): Trong các câu sau, câu nào không phải là mệnh đề?\\\\
+A. $1 + 1 = 2$.\\\\
+B. Hình thoi có bốn cạnh bằng nhau.\\\\
+C. Hãy đóng cửa sổ lại!\\\\
+D. Số pi là một số vô tỉ.\\\\
+
+**2. ĐÚNG/SAI:**
+- Ví dụ:
+Câu 1. Trong mặt phẳng Oxy, cho điểm $A(2;3)$, đường thẳng d có phương trình $3x - y + 2 = 0$ và đường tròn (C) có phương trình $(x-1)² + (y-2)²=9$.\\\\
+a) Tâm và bán kính đường tròn (C) là $I(1;2), R = 3$.\\\\
+b) Một vector pháp tuyến của đường thẳng d là $\\vec{n} = (1;3)$.\\\\
+c) Phương trình đường thẳng đi qua A và song song với d là $3x - y - 3 = 0$.\\\\
+d) Đường thẳng d cắt đường tròn (C) tại hai điểm.\\\\
+`;
+
+    const MATHTYPE_SYSTEM_PROMPT = `
+Là một chuyên gia soạn thảo Word cho các đề thi Toán học, bạn sẽ tạo câu hỏi và đáp án dưới dạng code raw LaTeX tương thích với MathType. ${BASE_INSTRUCTION}
+- Luôn dùng $...$ cho môi trường toán học.
+- Luôn dùng \\dfrac, \\left( ... \\right), \\overrightarrow.
+QUY TẮC ĐỊNH DẠNG TUYỆT ĐỐI: Sau mỗi dòng câu hỏi và mỗi dòng đáp án (A, B, C, D, a, b, c, d) PHẢI có lệnh xuống dòng \\\\.
+VÍ DỤ MẪU:
+**1. TRẮC NGHIỆM:**
+Câu 1 (NB): Trong các câu sau, câu nào không phải là mệnh đề?\\\\
+A. $1 + 1 = 2$.\\\\
+B. Hình thoi có bốn cạnh bằng nhau.\\\\
+C. Hãy đóng cửa sổ lại!\\\\
+D. Số pi là một số vô tỉ.\\\\
+`;
+
+    let systemPrompt: string;
+    switch (format) {
+        case 'latex':
+            systemPrompt = LATEX_SYSTEM_PROMPT;
+            break;
+        case 'mathtype':
+            systemPrompt = MATHTYPE_SYSTEM_PROMPT;
+            break;
+        default:
+            systemPrompt = NORMAL_SYSTEM_PROMPT;
+    }
+
+    if (format === 'latex' || format === 'mathtype') {
+        const queryKeywords = examStructure.map(part => `${part.lesson} ${part.objectives.join(' ')}`).join(' ');
+        const tikzSnippets = getTikzSnippetsForQuery(queryKeywords);
+        if (tikzSnippets) {
+            systemPrompt += `
+
+--- TIKZ SNIPPETS THAM KHẢO ---
+KHI CẦN VẼ HÌNH BẰNG TIKZ (cho hình học, đồ thị, bảng biến thiên, ...), HÃY THAM KHẢO VÀ ƯU TIÊN SỬ DỤNG CÁC ĐOẠN MÃ SAU ĐÂY ĐỂ ĐẢM BẢO TÍNH CHÍNH XÁC VÀ NHẤT QUÁN. ĐÂY LÀ THƯ VIỆN MÃ LỆNH MẪU:
+${tikzSnippets}
+--- HẾT TIKZ SNIPPETS ---
+`;
+        }
+    }
+
+    const userPromptText = `
+    Dựa vào cấu trúc sau đây, hãy tạo một đề thi hoàn chỉnh kèm đáp án chi tiết.
+
+    **Tiêu đề:** ${examTitleInput.value || 'Đề kiểm tra'}
+
+    **Cấu trúc đề:**
+    ${examStructure.map((part, index) => `
+    Phần ${index + 1}:
+    - Lớp: ${part.grade}
+    - Bài học/Chủ đề: ${part.lesson}
+    - Số lượng câu hỏi: ${part.numQuestions}
+    - Dạng câu hỏi: ${part.type}
+    - Mức độ: ${part.difficulty}
+    - Yêu cầu cần đạt: ${part.objectives.join(', ')}
+    `).join('\n')}
+
+    Hãy đảm bảo đầu ra tuân thủ định dạng đã chọn (${format}) và chỉ bao gồm nội dung đề thi và đáp án.
+    `;
+
+    const contentParts: any[] = [];
+
+    if (uploadedFiles.length > 0) {
+        contentParts.push({ text: "Dưới đây là một số tệp tham khảo. Hãy sử dụng thông tin trong các tệp này để tạo câu hỏi nếu phù hợp:" });
+        for (const file of uploadedFiles) {
+            const base64Data = (await readFileAsBase64(file)).split(',')[1];
+            contentParts.push({
+                inlineData: {
+                    mimeType: file.type || 'application/octet-stream',
+                    data: base64Data
+                }
+            });
+        }
+    }
+    contentParts.push({ text: userPromptText });
+
+    const response = await ai.models.generateContent({
+        model: 'gemini-2.5-flash',
+        contents: { parts: contentParts },
+        config: {
+            systemInstruction: systemPrompt,
+        }
+    });
+
+    return response.text;
 }
