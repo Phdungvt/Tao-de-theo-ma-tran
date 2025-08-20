@@ -5,7 +5,7 @@
 declare var bootstrap: any;
 declare var MathJax: any;
 
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, Type } from "@google/genai";
 import { getTikzSnippetsForQuery } from './tikz-snippets.ts';
 
 // --- Global State ---
@@ -14,9 +14,11 @@ let currentApiKey = '';
 let currentSubject = 'Toan';
 let generatedQuestions = [];
 let examData = {};
+let bankViewingData = {}; // Data for the subject selected in the bank view
 let fullResponseText = '';
 let ai; // GoogleGenAI instance
 let uploadedFiles: File[] = [];
+let selectedBankQuestions: any[] = [];
 
 
 // --- DOM Elements ---
@@ -63,6 +65,21 @@ const suggestTitleSpinner = document.getElementById('suggestTitleSpinner') as HT
 const resetDataBtn = document.getElementById('resetDataBtn') as HTMLButtonElement;
 const fileUploadInput = document.getElementById('fileUploadInput') as HTMLInputElement;
 const fileUploadList = document.getElementById('fileUploadList') as HTMLElement;
+const updateQuestionBankBtn = document.getElementById('updateQuestionBankBtn') as HTMLButtonElement;
+
+// --- Question Bank DOM Elements ---
+const bankSubjectSelect = document.getElementById('bankSubjectSelect') as HTMLSelectElement;
+const bankGradeSelect = document.getElementById('bankGradeSelect') as HTMLSelectElement;
+const bankLessonSelect = document.getElementById('bankLessonSelect') as HTMLSelectElement;
+const bankTypeSelect = document.getElementById('bankTypeSelect') as HTMLSelectElement;
+const bankDifficultySelect = document.getElementById('bankDifficultySelect') as HTMLSelectElement;
+const bankObjectiveSelect = document.getElementById('bankObjectiveSelect') as HTMLSelectElement;
+const questionBankDisplay = document.getElementById('questionBankDisplay') as HTMLElement;
+const questionBankActions = document.getElementById('questionBankActions') as HTMLElement;
+const selectedQuestionCount = document.getElementById('selectedQuestionCount') as HTMLElement;
+const exportSelectedBtn = document.getElementById('exportSelectedBtn') as HTMLButtonElement;
+const importQuestionBankInput = document.getElementById('importQuestionBankInput') as HTMLInputElement;
+const exportFullBankBtn = document.getElementById('exportFullBankBtn') as HTMLButtonElement;
 
 
 // --- UTILITY FUNCTIONS ---
@@ -83,20 +100,44 @@ function showAlert(message, type = 'info', duration = 5000) {
     }
 }
 
-function setLoadingState(button: HTMLButtonElement, isLoading: boolean) {
+function setLoadingState(button: HTMLButtonElement, isLoading: boolean, text?: string) {
     button.disabled = isLoading;
+    const originalText = button.dataset.originalText || button.innerText;
+    if (!button.dataset.originalText) {
+        button.dataset.originalText = originalText;
+    }
 
     if (isLoading) {
         button.classList.add('is-loading');
+        if (text) {
+             const textSpan = button.querySelector('span:not(.spinner-border)');
+             if (textSpan) textSpan.textContent = text;
+        }
     } else {
         button.classList.remove('is-loading');
+        const textSpan = button.querySelector('span:not(.spinner-border)');
+        if (textSpan) textSpan.textContent = originalText.replace(/<i.*><\/i>/, '').trim();
     }
+}
 
-    // Handle text changes for specific buttons
-    if (button === saveApiKeyBtn) {
-        saveApiKeyText.textContent = isLoading ? 'Đang kiểm tra...' : 'Lưu và Kiểm tra';
-    } else if (button === generateFinalExamBtn) {
-        generateText.textContent = isLoading ? 'Đang tạo...' : 'Tạo đề thi, Ma trận & Đặc tả';
+function downloadDataAsJson(data: object, filename: string) {
+    try {
+        const fileContent = JSON.stringify(data, null, 4);
+        const blob = new Blob([fileContent], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }, 0);
+        showAlert(`Đã tải về thành công tệp \`${filename}\`!`, 'success');
+    } catch (e) {
+        showAlert('Không thể tải về tệp. Lỗi: ' + (e as Error).message, 'danger');
+        console.error(e);
     }
 }
 
@@ -104,30 +145,64 @@ function setLoadingState(button: HTMLButtonElement, isLoading: boolean) {
 // --- INITIALIZATION ---
 window.addEventListener('DOMContentLoaded', async () => {
     loadSavedApiKey();
+    
+    bankSubjectSelect.innerHTML = subjectSelect.innerHTML;
+    bankSubjectSelect.value = currentSubject;
+    
     await loadSubjectData(currentSubject);
+
+    // Add a check for potentially stale data from localStorage
+    if (localStorage.getItem(`examData_${currentSubject}`) && examData && !examData['1']) {
+        showAlert('Dữ liệu của bạn có thể đã cũ. Vui lòng vào phần "Quản lý dạng bài tập" và nhấn <strong>"Reset về dữ liệu gốc"</strong> để cập nhật dữ liệu mới nhất cho môn học này.', 'warning', 0);
+    }
+
+    await loadBankData(currentSubject);
+
+    updateQuestionTypesForSubject(currentSubject);
     setupEventListeners();
     renderStructure();
 });
 
+/**
+ * Fetches subject data from localStorage or server, with a specific cache invalidation
+ * check for CNNN (Agricultural Technology) to fix stale data issues.
+ * @param subject The subject key (e.g., 'Toan', 'CNNN').
+ * @returns A promise that resolves to the subject data object.
+ */
+async function getSubjectData(subject: string): Promise<any> {
+    const localStorageKey = `examData_${subject}`;
+    const savedData = localStorage.getItem(localStorageKey);
+
+    if (savedData) {
+        const parsedData = JSON.parse(savedData);
+        // Specific check for CNNN to invalidate stale cache.
+        // If CNNN data is loaded but contains a lesson from CNCN ("Công nghệ và đời sống"), it's stale.
+        if (subject === 'CNNN' && parsedData['10'] && parsedData['10']['Bài 1. Công nghệ và đời sống']) {
+            console.warn(`Stale CNNN data for key '${localStorageKey}' detected. Refetching from server.`);
+            // By not returning here, we allow the code to fall through to the fetch operation.
+        } else {
+            console.log(`Loading data for subject '${subject}' from localStorage.`);
+            return parsedData;
+        }
+    }
+
+    // Fetch new data if no local data exists or if it was detected as stale.
+    console.log(`Fetching fresh data for '${subject}' from server.`);
+    const response = await fetch(`${subject}.json`);
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const freshData = await response.json();
+    // Save the newly fetched data to localStorage, overwriting any stale data.
+    localStorage.setItem(localStorageKey, JSON.stringify(freshData));
+    return freshData;
+}
+
+
 async function loadSubjectData(subject) {
     currentSubject = subject;
-    const localStorageKey = `examData_${subject}`;
-
     try {
-        const savedData = localStorage.getItem(localStorageKey);
-        if (savedData) {
-            console.log(`Loading data for subject '${subject}' from localStorage.`);
-            examData = JSON.parse(savedData);
-        } else {
-            console.log(`No local data found for '${subject}'. Fetching from server.`);
-            const response = await fetch(`${subject}.json`);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            examData = await response.json();
-            localStorage.setItem(localStorageKey, JSON.stringify(examData));
-        }
-
+        examData = await getSubjectData(subject);
         populateGradeSelect();
         resetLessonAndObjectives();
     } catch (e) {
@@ -136,6 +211,32 @@ async function loadSubjectData(subject) {
         if (gradeSelect) gradeSelect.disabled = true;
     }
 }
+
+// Loads data for the question bank view specifically
+async function loadBankData(subject: string) {
+    try {
+        bankViewingData = await getSubjectData(subject);
+
+        populateBankGradeSelect();
+        // Reset lower-level dropdowns
+        if (bankLessonSelect) {
+            bankLessonSelect.innerHTML = '<option value="all" selected>-- Tất cả bài học --</option>';
+            bankLessonSelect.disabled = true;
+        }
+        if (bankObjectiveSelect) {
+            bankObjectiveSelect.innerHTML = '<option value="all" selected>-- Tất cả Yêu cầu --</option>';
+            bankObjectiveSelect.disabled = true;
+        }
+        if (questionBankDisplay) {
+            questionBankDisplay.innerHTML = '<p class="text-center text-muted p-4">Hãy chọn Lớp để xem các câu hỏi trong ngân hàng.</p>';
+        }
+    } catch (e) {
+        showAlert(`Lỗi: Không thể tải dữ liệu ngân hàng cho môn ${subject}.`, 'danger');
+        bankViewingData = {};
+        populateBankGradeSelect(); // This will clear the grade select
+    }
+}
+
 
 function saveDataToLocalStorage() {
     if (!currentSubject) return;
@@ -169,7 +270,8 @@ function loadSavedApiKey() {
 
 function populateGradeSelect() {
     gradeSelect.innerHTML = '<option selected disabled>-- Chọn lớp --</option>';
-    for (const grade in examData) {
+    const grades = Object.keys(examData).sort((a, b) => parseInt(a) - parseInt(b));
+    for (const grade of grades) {
         const option = document.createElement('option');
         option.value = grade;
         option.textContent = `Lớp ${grade}`;
@@ -203,7 +305,86 @@ function setupEventListeners() {
     generateExplanationsBtn?.addEventListener('click', handleGenerateExplanations);
     suggestTitleBtn?.addEventListener('click', handleSuggestTitle);
     fileUploadInput?.addEventListener('change', handleFileUpload);
+    updateQuestionBankBtn?.addEventListener('click', handleUpdateQuestionBank);
+
+    // Question Bank Listeners
+    bankSubjectSelect?.addEventListener('change', handleBankSubjectChange);
+    bankGradeSelect?.addEventListener('change', handleBankGradeChange);
+    bankLessonSelect?.addEventListener('change', () => {
+        populateBankObjectives();
+        renderQuestionBank();
+    });
+    [bankTypeSelect, bankDifficultySelect, bankObjectiveSelect].forEach(el => {
+        el?.addEventListener('change', renderQuestionBank);
+    });
+    importQuestionBankInput?.addEventListener('change', handleImportQuestionBank);
+    exportFullBankBtn?.addEventListener('click', handleExportFullBank);
+
+    document.querySelectorAll('.export-selected-action').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const format = (e.currentTarget as HTMLElement).dataset.format;
+            handleExportSelectedQuestions(format as 'docx' | 'tex');
+        });
+    });
 }
+
+function updateQuestionTypesForSubject(subject: string) {
+    const typeSelect = document.getElementById('typeSelect') as HTMLSelectElement;
+    const bankTypeSelect = document.getElementById('bankTypeSelect') as HTMLSelectElement;
+    if (!typeSelect || !bankTypeSelect) return;
+
+    const defaultTypes = `
+        <option value="trắc nghiệm">Trắc nghiệm</option>
+        <option value="đúng/sai">Đúng/Sai (dựa trên tư liệu)</option>
+        <option value="trả lời ngắn">Trả lời ngắn</option>
+        <option value="tự luận">Tự luận</option>
+    `;
+
+    const englishTypes = `
+        <option value="Trắc nghiệm (Ngữ pháp & Từ vựng)">Trắc nghiệm (Ngữ pháp & Từ vựng)</option>
+        <option value="Đúng/Sai (Ngữ pháp & Từ vựng)">Đúng/Sai (Ngữ pháp & Từ vựng)</option>
+        <option value="Trắc nghiệm (Đọc hiểu)">Trắc nghiệm (Đọc hiểu)</option>
+        <option value="Đúng/Sai (Đọc hiểu)">Đúng/Sai (Đọc hiểu)</option>
+        <option value="Trắc nghiệm (Nghe hiểu)">Trắc nghiệm (Nghe hiểu)</option>
+        <option value="Đúng/Sai (Nghe hiểu)">Đúng/Sai (Nghe hiểu)</option>
+        <option value="Điền vào chỗ trống">Điền vào chỗ trống (Cloze Test)</option>
+        <option value="Sắp xếp câu/hội thoại">Sắp xếp câu/hội thoại</option>
+        <option value="Viết lại câu">Viết lại câu</option>
+        <option value="Viết đoạn văn">Viết đoạn văn</option>
+    `;
+
+    const bankDefaultTypes = `
+        <option value="all" selected>Tất cả</option>
+        <option value="trắc nghiệm">Trắc nghiệm</option>
+        <option value="đúng/sai">Đúng/Sai</option>
+        <option value="trả lời ngắn">Trả lời ngắn</option>
+        <option value="tự luận">Tự luận</option>
+    `;
+
+    const bankEnglishTypes = `
+        <option value="all" selected>Tất cả</option>
+        <option value="Trắc nghiệm (Ngữ pháp & Từ vựng)">Trắc nghiệm (Ngữ pháp & Từ vựng)</option>
+        <option value="Đúng/Sai (Ngữ pháp & Từ vựng)">Đúng/Sai (Ngữ pháp & Từ vựng)</option>
+        <option value="Trắc nghiệm (Đọc hiểu)">Trắc nghiệm (Đọc hiểu)</option>
+        <option value="Đúng/Sai (Đọc hiểu)">Đúng/Sai (Đọc hiểu)</option>
+        <option value="Trắc nghiệm (Nghe hiểu)">Trắc nghiệm (Nghe hiểu)</option>
+        <option value="Đúng/Sai (Nghe hiểu)">Đúng/Sai (Nghe hiểu)</option>
+        <option value="Điền vào chỗ trống">Điền vào chỗ trống (Cloze Test)</option>
+        <option value="Sắp xếp câu/hội thoại">Sắp xếp câu/hội thoại</option>
+        <option value="Viết lại câu">Viết lại câu</option>
+        <option value="Viết đoạn văn">Viết đoạn văn</option>
+    `;
+
+    if (subject === 'Anh') {
+        typeSelect.innerHTML = englishTypes;
+        bankTypeSelect.innerHTML = bankEnglishTypes;
+    } else {
+        typeSelect.innerHTML = defaultTypes;
+        bankTypeSelect.innerHTML = bankDefaultTypes;
+    }
+}
+
 
 // --- File Upload Handlers ---
 function readFileAsBase64(file: File): Promise<string> {
@@ -316,6 +497,21 @@ function renderStructure() {
 
 function renderMatrixTable() {
     if (!examMatrixContent) return;
+
+    const mapEnglishTypeToGeneric = (englishType: string): string => {
+        if (englishType.startsWith('Trắc nghiệm') || englishType === 'Điền vào chỗ trống') {
+            return 'trắc nghiệm';
+        }
+        if (englishType.startsWith('Đúng/Sai')) {
+            return 'đúng/sai';
+        }
+        if (englishType === 'Trả lời ngắn') {
+            return 'trả lời ngắn';
+        }
+        // Sắp xếp câu/hội thoại, Viết lại câu, Viết đoạn văn
+        return 'tự luận';
+    };
+
     const tableHtml = `
         <div class="rendered-table">
             <h2>I. MA TRẬN ĐỀ KIỂM TRA</h2>
@@ -379,7 +575,8 @@ function renderMatrixTable() {
 
             types.forEach(type => {
                 levels.forEach(level => {
-                    if (item.type === type && item.difficulty === level) {
+                    const itemType = currentSubject === 'Anh' ? mapEnglishTypeToGeneric(item.type) : item.type;
+                    if (itemType === type && item.difficulty === level) {
                         const qNum = parseInt(item.numQuestions, 10);
                         rowHtml += `<td>${qNum}</td>`;
                         rowTotalByLevel[level] += qNum;
@@ -487,6 +684,7 @@ function displayExamResult(fullResponseText: string) {
     exportDocxBtn.classList.remove('disabled');
     exportTexBtn.classList.remove('disabled');
     generateExplanationsBtn.disabled = false;
+    updateQuestionBankBtn.disabled = false;
 }
 
 // --- Event Handlers ---
@@ -499,7 +697,7 @@ async function handleSaveApiKey() {
         return;
     }
 
-    setLoadingState(saveApiKeyBtn, true);
+    setLoadingState(saveApiKeyBtn, true, 'Đang kiểm tra...');
 
     try {
         const testAi = new GoogleGenAI({ apiKey });
@@ -529,7 +727,7 @@ async function handleSaveApiKey() {
         apiKeyMessage.className = 'text-danger';
         console.error("API Key validation failed:", error);
     } finally {
-        setLoadingState(saveApiKeyBtn, false);
+        setLoadingState(saveApiKeyBtn, false, 'Lưu và Kiểm tra');
     }
 }
 
@@ -589,6 +787,9 @@ function handleExportToDocx(event) {
     }
     
     let contentHtml = activeTabPane.innerHTML;
+    // Convert Markdown bold (**text**) to HTML bold (<b>text</b>) for Word
+    contentHtml = contentHtml.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+
     
     const htmlContent = `
         <!DOCTYPE html>
@@ -682,37 +883,37 @@ ${content}
 
 async function handleSubjectChange() {
     const selectedSubject = subjectSelect.value;
+    // Clear selections when changing subject to avoid confusion
+    selectedBankQuestions = [];
+    updateSelectedCountDisplay();
     await loadSubjectData(selectedSubject);
+
+    // Sync bank UI
+    if (bankSubjectSelect) {
+        bankSubjectSelect.value = selectedSubject;
+    }
+    await loadBankData(selectedSubject);
+    
+    updateQuestionTypesForSubject(selectedSubject);
 }
 
 async function handleResetData() {
-    if (confirm(`Bạn có chắc chắn muốn xóa tất cả các thay đổi đã lưu cho môn ${currentSubject} và quay về dữ liệu gốc không?`)) {
+    if (confirm(`Bạn có chắc chắn muốn xóa tất cả các thay đổi đã lưu cho môn ${currentSubject} và quay về dữ liệu gốc không? Hành động này bao gồm cả việc xóa ngân hàng câu hỏi của môn này.`)) {
         const localStorageKey = `examData_${currentSubject}`;
         localStorage.removeItem(localStorageKey);
         showAlert(`Đã reset dữ liệu môn ${currentSubject} về trạng thái gốc.`, 'info');
+        
+        // Clear selections as the underlying data is gone
+        selectedBankQuestions = [];
+        updateSelectedCountDisplay();
+        
         await loadSubjectData(currentSubject);
+        await loadBankData(currentSubject); // Reload bank data as well
     }
 }
 
 function handleExportDataFile() {
-    try {
-        const fileContent = JSON.stringify(examData, null, 4);
-        const blob = new Blob([fileContent], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `${currentSubject}_backup.json`;
-        document.body.appendChild(a);
-        a.click();
-        setTimeout(() => {
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-        }, 0);
-        showAlert(`Đã sao lưu thành công tệp \`${currentSubject}_backup.json\`!`, 'success');
-    } catch (e) {
-        showAlert('Không thể sao lưu tệp dữ liệu. Lỗi: ' + e.message, 'danger');
-        console.error(e);
-    }
+    downloadDataAsJson(examData, `${currentSubject}_backup.json`);
 }
 
 function handleImportDataFile(event: Event) {
@@ -731,7 +932,7 @@ function handleImportDataFile(event: Event) {
 
     const reader = new FileReader();
 
-    reader.onload = (e) => {
+    reader.onload = async (e) => {
         try {
             const text = e.target?.result as string;
             if (!text) throw new Error("Tệp rỗng.");
@@ -751,6 +952,11 @@ function handleImportDataFile(event: Event) {
 
             populateGradeSelect();
             resetLessonAndObjectives();
+            
+            // Also update the bank view if it's the same subject
+            if (bankSubjectSelect.value === currentSubject) {
+                await loadBankData(currentSubject);
+            }
             
             showAlert(`Đã nạp thành công dữ liệu cho môn ${subjectSelect.options[subjectSelect.selectedIndex].text}!`, 'success');
 
@@ -1092,7 +1298,7 @@ async function handleGenerateExam() {
         return;
     }
 
-    setLoadingState(generateFinalExamBtn, true);
+    setLoadingState(generateFinalExamBtn, true, 'Đang tạo...');
 
     try {
         fullResponseText = await generateFullResponse();
@@ -1108,17 +1314,109 @@ async function handleGenerateExam() {
         showAlert(`Lỗi tạo đề thi: ${error.message}`, 'danger');
         console.error(error);
     } finally {
-        setLoadingState(generateFinalExamBtn, false);
+        setLoadingState(generateFinalExamBtn, false, 'Tạo đề thi, Ma trận & Đặc tả');
     }
 }
 
 async function generateFullResponse(): Promise<string> {
     const format = formatSelect.value;
+    const subjectName = subjectSelect.options[subjectSelect.selectedIndex].text;
 
     const BASE_INSTRUCTION = `CHÚ Ý: chỉ tạo các câu hỏi đúng các phần mà mình yêu cầu, nếu không yêu cầu thì không tự tạo thêm. Chỉ cần tạo đề thi và đáp án, không cần tạo ma trận hay bản đặc tả.`;
 
+    const ENGLISH_SYSTEM_PROMPT = `
+BẠN LÀ MỘT CHUYÊN GIA SOẠN THẢO ĐỀ THI TIẾNG ANH. ${BASE_INSTRUCTION}
+HÃY TUÂN THỦ NGHIÊM NGẶT CÁC QUY TẮC SAU ĐÂY CHO TỪNG LOẠI CÂU HỎI:
+
+**1. Trắc nghiệm (Ngữ pháp & Từ vựng):**
+- Luôn có 4 lựa chọn A, B, C, D.
+- Câu hỏi tập trung vào các điểm ngữ pháp, cấu trúc câu, và từ vựng.
+- Ví dụ:
+Câu 1 (NB): Mrs. Pike __________ the door before the customers arrived.
+A. had opened
+B. opened
+C. will open
+D. would open
+
+**2. Đúng/Sai (Ngữ pháp & Từ vựng):**
+- Cung cấp một câu.
+- Yêu cầu học sinh xác định câu đó Đúng (True) về mặt ngữ pháp hay Sai (False).
+- Ví dụ:
+Câu 5 (NB): The following sentence is grammatically correct: "He have finished his homework."
+A. True
+B. False
+
+**3. Trắc nghiệm (Đọc hiểu):**
+- Cung cấp một đoạn văn (Passage) làm ngữ cảnh.
+- Dưới đoạn văn, đưa ra các câu hỏi trắc nghiệm A, B, C, D về nội dung của đoạn văn.
+- Ví dụ:
+(Đoạn văn về trường dạy nghề...)
+Câu 15 (TH): According to paragraph 2, how do vocational schools help students gain experience?
+A. By offering theoretical subjects.
+B. By providing job opportunities after graduation.
+C. By collaborating with companies to offer internships.
+D. By requiring students to work before enrolling.
+
+**4. Đúng/Sai (Đọc hiểu):**
+- Cung cấp một đoạn văn (Passage) làm ngữ cảnh.
+- Dưới đoạn văn, đưa ra các nhận định về nội dung đoạn văn.
+- Yêu cầu học sinh xác định nhận định đó là Đúng (True) hay Sai (False) dựa trên thông tin trong bài đọc.
+- Ví dụ:
+(Đoạn văn về lịch sử Internet...)
+Câu 20 (TH): The Internet was first created for commercial purposes.
+A. True
+B. False
+
+**5. Trắc nghiệm (Nghe hiểu):**
+- Ghi rõ phần "LISTENING". AI không cần tạo file âm thanh, chỉ cần tạo câu hỏi và đáp án dựa trên một kịch bản nghe giả định (Listening Script).
+- Ví dụ:
+(Listening Script: A hotel clerk says: "You need to fill out this registration form.")
+Câu 6 (NB): What does the guest have to do?
+A. fill out a registration form B. show a credit card C. show a driver's license
+
+**6. Đúng/Sai (Nghe hiểu):**
+- Cung cấp một kịch bản nghe giả định (Listening Script).
+- Dưới kịch bản, đưa ra các nhận định về nội dung đã nghe.
+- Yêu cầu học sinh xác định nhận định đó là Đúng (True) hay Sai (False).
+- Ví dụ:
+(Listening script: A conversation about weekend plans where Mary says she will visit her grandparents.)
+Câu 8 (NB): Mary is going to the cinema this weekend.
+A. True
+B. False
+
+**7. Điền vào chỗ trống (Cloze Test):**
+- Cung cấp một đoạn văn có các chỗ trống được đánh số (I), (II), ...
+- Dưới đoạn văn, đưa ra các câu hỏi trắc nghiệm A, B, C, D cho mỗi chỗ trống.
+- Ví dụ:
+... helps them become more responsible and (I) ________.
+Câu 24: A. confides B. confident C. confidently D. confidence
+
+**8. Sắp xếp câu/hội thoại (Sentence/Dialogue Arrangement):**
+- Cho các câu/phát biểu rời rạc (đánh dấu A, B, C,...).
+- Yêu cầu sắp xếp chúng thành một đoạn hội thoại hoặc văn bản có logic.
+- Ví dụ:
+Question 29: Arrange the sentences to make a complete dialogue.
+1. ___ 2. ___ 3. ___
+A. Minh: Let's go! It'll be a fun way...
+B. An: That sounds like a great idea...
+C. Minh: Do you want to ride our bikes...?
+
+**9. Viết lại câu (Sentence Transformation):**
+- Đưa ra một câu gốc và yêu cầu viết lại câu đó theo một cấu trúc ngữ pháp khác mà không đổi nghĩa.
+- Ví dụ:
+Question 32: Lan is the first person who has completed the project. (to infinitive clause)
+→ _________________________________
+
+**10. Viết đoạn văn (Paragraph Writing):**
+- Đưa ra một hoặc nhiều chủ đề.
+- Yêu cầu viết một đoạn văn ngắn (khoảng 100-120 từ) về một trong các chủ đề đó.
+- Ví dụ:
+Part C: Writing a paragraph (choose one topic)
+1/ In about 100-120 words, write a paragraph about Ways to preserve our heritage...
+`;
+
     const NORMAL_SYSTEM_PROMPT = `
-BẠN LÀ MỘT CHUYÊN GIA SOẠN THẢO ĐỀ THI TOÁN HỌC. ${BASE_INSTRUCTION}
+BẠN LÀ MỘT CHUYÊN GIA SOẠN THẢO ĐỀ THI MÔN ${subjectName.toUpperCase()}. ${BASE_INSTRUCTION}
 HÃY TUÂN THỦ NGHIÊM NGẶT CÁC QUY TẮC VÀ LÀM THEO CÁC VÍ DỤ MẪU SAU ĐÂY CHO TỪNG LOẠI CÂU HỎI:
 **1. TRẮC NGHIỆM (A, B, C, D):**
 - Luôn có 4 lựa chọn A, B, C, D.
@@ -1152,8 +1450,8 @@ Câu 1 (VD): Cho ba điểm A(1;2), B(-2;1) và C(4;-2) trong mặt phẳng tọ
 `;
 
     const LATEX_SYSTEM_PROMPT = `
-BẠN LÀ MỘT CHUYÊN GIA SOẠN THẢO ĐỀ THI TOÁN HỌC BẰNG LATEX. ${BASE_INSTRUCTION}
-CHỈ TẠO NỘI DUNG BÊN TRONG MÔI TRƯỜNG DOCUMENT, KHÔNG BAO GỒM \\documentclass, \\usepackage, hay \\begin{document}.
+BẠN LÀ MỘT CHUYÊN GIA SOẠN THẢO ĐỀ THI MÔN ${subjectName.toUpperCase()} BẰNG LATEX. ${BASE_INSTRUCTION}
+CHỈ TẠO NỘI DUNG BÊN TRONG MÔI TRƯNG DOCUMENT, KHÔNG BAO GỒM \\documentclass, \\usepackage, hay \\begin{document}.
 QUY TẮC ĐỊNH DẠNG TUYỆT ĐỐI: Sau mỗi dòng câu hỏi và mỗi dòng đáp án (A, B, C, D, a, b, c, d) PHẢI có lệnh xuống dòng \\\\.
 HÃY TUÂN THỦ NGHIÊM NGẶT CÁC QUY TẮC VÀ LÀM THEO CÁC VÍ DỤ MẪU SAU ĐÂY CHO TỪNG LOẠI CÂU HỎI:
 **1. TRẮC NGHIỆM (A, B, C, D):**
@@ -1174,87 +1472,578 @@ d) Đường thẳng d cắt đường tròn (C) tại hai điểm.\\\\
 `;
 
     const MATHTYPE_SYSTEM_PROMPT = `
-Là một chuyên gia soạn thảo Word cho các đề thi Toán học, bạn sẽ tạo câu hỏi và đáp án dưới dạng code raw LaTeX tương thích với MathType. ${BASE_INSTRUCTION}
-- Luôn dùng $...$ cho môi trường toán học.
-- Luôn dùng \\dfrac, \\left( ... \\right), \\overrightarrow.
-QUY TẮC ĐỊNH DẠNG TUYỆT ĐỐI: Sau mỗi dòng câu hỏi và mỗi dòng đáp án (A, B, C, D, a, b, c, d) PHẢI có lệnh xuống dòng \\\\.
+Là một chuyên gia soạn thảo Word cho các đề thi môn ${subjectName}, bạn sẽ tạo câu hỏi và đáp án.
+QUY TẮC TUYỆT ĐỐI:
+1.  **Chỉ tạo nội dung, không có lời dẫn hay giải thích gì thêm.**
+2.  Sử dụng định dạng MathType tuyến tính (linear format) cho tất cả các công thức toán học. Ví dụ: \`x^2\`, \`\\sqrt(x-1)\`, \`(x+1)/(x-2)\`, \`\\vec(AB)\`.
+3.  Không sử dụng LaTeX (ví dụ: \`$...$\`, \`\\\\frac{}{}\`).
+4.  Cấu trúc câu hỏi và đáp án phải rõ ràng, giống như văn bản Word thông thường.
+
 VÍ DỤ MẪU:
 **1. TRẮC NGHIỆM:**
-Câu 1 (NB): Trong các câu sau, câu nào không phải là mệnh đề?\\\\
-A. $1 + 1 = 2$.\\\\
-B. Hình thoi có bốn cạnh bằng nhau.\\\\
-C. Hãy đóng cửa sổ lại!\\\\
-D. Số pi là một số vô tỉ.\\\\
+Câu 1 (NB): Trong mặt phẳng Oxy, cho đường thẳng d: 3x - y + 2 = 0. Một vector pháp tuyến của d là:
+A. n = (3; -1).
+B. n = (1; 3).
+C. n = (-1; 3).
+D. n = (3; 1).
+
+**2. TỰ LUẬN:**
+Câu 1 (VD): Tìm tọa độ trực tâm H của tam giác ABC biết A(1;2), B(-2;1) và C(4;-2).
 `;
 
-    let systemPrompt: string;
-    switch (format) {
-        case 'latex':
-            systemPrompt = LATEX_SYSTEM_PROMPT;
-            break;
-        case 'mathtype':
-            systemPrompt = MATHTYPE_SYSTEM_PROMPT;
-            break;
-        default:
-            systemPrompt = NORMAL_SYSTEM_PROMPT;
-    }
+    const systemPrompt = format === 'latex' ? LATEX_SYSTEM_PROMPT : (
+        format === 'mathtype' ? MATHTYPE_SYSTEM_PROMPT : (
+            currentSubject === 'Anh' ? ENGLISH_SYSTEM_PROMPT : NORMAL_SYSTEM_PROMPT
+        )
+    );
 
-    if (format === 'latex' || format === 'mathtype') {
-        const queryKeywords = examStructure.map(part => `${part.lesson} ${part.objectives.join(' ')}`).join(' ');
-        const tikzSnippets = getTikzSnippetsForQuery(queryKeywords);
-        if (tikzSnippets) {
-            systemPrompt += `
+    const examTitle = examTitleInput.value.trim();
 
---- TIKZ SNIPPETS THAM KHẢO ---
-KHI CẦN VẼ HÌNH BẰNG TIKZ (cho hình học, đồ thị, bảng biến thiên, ...), HÃY THAM KHẢO VÀ ƯU TIÊN SỬ DỤNG CÁC ĐOẠN MÃ SAU ĐÂY ĐỂ ĐẢM BẢO TÍNH CHÍNH XÁC VÀ NHẤT QUÁN. ĐÂY LÀ THƯ VIỆN MÃ LỆNH MẪU:
-${tikzSnippets}
---- HẾT TIKZ SNIPPETS ---
-`;
-        }
-    }
-
-    const userPromptText = `
-    Dựa vào cấu trúc sau đây, hãy tạo một đề thi hoàn chỉnh kèm đáp án chi tiết.
-
-    **Tiêu đề:** ${examTitleInput.value || 'Đề kiểm tra'}
-
-    **Cấu trúc đề:**
-    ${examStructure.map((part, index) => `
-    Phần ${index + 1}:
-    - Lớp: ${part.grade}
-    - Bài học/Chủ đề: ${part.lesson}
-    - Số lượng câu hỏi: ${part.numQuestions}
-    - Dạng câu hỏi: ${part.type}
-    - Mức độ: ${part.difficulty}
-    - Yêu cầu cần đạt: ${part.objectives.join(', ')}
-    `).join('\n')}
-
-    Hãy đảm bảo đầu ra tuân thủ định dạng đã chọn (${format}) và chỉ bao gồm nội dung đề thi và đáp án.
+    let promptForAI = `
+        Hãy tạo một đề thi và đáp án chi tiết dựa trên cấu trúc sau.
+        ${examTitle ? `Tiêu đề: ${examTitle}` : ''}
+        
+        --- CẤU TRÚC ĐỀ THI ---
     `;
 
-    const contentParts: any[] = [];
+    examStructure.forEach((part, index) => {
+        promptForAI += `
+        Phần ${index + 1}:
+        - Bài học: ${part.lesson} (Lớp ${part.grade})
+        - Số câu: ${part.numQuestions}
+        - Mức độ: ${part.difficulty}
+        - Loại câu hỏi: ${part.type}
+        - Yêu cầu cần đạt: ${part.objectives.join('; ')}
+        ---
+        `;
+    });
 
+    const webLinksContent = (document.getElementById('webLinks') as HTMLTextAreaElement).value.trim();
+    if (webLinksContent) {
+        promptForAI += `
+        --- NGUỒN THAM KHẢO BỔ SUNG TỪ WEB ---
+        Hãy tham khảo các thông tin từ các đường link sau đây để làm phong phú câu hỏi:
+        ${webLinksContent}
+        ---
+        `;
+    }
+
+    const fileParts: any[] = [];
     if (uploadedFiles.length > 0) {
-        contentParts.push({ text: "Dưới đây là một số tệp tham khảo. Hãy sử dụng thông tin trong các tệp này để tạo câu hỏi nếu phù hợp:" });
+        promptForAI += `
+        --- NGUỒN THAM KHẢO BỔ SUNG TỪ TỆP ĐÍNH KÈM ---
+        Hãy phân tích và sử dụng nội dung từ các tệp đính kèm sau đây để tạo ra các câu hỏi phù hợp và bám sát tài liệu.
+        ---
+        `;
+
         for (const file of uploadedFiles) {
-            const base64Data = (await readFileAsBase64(file)).split(',')[1];
-            contentParts.push({
-                inlineData: {
-                    mimeType: file.type || 'application/octet-stream',
-                    data: base64Data
-                }
-            });
+             if (file.type.startsWith('image/')) {
+                const base64Data = (await readFileAsBase64(file)).split(',')[1];
+                fileParts.push({
+                    inlineData: {
+                        mimeType: file.type,
+                        data: base64Data,
+                    },
+                });
+             } else {
+                 const textContent = await readFileAsText(file);
+                 promptForAI += `\nNội dung tệp ${file.name}:\n${textContent}\n---`;
+             }
         }
     }
-    contentParts.push({ text: userPromptText });
+    
+    if (currentSubject === 'Toan' && format === 'latex') {
+        const tikzQuery = examStructure.map(p => p.objectives.join(' ')).join(' ');
+        const tikzSnippets = getTikzSnippetsForQuery(tikzQuery);
+        promptForAI += `
+        --- MẪU MÃ LỆNH TIKZ ĐỂ VẼ HÌNH (THAM KHẢO) ---
+        Khi cần vẽ hình học, hãy sử dụng các đoạn mã TikZ tương tự như các ví dụ sau đây. Chỉ sử dụng khi câu hỏi yêu cầu vẽ hình.
+        ${tikzSnippets}
+        ---
+        `;
+    }
+    
+    const contents = [...fileParts, { text: promptForAI }];
+    
+    generateSpinner.style.display = 'inline-block';
+    generateText.textContent = 'Đang tạo đề thi...';
 
-    const response = await ai.models.generateContent({
+    const responseStream = await ai.models.generateContentStream({
         model: 'gemini-2.5-flash',
-        contents: { parts: contentParts },
+        contents: { parts: contents },
         config: {
             systemInstruction: systemPrompt,
         }
     });
 
-    return response.text;
+    let fullText = '';
+    let buffer = '';
+    examAndAnswerContent.innerHTML = '<pre><code></code></pre>';
+    const codeElement = examAndAnswerContent.querySelector('code');
+
+    for await (const chunk of responseStream) {
+        buffer += chunk.text;
+        if (codeElement) {
+            codeElement.textContent = buffer;
+        }
+    }
+    fullText = buffer;
+    
+    generateSpinner.style.display = 'none';
+    generateText.textContent = 'Tạo đề thi, Ma trận & Đặc tả';
+    
+    return fullText;
+}
+
+
+// --- QUESTION BANK FUNCTIONS ---
+
+async function handleBankSubjectChange() {
+    const selectedBankSubject = bankSubjectSelect.value;
+    // Clear selections when changing subject to avoid confusion
+    selectedBankQuestions = [];
+    updateSelectedCountDisplay();
+    await loadBankData(selectedBankSubject);
+}
+
+function populateBankGradeSelect() {
+    if (!bankGradeSelect) return;
+    bankGradeSelect.innerHTML = '<option selected disabled>-- Chọn lớp --</option>';
+    const grades = Object.keys(bankViewingData).sort((a, b) => parseInt(a) - parseInt(b));
+    for (const grade of grades) {
+        const option = document.createElement('option');
+        option.value = grade;
+        option.textContent = `Lớp ${grade}`;
+        bankGradeSelect.appendChild(option);
+    }
+    bankGradeSelect.disabled = grades.length === 0;
+}
+
+function handleBankGradeChange() {
+    const selectedGrade = bankGradeSelect.value;
+    const lessons = bankViewingData[selectedGrade] || {};
+    if (!bankLessonSelect) return;
+    
+    bankLessonSelect.innerHTML = '<option value="all" selected>-- Tất cả bài học --</option>';
+    for (const lessonName in lessons) {
+        const option = document.createElement('option');
+        option.value = lessonName;
+        option.textContent = lessonName;
+        bankLessonSelect.appendChild(option);
+    }
+    bankLessonSelect.disabled = false;
+    
+    populateBankObjectives();
+    renderQuestionBank();
+}
+
+function populateBankObjectives() {
+    const grade = bankGradeSelect.value;
+    const lesson = bankLessonSelect.value;
+    if (!bankObjectiveSelect) return;
+
+    bankObjectiveSelect.innerHTML = '<option value="all" selected>-- Tất cả Yêu cầu --</option>';
+    bankObjectiveSelect.disabled = true;
+
+    if (grade && grade !== 'all' && lesson && lesson !== 'all') {
+        const objectives = bankViewingData[grade]?.[lesson]?.objectives || [];
+        if (objectives.length > 0) {
+            objectives.forEach(obj => {
+                const option = document.createElement('option');
+                option.value = obj;
+                option.textContent = obj.length > 50 ? obj.substring(0, 50) + '...' : obj;
+                bankObjectiveSelect.appendChild(option);
+            });
+            bankObjectiveSelect.disabled = false;
+        }
+    }
+}
+
+function renderQuestionBank() {
+    if (!questionBankDisplay) return;
+
+    const grade = bankGradeSelect.value;
+    const lesson = bankLessonSelect.value;
+    const type = bankTypeSelect.value;
+    const difficulty = bankDifficultySelect.value;
+    const objective = bankObjectiveSelect.value;
+
+    let allQuestions: any[] = [];
+    if (grade && bankGradeSelect.selectedIndex > 0) {
+        if (lesson === 'all') { // All lessons in a grade
+            Object.values(bankViewingData[grade] || {}).forEach((lessonData: any) => {
+                if(lessonData.questionBank) allQuestions.push(...(lessonData.questionBank));
+            });
+        } else { // Specific lesson
+            allQuestions = bankViewingData[grade]?.[lesson]?.questionBank || [];
+        }
+    }
+
+    const filteredQuestions = allQuestions.filter(q => {
+        return (type === 'all' || q.type === type) &&
+               (difficulty === 'all' || q.difficulty === difficulty) &&
+               (objective === 'all' || q.objective === objective);
+    });
+
+    questionBankDisplay.innerHTML = '';
+    if (filteredQuestions.length === 0) {
+        questionBankDisplay.innerHTML = '<p class="text-center text-muted p-4">Không tìm thấy câu hỏi nào phù hợp với bộ lọc.</p>';
+        return;
+    }
+
+    filteredQuestions.forEach(q => {
+        const item = document.createElement('div');
+        item.className = 'bank-question-item';
+        const isSelected = selectedBankQuestions.some(sq => sq.id === q.id);
+        
+        item.innerHTML = `
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="q-${q.id}" data-id="${q.id}" ${isSelected ? 'checked' : ''}>
+                <label class="form-check-label" for="q-${q.id}">
+                    <div>${q.question_text.replace(/\n/g, '<br>')}</div>
+                    <div class="mt-2 text-primary small"><em>Đáp án: ${q.answer_text}</em></div>
+                    <div class="mt-1">
+                        <span class="badge bg-secondary">${q.type || 'N/A'}</span>
+                        <span class="badge bg-info">${q.difficulty || 'N/A'}</span>
+                    </div>
+                </label>
+            </div>
+        `;
+        questionBankDisplay.appendChild(item);
+    });
+    
+    questionBankDisplay.querySelectorAll('.form-check-input').forEach(checkbox => {
+        checkbox.addEventListener('change', (e) => {
+            const target = e.target as HTMLInputElement;
+            const questionId = target.dataset.id;
+            const question = allQuestions.find(q => q.id === questionId);
+            if (!question) return;
+            
+            if (target.checked) {
+                if (!selectedBankQuestions.some(sq => sq.id === questionId)) {
+                    selectedBankQuestions.push(question);
+                }
+            } else {
+                selectedBankQuestions = selectedBankQuestions.filter(sq => sq.id !== questionId);
+            }
+            updateSelectedCountDisplay();
+        });
+    });
+}
+
+function updateSelectedCountDisplay() {
+    if (!selectedQuestionCount || !questionBankActions || !exportSelectedBtn) return;
+    const count = selectedBankQuestions.length;
+    selectedQuestionCount.textContent = `Đã chọn: ${count} câu hỏi`;
+    
+    if (count > 0) {
+        questionBankActions.style.display = 'flex';
+        exportSelectedBtn.disabled = false;
+    } else {
+        questionBankActions.style.display = 'none';
+        exportSelectedBtn.disabled = true;
+    }
+}
+
+/**
+ * Parses the generated exam text, adds new questions to the question bank,
+ * and saves the data to localStorage.
+ * @returns {Promise<boolean>} True if successful, false otherwise.
+ */
+async function updateBankFromResponse(): Promise<boolean> {
+    if (!fullResponseText || !ai) {
+        return false;
+    }
+    try {
+        const prompt = `
+        BẠN LÀ MỘT CHUYÊN GIA PHÂN LOẠI CÂU HỎI. Dựa vào Đề thi và Đáp án đã tạo, hãy phân tích và trích xuất TỪNG câu hỏi một cách độc lập và trả về dưới dạng một MẢNG JSON.
+
+        CẤU TRÚC JSON CHO MỖI CÂU HỎI PHẢI TUÂN THỦ NGHIÊM NGẶT NHƯ SAU:
+        {
+            "question_text": "Toàn bộ nội dung câu hỏi. QUAN TRỌNG: Đối với câu hỏi dạng 'đúng/sai', nội dung này BẮT BUỘC phải bao gồm cả đoạn văn bản dẫn (tư liệu) và đủ 4 nhận định (a, b, c, d). Phải sử dụng kí tự xuống dòng (\\n) sau đoạn tư liệu và sau mỗi nhận định. Ví dụ: 'Câu 1. Tư liệu lịch sử...\\na) Nhận định 1.\\nb) Nhận định 2.\\nc) Nhận định 3.\\nd) Nhận định 4.'",
+            "answer_text": "Đáp án chính xác và lời giải thích ngắn gọn (nếu có). Ví dụ cho câu đúng/sai: 'a-Đúng, b-Sai, c-Sai, d-Đúng.'",
+            "grade": "Lớp (chỉ ghi số, ví dụ: 10, 11, 12)",
+            "lesson": "Tên bài học chính xác mà câu hỏi thuộc về.",
+            "type": "Loại câu hỏi (ví dụ: 'trắc nghiệm', 'tự luận', 'đúng/sai', ...)",
+            "difficulty": "Mức độ ('nhận biết', 'thông hiểu', hoặc 'vận dụng').",
+            "objective": "Yêu cầu cần đạt chính mà câu hỏi này kiểm tra. Chọn yêu cầu phù hợp nhất từ danh sách."
+        }
+        
+        DỮ LIỆU ĐẦU VÀO ĐỂ PHÂN TÍCH:
+        --- CẤU TRÚC ĐỀ THI GỐC ---
+        ${JSON.stringify(examStructure, null, 2)}
+        --- NỘI DUNG ĐỀ THI VÀ ĐÁP ÁN ---
+        ${fullResponseText}
+        ---
+        
+        QUY TẮC PHÂN LOẠI:
+        - Với mỗi câu hỏi trong đề, hãy xác định nó thuộc 'Phần' nào trong cấu trúc gốc để lấy thông tin về Lớp (grade), Bài học (lesson), Loại (type), Mức độ (difficulty), và Yêu cầu (objective).
+        - "objective" PHẢI LÀ MỘT TRONG CÁC YÊU CẦU CÓ SẴN trong cấu trúc của phần đó.
+        - Đảm bảo trích xuất đầy đủ và chính xác nội dung câu hỏi và đáp án, đặc biệt là định dạng của câu hỏi 'đúng/sai' như đã mô tả ở trên.
+        - Kết quả cuối cùng CHỈ LÀ MỘT MẢNG JSON, không có bất kỳ văn bản giải thích nào khác. Ví dụ: [ {câu hỏi 1}, {câu hỏi 2}, ... ]
+        `;
+
+        const response = await ai.models.generateContent({
+            model: "gemini-2.5-flash",
+            contents: prompt,
+            config: {
+                responseMimeType: "application/json",
+            }
+        });
+        
+        let jsonStr = response.text.trim();
+        if (jsonStr.startsWith('```json')) {
+            jsonStr = jsonStr.substring(7, jsonStr.length - 3).trim();
+        }
+        
+        const newQuestions = JSON.parse(jsonStr);
+
+        if (!Array.isArray(newQuestions)) {
+            throw new Error("AI did not return a valid JSON array.");
+        }
+
+        let addedCount = 0;
+        newQuestions.forEach(q => {
+            if (q.grade && q.lesson && q.question_text && q.answer_text) {
+                const grade = q.grade.toString();
+                const lesson = q.lesson;
+                
+                if (examData[grade] && examData[grade][lesson]) {
+                    if (!examData[grade][lesson].questionBank) {
+                        examData[grade][lesson].questionBank = [];
+                    }
+                    if (!examData[grade][lesson].questionBank.some(existingQ => existingQ.question_text === q.question_text)) {
+                         examData[grade][lesson].questionBank.push({
+                            id: `qb_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+                            ...q
+                         });
+                         addedCount++;
+                    }
+                }
+            }
+        });
+        
+        if (addedCount > 0) {
+            saveDataToLocalStorage();
+            showAlert(`Đã thêm ${addedCount} câu hỏi mới vào ngân hàng trên trình duyệt.`, 'success');
+            
+            if (bankSubjectSelect.value === currentSubject) {
+                await loadBankData(currentSubject);
+            }
+            renderQuestionBank();
+
+        } else {
+            showAlert('Không có câu hỏi mới nào được thêm. Có thể chúng đã tồn tại.', 'info');
+        }
+        return true;
+
+    } catch (error) {
+        showAlert(`Lỗi khi cập nhật ngân hàng câu hỏi: ${error.message}`, 'danger');
+        console.error("Error updating question bank:", error);
+        return false;
+    }
+}
+
+async function handleUpdateQuestionBank() {
+    if (!fullResponseText || !ai) {
+        showAlert('Vui lòng tạo đề thi trước khi lưu vào ngân hàng.', 'warning');
+        return;
+    }
+
+    setLoadingState(updateQuestionBankBtn, true);
+    await updateBankFromResponse();
+    setLoadingState(updateQuestionBankBtn, false);
+}
+
+async function handleExportFullBank() {
+    // New part: Check and update if there is a pending exam
+    if (fullResponseText.trim() !== '') {
+        if (confirm('Bạn có đề thi vừa tạo chưa được lưu vào ngân hàng. Bạn có muốn lưu vào ngân hàng trước khi tải về không? Thao tác này có thể mất một chút thời gian.')) {
+            setLoadingState(exportFullBankBtn, true);
+            const success = await updateBankFromResponse();
+            setLoadingState(exportFullBankBtn, false);
+
+            if (!success) {
+                showAlert('Không thể lưu đề thi vào ngân hàng. Đã hủy thao tác tải về.', 'warning');
+                return; // Stop if saving fails
+            }
+            // After updating, clear the response text to avoid asking again
+            fullResponseText = '';
+        }
+    }
+
+    if (!confirm('Thao tác này sẽ tổng hợp ngân hàng câu hỏi của TẤT CẢ các môn đã lưu trên trình duyệt này vào một tệp duy nhất. Bạn có muốn tiếp tục?')) {
+        return;
+    }
+
+    const fullBankData = {};
+    const subjectOptions = subjectSelect.options;
+
+    for (let i = 0; i < subjectOptions.length; i++) {
+        const subjectKey = subjectOptions[i].value;
+        const localStorageKey = `examData_${subjectKey}`;
+        const savedData = localStorage.getItem(localStorageKey);
+
+        if (savedData) {
+            try {
+                fullBankData[subjectKey] = JSON.parse(savedData);
+                console.log(`Exporting data for subject: ${subjectKey}`);
+            } catch (e) {
+                console.error(`Could not parse data for subject ${subjectKey}`, e);
+            }
+        }
+    }
+    
+    if (Object.keys(fullBankData).length === 0) {
+        showAlert('Không tìm thấy dữ liệu ngân hàng câu hỏi nào được lưu trên trình duyệt.', 'warning');
+        return;
+    }
+
+    downloadDataAsJson(fullBankData, `Ngan hang cau hoi.json`);
+}
+
+function handleImportQuestionBank(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const file = target.files?.[0];
+
+    if (!file) {
+        return;
+    }
+
+    if (!file.name.endsWith('.json') && file.type !== 'application/json') {
+        showAlert('Vui lòng chọn một tệp ngân hàng .json hợp lệ.', 'warning');
+        target.value = '';
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = async (e) => {
+        try {
+            const text = e.target?.result as string;
+            if (!text) throw new Error("Tệp rỗng.");
+            
+            const importedFullBank = JSON.parse(text);
+
+            const subjectKeys = Object.keys(importedFullBank);
+            if (subjectKeys.length === 0 || typeof importedFullBank[subjectKeys[0]] !== 'object') {
+                 throw new Error("Tệp không có cấu trúc dữ liệu hợp lệ. Tệp phải chứa dữ liệu cho từng môn học.");
+            }
+
+            if (!confirm(`Tệp này chứa dữ liệu cho ${subjectKeys.length} môn học. Thao tác này sẽ GHI ĐÈ dữ liệu của các môn tương ứng đang có trên trình duyệt. Bạn có chắc chắn muốn tiếp tục không?`)) {
+                target.value = '';
+                return;
+            }
+            
+            let importedCount = 0;
+            for (const subjectKey in importedFullBank) {
+                if (Object.prototype.hasOwnProperty.call(importedFullBank, subjectKey)) {
+                    const localStorageKey = `examData_${subjectKey}`;
+                    const subjectData = importedFullBank[subjectKey];
+                    localStorage.setItem(localStorageKey, JSON.stringify(subjectData));
+                    importedCount++;
+                }
+            }
+
+            // Reload UI to reflect changes for the currently selected subjects
+            await loadSubjectData(currentSubject); // Reloads main form data
+            await loadBankData(bankSubjectSelect.value); // Reloads bank view data
+            
+            showAlert(`Đã nạp thành công dữ liệu cho ${importedCount} môn học từ tệp!`, 'success');
+
+        } catch (error) {
+            console.error("Error importing question bank file:", error);
+            showAlert(`Lỗi khi nạp tệp ngân hàng: ${(error as Error).message}. Vui lòng kiểm tra lại tệp.`, 'danger');
+        } finally {
+            target.value = '';
+        }
+    };
+
+    reader.onerror = () => {
+         showAlert('Không thể đọc được tệp. Vui lòng thử lại.', 'danger');
+         target.value = '';
+    };
+
+    reader.readAsText(file);
+}
+
+
+function handleExportSelectedQuestions(format: 'docx' | 'tex') {
+    if (selectedBankQuestions.length === 0) {
+        showAlert('Vui lòng chọn ít nhất một câu hỏi để xuất.', 'warning');
+        return;
+    }
+
+    const title = prompt("Nhập tiêu đề cho tệp xuất:", "Tuyển tập câu hỏi");
+    if (title === null) return; // User cancelled
+    if (title.trim() === "") {
+        showAlert('Tiêu đề không được để trống.', 'warning');
+        return;
+    }
+
+    try {
+        if (format === 'docx') {
+            let content = `<h1>${title}</h1><hr>`;
+            content += selectedBankQuestions.map((q, index) => {
+                const questionText = (q.question_text || '').replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\*(.*?)\*/g, '<i>$1</i>').replace(/\n/g, '<br>');
+                const answerText = (q.answer_text || '').replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\*(.*?)\*/g, '<i>$1</i>').replace(/\n/g, '<br>');
+                return `<div><b>Câu ${index + 1}:</b> ${questionText}</div><div style="margin-left: 20px;"><i>Đáp án: ${answerText}</i></div><br>`;
+            }).join('');
+            
+            const html = `
+                <!DOCTYPE html><html><head><meta charset='utf-8'><title>${title}</title>
+                <style>body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; }</style>
+                </head><body>${content}</body></html>`;
+
+            const blob = new Blob(['\ufeff', html], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'TuyenTapCauHoi.doc';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+
+        } else if (format === 'tex') {
+            let content = selectedBankQuestions.map((q, index) => {
+                // For LaTeX, replace \n with \\ and a newline for readability in the .tex file
+                const questionText = (q.question_text || '').replace(/\*\*(.*?)\*\*/g, '\\textbf{$1}').replace(/\*(.*?)\*/g, '\\textit{$1}').replace(/\n/g, '\\\\ \n');
+                const answerText = (q.answer_text || '').replace(/\*\*(.*?)\*\*/g, '\\textbf{$1}').replace(/\*(.*?)\*/g, '\\textit{$1}').replace(/\n/g, '\\\\ \n');
+                return `\\section*{Câu ${index + 1}}\n${questionText}\n\n\\textit{Đáp án: ${answerText}}\n`;
+            }).join('\n');
+            
+            const fullTexDocument = `
+    \\documentclass[12pt,a4paper]{article}
+    \\usepackage[utf8]{inputenc}
+    \\usepackage[vietnamese]{babel}
+    \\usepackage{amsmath}
+    \\usepackage{amssymb}
+    \\usepackage{geometry}
+    \\geometry{a4paper, margin=2cm}
+    \\title{${title.replace(/([&%$#_{}])/g, '\\$1')}}
+    \\author{AG-AI Exam Generator}
+    \\date{\\today}
+    \\begin{document}
+    \\maketitle
+    ${content}
+    \\end{document}
+            `;
+
+            const blob = new Blob([fullTexDocument], { type: 'application/x-tex;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'TuyenTapCauHoi.tex';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+        
+        showAlert(`Đã xuất ${selectedBankQuestions.length} câu hỏi thành công.`, 'success');
+    } catch(error) {
+        showAlert(`Đã xảy ra lỗi khi xuất tệp: ${error.message}`, 'danger');
+        console.error("Error exporting questions:", error);
+    }
 }
